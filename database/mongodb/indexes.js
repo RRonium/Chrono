@@ -1,3 +1,5 @@
-// Chrono MongoDB indexes.
-db.news.createIndex({ publishedAt: -1 });
-db.news.createIndex({ countryCode: 1 });
+// Chrono MongoDB indexes for DB3 (chrono_news)
+db = db.getSiblingDB("chrono_news");
+
+db.news_articles.createIndex({ headline: "text", body: "text" });
+db.news_articles.createIndex({ iso_code: 1, published_at: -1 });

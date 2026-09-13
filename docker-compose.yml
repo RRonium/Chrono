@@ -1,41 +1,47 @@
 services:
   postgres:
-    image: postgres:16
+    image: timescale/timescaledb:latest-pg15
     environment:
-      POSTGRES_DB: ${POSTGRES_DB:-chrono}
-      POSTGRES_USER: ${POSTGRES_USER:-chrono}
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-chrono}
+      POSTGRES_DB: ${POSTGRES_DB:-chrono_db}
+      POSTGRES_USER: ${POSTGRES_USER:-chrono_admin}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-chrono_password}
     ports:
       - "5432:5432"
     volumes:
-      - postgres_data:/var/lib/postgresql/data
-      - ./database/postgres/init.sql:/docker-entrypoint-initdb.d/init.sql:ro
+      - pgdata:/var/lib/postgresql/data
+      - ./database/postgres/init.sql:/docker-entrypoint-initdb.d/01-init.sql:ro
+      - ./database/timescaledb/init.sql:/docker-entrypoint-initdb.d/02-init.sql:ro
 
   timescaledb:
-    image: timescale/timescaledb:latest-pg16
+    image: timescale/timescaledb:latest-pg15
     environment:
-      POSTGRES_DB: ${TIMESCALE_DB:-chrono}
-      POSTGRES_USER: ${TIMESCALE_USER:-chrono}
-      POSTGRES_PASSWORD: ${TIMESCALE_PASSWORD:-chrono}
+      POSTGRES_DB: ${TIMESCALE_DB:-chrono_db}
+      POSTGRES_USER: ${TIMESCALE_USER:-chrono_admin}
+      POSTGRES_PASSWORD: ${TIMESCALE_PASSWORD:-chrono_password}
     ports:
       - "5433:5432"
     volumes:
-      - timescale_data:/var/lib/postgresql/data
+      - timescaledb_data:/var/lib/postgresql/data
       - ./database/timescaledb/init.sql:/docker-entrypoint-initdb.d/init.sql:ro
 
   mongodb:
-    image: mongo:7
+    image: mongo:latest
     ports:
       - "27017:27017"
     volumes:
-      - mongodb_data:/data/db
+      - mongodata:/data/db
+      - ./database/mongodb/indexes.js:/docker-entrypoint-initdb.d/indexes.js:ro
 
   redis:
     image: redis:7-alpine
+    command: "redis-server --save 60 1 --loglevel notice"
     ports:
       - "6379:6379"
+    volumes:
+      - redisdata:/data
 
 volumes:
-  postgres_data:
-  timescale_data:
-  mongodb_data:
+  pgdata:
+  timescaledb_data:
+  mongodata:
+  redisdata:

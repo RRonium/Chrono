@@ -1,6 +1,10 @@
+version: '3.8'
+
 services:
   postgres:
     image: timescale/timescaledb:latest-pg15
+    container_name: chrono-postgres
+    restart: always
     environment:
       POSTGRES_DB: ${POSTGRES_DB:-chrono_db}
       POSTGRES_USER: ${POSTGRES_USER:-chrono_admin}
@@ -9,31 +13,22 @@ services:
       - "5432:5432"
     volumes:
       - pgdata:/var/lib/postgresql/data
-      - ./database/postgres/init.sql:/docker-entrypoint-initdb.d/01-init.sql:ro
-      - ./database/timescaledb/init.sql:/docker-entrypoint-initdb.d/02-init.sql:ro
-
-  timescaledb:
-    image: timescale/timescaledb:latest-pg15
-    environment:
-      POSTGRES_DB: ${TIMESCALE_DB:-chrono_db}
-      POSTGRES_USER: ${TIMESCALE_USER:-chrono_admin}
-      POSTGRES_PASSWORD: ${TIMESCALE_PASSWORD:-chrono_password}
-    ports:
-      - "5433:5432"
-    volumes:
-      - timescaledb_data:/var/lib/postgresql/data
-      - ./database/timescaledb/init.sql:/docker-entrypoint-initdb.d/init.sql:ro
+      - ./database/postgres/init.sql:/docker-entrypoint-initdb.d/01-postgres-init.sql:ro
+      - ./database/timescaledb/init.sql:/docker-entrypoint-initdb.d/02-timescale-init.sql:ro
 
   mongodb:
-    image: mongo:latest
+    image: mongo:7.0
+    container_name: chrono-mongodb
+    restart: always
     ports:
       - "27017:27017"
     volumes:
       - mongodata:/data/db
-      - ./database/mongodb/indexes.js:/docker-entrypoint-initdb.d/indexes.js:ro
 
   redis:
     image: redis:7-alpine
+    container_name: chrono-redis
+    restart: always
     command: "redis-server --save 60 1 --loglevel notice"
     ports:
       - "6379:6379"
@@ -42,6 +37,5 @@ services:
 
 volumes:
   pgdata:
-  timescaledb_data:
   mongodata:
   redisdata:

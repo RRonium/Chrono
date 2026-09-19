@@ -1,11 +1,7 @@
-"""Entry point for market and news ingestion."""
-
-from config import settings
-
+from services.ingestion.scheduler.cron_jobs import run_scheduled_jobs
 
 def main() -> None:
-    print(f"Starting Chrono ingestion in {settings.environment} mode")
-
+    run_scheduled_jobs()
 
 if __name__ == "__main__":
     main()

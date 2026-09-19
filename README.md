@@ -116,3 +116,69 @@ chrono/
     └── mongodb/                    # DB3 Setup
         ├── indexes.js              # Full-text & ISO spatial index setups
         └── collections/
+
+--
+
+## For Testing/Execution 
+To perform a full End-to-End System Test of Project Chrono, you will need all services running across 4 separate terminal windows/tabs to form the complete operational pipeline:
+
+1. Container Infrastructure Layer (Layer 1)
+Ensure your multi-model persistence containers are active in Docker.
+
+Check status:
+
+Bash
+docker ps
+Required active containers:
+
+chrono-postgres (TimescaleDB engine on port 5432)
+
+chrono-mongodb (Document store on port 27017)
+
+chrono-redis (In-memory cache & Pub/Sub gateway on port 6379)
+
+(If any are stopped, start them with docker-compose up -d from the project root).
+
+2. Terminal 1: Backend API Gateway (Layer 3)
+Acts as the central gateway, database proxy, and WebSocket server (ws://localhost:8000/ws/live).
+
+Bash
+# Run from project root
+python3 -m uvicorn services.backend.main:app --reload --port 8000
+Verify: http://localhost:8000/docs
+
+3. Terminal 2: Analytics & Agentic Engine (Layer 4)
+Calculates technical indicators, classifies headline sentiment, and generates executive market briefs.
+
+Bash
+# Run from project root
+python3 -m uvicorn services.analytics.main:app --reload --port 8001
+Verify: http://localhost:8001/docs
+
+4. Terminal 3: Data Ingestion & Live Pipeline (Layer 2)
+Fetches market ticks and financial headlines, processes them via the persistence router, and broadcasts them live across Redis channels.
+
+Bash
+# Run from project root
+python3 -m services.ingestion.main
+5. Terminal 4: Frontend Command Center & 3D Globe (Layer 5)
+The Next.js dashboard and 3D WebGL globe.
+
+Bash
+# Run from apps/web directory
+cd apps/web
+npm run dev
+Verify: http://localhost:3000
+
+How to Verify the End-to-End Integration:
+Open http://localhost:3000 in your browser.
+
+Check the connection indicator in the header—it should show WebSocket Connected (ws://localhost:8000/ws/live).
+
+Observe the 3D Interactive Globe: nodes (USA, IND, DEU, etc.) should animate and update their stress/sentiment colors as the ingestion script in Terminal 3 fires.
+
+Check the Live News Feed & Price Ticker: new market ticks and classified news items should stream across the dashboard in real time without refreshing.
+
+Click on a country node (e.g., USA or IND) to open the Agentic Market Brief Modal and confirm it successfully fetches the structured intelligence brief from Layer 4 on port 8001.
+
+Spin up those 4 terminals and open http://localhost:3000! Let me know if everything connects smoothly or if you see any connection errors.

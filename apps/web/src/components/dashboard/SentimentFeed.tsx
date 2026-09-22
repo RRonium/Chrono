@@ -1,5 +1,23 @@
 import React, { useEffect, useState } from "react";
 
+const SOURCE_URLS: Record<string, string> = {
+  bloomberg: "https://www.bloomberg.com/",
+  economic_times: "https://economictimes.indiatimes.com/",
+  moneycontrol: "https://www.moneycontrol.com/news/business/",
+  reuters: "https://www.reuters.com/business/",
+  reuters_rss: "https://www.reuters.com/business/",
+};
+
+function resolveArticleUrl(article: any): string | null {
+  const url = typeof article.url === "string" ? article.url.trim() : "";
+  if (/^https?:\/\/\S+$/i.test(url) && url !== "#") {
+    return url;
+  }
+
+  const source = typeof article.source === "string" ? article.source.toLowerCase() : "";
+  return SOURCE_URLS[source] ?? null;
+}
+
 const DEMO_FALLBACK_ARTICLES = [
   {
     title: "Global Supply Chain Disruptions Ease as Major Ports Resume Normal Operations",
@@ -31,11 +49,110 @@ const DEMO_FALLBACK_ARTICLES = [
   {
     title: "Tech Sector Rally Boosts S&P 500 to New Heights Following Strong Semiconductor Earnings",
     url: "#",
-    source: "reuters",
+    source: "bloomberg",
     iso_code: "USA",
     published_at: "2026-03-30T09:00:00Z",
     sentiment: { label: "BULLISH", score: 0.91 },
     urgency: 0.65,
+  },
+  {
+    title: "Nikkei 225 Surges Past Resistance Levels on Strong Export Data and Weak Yen",
+    url: "#",
+    source: "nikkei_asia",
+    iso_code: "JPN",
+    published_at: "2026-03-30T08:30:00Z",
+    sentiment: { label: "BULLISH", score: 0.78 },
+    urgency: 0.68,
+  },
+  {
+    title: "German DAX Reacts to Industrial Production Surge and Manufacturing PMI Recovery",
+    url: "#",
+    source: "handelsblatt",
+    iso_code: "DEU",
+    published_at: "2026-03-30T08:00:00Z",
+    sentiment: { label: "BULLISH", score: 0.70 },
+    urgency: 0.52,
+  },
+  {
+    title: "Bank of England Maintains Caution on Rate Trajectory Amid Persistent Wage Growth",
+    url: "#",
+    source: "financial_times",
+    iso_code: "GBR",
+    published_at: "2026-03-30T07:30:00Z",
+    sentiment: { label: "BEARISH", score: -0.44 },
+    urgency: 0.75,
+  },
+  {
+    title: "Indian IT Giants Announce Major Expansion into AI Infrastructure Services",
+    url: "#",
+    source: "moneycontrol",
+    iso_code: "IND",
+    published_at: "2026-03-30T07:00:00Z",
+    sentiment: { label: "BULLISH", score: 0.82 },
+    urgency: 0.60,
+  },
+  {
+    title: "US Treasury Yields Stabilize Following Federal Reserve Inflation Commentary",
+    url: "#",
+    source: "reuters",
+    iso_code: "USA",
+    published_at: "2026-03-30T06:30:00Z",
+    sentiment: { label: "NEUTRAL", score: 0.05 },
+    urgency: 0.40,
+  },
+  {
+    title: "Tokyo Tech Stocks Rally on Semiconductor Investment Subsidies",
+    url: "#",
+    source: "nikkei_asia",
+    iso_code: "JPN",
+    published_at: "2026-03-30T06:00:00Z",
+    sentiment: { label: "BULLISH", score: 0.88 },
+    urgency: 0.63,
+  },
+  {
+    title: "FTSE 100 Dips as Energy Majors Face Regulatory Scrutiny over Windfall Profits",
+    url: "#",
+    source: "financial_times",
+    iso_code: "GBR",
+    published_at: "2026-03-30T05:30:00Z",
+    sentiment: { label: "BEARISH", score: -0.55 },
+    urgency: 0.71,
+  },
+  {
+    title: "Frankfurt Auto Show Highlights Rapid EV Transition Among Luxury Manufacturers",
+    url: "#",
+    source: "handelsblatt",
+    iso_code: "DEU",
+    published_at: "2026-03-30T05:00:00Z",
+    sentiment: { label: "BULLISH", score: 0.65 },
+    urgency: 0.48,
+  },
+  {
+    title: "Mumbai Sensex Reaches Record Highs Driven by FII Inflows into Banking Sector",
+    url: "#",
+    source: "economic_times",
+    iso_code: "IND",
+    published_at: "2026-03-30T04:30:00Z",
+    sentiment: { label: "BULLISH", score: 0.89 },
+    urgency: 0.67,
+  },
+  {
+    title: "Wall Street Futures Point to Modest Open Ahead of Non-Farm Payrolls Report",
+    url: "#",
+    source: "bloomberg",
+    iso_code: "USA",
+    published_at: "2026-03-30T04:00:00Z",
+    sentiment: { label: "NEUTRAL", score: 0.02 },
+    urgency: 0.50,
+  },
+  {
+    title: "Global Central Banks Coordinate Liquidity Frameworks Amid Geopolitical Tensions",
+    url: "#",
+    source: "reuters",
+    iso_code: "GBR",
+    published_at: "2026-03-30T03:30:00Z",
+    sentiment: { label: "BEARISH", score: -0.68 },
+    urgency: 0.88,
   },
 ];
 
@@ -55,7 +172,7 @@ export function SentimentFeed({ articles: liveArticles }: { articles?: any[]; li
     ...(Array.isArray(articles) ? articles : []),
   ];
 
-  // Fallback to structured demo cards if empty so feed renders immediately on mount
+  // Fallback to 15 diversified demo cards if empty so feed renders immediately on mount
   const combined = rawCombined.length > 0 ? rawCombined : DEMO_FALLBACK_ARTICLES;
 
   return (
@@ -80,11 +197,12 @@ export function SentimentFeed({ articles: liveArticles }: { articles?: any[]; li
           const timeStr = article.published_at
             ? new Date(article.published_at).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
             : "Just now";
+          const articleUrl = resolveArticleUrl(article);
 
           return (
             <div key={idx} className="border-b border-cyan-500/10 pb-2">
               <div className="flex justify-between items-start mb-1">
-                <a href={article.url || "#"} target="_blank" rel="noreferrer" className="text-xs font-medium text-slate-100 hover:text-cyan-400 transition-colors line-clamp-1">
+                <a href={articleUrl ?? undefined} target="_blank" rel="noopener noreferrer" className="text-xs font-medium text-slate-100 hover:text-cyan-400 transition-colors line-clamp-1">
                   {article.title}
                 </a>
                 <span className="text-[10px] font-mono px-1.5 py-0.5 rounded bg-black/60 text-cyan-300 border border-cyan-500/30 uppercase ml-2 shrink-0">
@@ -94,7 +212,7 @@ export function SentimentFeed({ articles: liveArticles }: { articles?: any[]; li
               <div className="flex justify-between items-center text-[10px] font-mono text-slate-400">
                 <div className="flex items-center space-x-2">
                   <span className="uppercase text-cyan-400">{article.source || "Feed"}</span>
-                  <span className="text-slate-500">{timeStr}</span>
+                  <span className="text-slate-500" suppressHydrationWarning>{timeStr}</span>
                 </div>
                 <div className="flex items-center space-x-2">
                   <span className="text-slate-400">Urgency: {(urgencyScore * 100).toFixed(0)}%</span>

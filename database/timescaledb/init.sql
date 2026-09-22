@@ -2,7 +2,7 @@ CREATE EXTENSION IF NOT EXISTS timescaledb CASCADE;
 
 CREATE TABLE IF NOT EXISTS market_ticks (
     time TIMESTAMPTZ NOT NULL,
-    symbol VARCHAR(10) NOT NULL,
+    symbol VARCHAR(32) NOT NULL,
     price NUMERIC NOT NULL,
     volume NUMERIC,
     iso_code VARCHAR(3) NOT NULL

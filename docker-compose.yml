@@ -15,6 +15,13 @@ services:
       - pgdata:/var/lib/postgresql/data
       - ./database/postgres/init.sql:/docker-entrypoint-initdb.d/01-postgres-init.sql:ro
       - ./database/timescaledb/init.sql:/docker-entrypoint-initdb.d/02-timescale-init.sql:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U chrono_admin -d chrono_db"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    networks:
+      - chrono-network
 
   mongodb:
     image: mongo:7.0
@@ -24,6 +31,13 @@ services:
       - "27017:27017"
     volumes:
       - mongodata:/data/db
+    healthcheck:
+      test: ["CMD", "mongosh", "--eval", "db.adminCommand('ping')"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    networks:
+      - chrono-network
 
   redis:
     image: redis:7-alpine
@@ -34,8 +48,79 @@ services:
       - "6379:6379"
     volumes:
       - redisdata:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    networks:
+      - chrono-network
+
+  # Real-Time Ingestion Engine (Finnhub WS + yfinance + Cron Jobs)
+  ingestion:
+    build:
+      context: .
+      dockerfile: services/ingestion/Dockerfile
+    container_name: chrono-ingestion
+    restart: always
+    working_dir: /app
+    environment:
+      - PYTHONPATH=/app
+      - REDIS_HOST=chrono-redis
+      - REDIS_PORT=6379
+      - REDIS_URL=redis://chrono-redis:6379
+      - POSTGRES_HOST=chrono-postgres
+      - MONGO_URI=mongodb://chrono-mongodb:27017/chrono
+      - FINNHUB_API_KEY=${FINNHUB_API_KEY}
+    depends_on:
+      redis:
+        condition: service_healthy
+      postgres:
+        condition: service_healthy
+      mongodb:
+        condition: service_healthy
+    networks:
+      - chrono-network
+
+  # FastAPI Backend Gateway (WebSocket Fanout Server)
+  backend:
+    build:
+      context: .
+      dockerfile: services/backend/Dockerfile
+    container_name: chrono-backend
+    restart: always
+    ports:
+      - "8000:8000"
+    working_dir: /app
+    environment:
+      - PYTHONPATH=/app
+      - REDIS_HOST=chrono-redis
+      - REDIS_PORT=6379
+      - REDIS_URL=redis://chrono-redis:6379
+      - POSTGRES_HOST=chrono-postgres
+      - POSTGRES_PORT=5432
+      - POSTGRES_USER=${POSTGRES_USER:-chrono_admin}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD:-chrono_password}
+      - POSTGRES_DB=${POSTGRES_DB:-chrono_db}
+      - POSTGRES_URL=postgresql://${POSTGRES_USER:-chrono_admin}:${POSTGRES_PASSWORD:-chrono_password}@chrono-postgres:5432/${POSTGRES_DB:-chrono_db}
+      - TIMESCALE_URL=postgresql://${POSTGRES_USER:-chrono_admin}:${POSTGRES_PASSWORD:-chrono_password}@chrono-postgres:5432/${POSTGRES_DB:-chrono_db}
+      - MONGO_URI=mongodb://chrono-mongodb:27017/chrono
+      - PYTHONPATH=/app
+    depends_on:
+      redis:
+        condition: service_healthy
+      postgres:
+        condition: service_healthy
+      mongodb:
+        condition: service_healthy
+    networks:
+      - chrono-network
 
 volumes:
   pgdata:
   mongodata:
   redisdata:
+
+networks:
+  chrono-network:
+    driver: bridge

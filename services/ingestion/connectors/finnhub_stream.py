@@ -4,9 +4,10 @@ import threading
 import time
 from datetime import datetime, timezone
 import websocket
+import yfinance as yf
 from services.ingestion.config import settings
 from services.ingestion.etl.iso_tagger import map_symbol_to_iso
-from services.ingestion.etl.persistence_router import route_record
+from services.ingestion.etl.persistence_router import route_record, get_redis_client
 
 logger = logging.getLogger(__name__)
 
@@ -15,20 +16,52 @@ DEFAULT_SYMBOLS = [
     "MSFT",
     "GOOGL",
     "TSLA",
+    "RELIANCE.NS",
+    "^NSEI",
     "BINANCE:BTCUSDT",
     "BINANCE:ETHUSDT",
 ]
 
-# Track previous prices for real change calculation
+# Track baseline previous close and session open prices
 _previous_prices: dict[str, float] = {}
+_session_open_prices: dict[str, float] = {}
+
+
+def _initialize_baselines():
+    """Fetch initial baseline quotes and prev_close for Indian assets or regional proxies via yfinance with symbol sanitization."""
+    baseline_symbols = ["RELIANCE.NS", "^NSEI", "^GSPC"]
+    try:
+        r = get_redis_client()
+        for sym in baseline_symbols:
+            clean_sym = sym.replace('$', '').strip()
+            if not clean_sym:
+                continue
+            try:
+                ticker = yf.Ticker(clean_sym)
+                info = ticker.fast_info
+                pclose = getattr(info, "previous_close", None) or getattr(info, "last_price", 0.0)
+                if pclose and pclose > 0:
+                    _session_open_prices[clean_sym] = float(pclose)
+                    _previous_prices[clean_sym] = float(pclose)
+                    r.set(f"market:baseline:{clean_sym}", float(pclose))
+                    logger.info(f"Initialized yfinance baseline for {clean_sym}: prev_close={pclose}")
+            except Exception as e:
+                logger.warning(f"Could not fetch yfinance baseline for {clean_sym}: {e}")
+    except Exception as e:
+        logger.warning(f"Redis baseline cache initialization error: {e}")
+
 
 class FinnhubStreamer:
     def __init__(self, api_key: str = None, symbols: list[str] = None):
         self.api_key = api_key or settings.FINNHUB_API_KEY
-        self.symbols = symbols or DEFAULT_SYMBOLS
+        raw_symbols = symbols or DEFAULT_SYMBOLS
+        # Sanitize all input symbols
+        self.symbols = [s.replace('$', '').strip() for s in raw_symbols if s and s.replace('$', '').strip()]
         self.ws = None
         self.thread = None
         self.is_running = False
+        # Initialize baselines on startup
+        _initialize_baselines()
 
     def _on_message(self, ws, message):
         try:
@@ -37,26 +70,48 @@ class FinnhubStreamer:
             if msg_type == "trade":
                 trades = data.get("data", [])
                 for trade in trades:
-                    symbol = trade.get("s")
+                    raw_symbol = trade.get("s", "")
+                    symbol = raw_symbol.replace('$', '').strip()
+                    if not symbol:
+                        continue
                     price = float(trade.get("p", 0.0))
                     volume = float(trade.get("v", 0.0))
                     t_ms = trade.get("t", int(time.time() * 1000))
                     timestamp = datetime.fromtimestamp(t_ms / 1000.0, tz=timezone.utc).isoformat()
                     
-                    prev = _previous_prices.get(symbol, price)
-                    change_pct = round(((price - prev) / prev * 100.0), 2) if prev > 0 else 0.0
+                    if symbol not in _session_open_prices:
+                        try:
+                            r = get_redis_client()
+                            val = r.get(f"market:baseline:{symbol}")
+                            if val:
+                                _session_open_prices[symbol] = float(val)
+                            else:
+                                _session_open_prices[symbol] = price
+                        except Exception:
+                            _session_open_prices[symbol] = price
+
+                    prev_close = _session_open_prices.get(symbol, price)
+                    if prev_close <= 0:
+                        prev_close = price
+
+                    change_pct = round(((price - prev_close) / prev_close * 100.0), 2)
                     _previous_prices[symbol] = price
+
+                    is_inr = "NS" in symbol or "NSEI" in symbol
+                    currency = "INR" if is_inr else "USD"
 
                     record = {
                         "time": timestamp,
                         "symbol": symbol,
                         "price": round(price, 4),
-                        "open": round(price, 4),
-                        "high": round(price, 4),
-                        "low": round(price, 4),
+                        "prev_close": round(prev_close, 4),
+                        "open": round(prev_close, 4),
+                        "high": round(max(price, prev_close), 4),
+                        "low": round(min(price, prev_close), 4),
                         "close": round(price, 4),
                         "volume": round(volume, 4),
                         "change_pct": change_pct,
+                        "currency": currency,
                         "iso_code": map_symbol_to_iso(symbol),
                         "type": "market",
                     }

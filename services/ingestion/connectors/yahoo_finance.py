@@ -11,7 +11,7 @@ _last_known_prices: dict[str, float] = {}
 def fetch_yahoo_ticks(symbols=None):
     """
     Fetch market ticks using fast_info / 1d history.
-    Eliminates fallback routines to stale previous_close so stale values are not masked.
+    Sanitizes symbols to prevent '$' prefix issues.
     Calculates change_pct directly against prior tick.
     """
     if symbols is None:
@@ -19,31 +19,32 @@ def fetch_yahoo_ticks(symbols=None):
 
     ticks = []
     for symbol in symbols:
+        clean_symbol = symbol.replace('$', '').strip()
+        if not clean_symbol:
+            continue
         try:
-            ticker = yf.Ticker(symbol)
-            # Use fast_info directly for real-time last_price without stale 1m candle delay
+            ticker = yf.Ticker(clean_symbol)
             info = ticker.fast_info
             current_price = getattr(info, "last_price", None)
             
-            # If fast_info doesn't return last_price, inspect 1d latest row
             if current_price is None or current_price <= 0:
                 hist = ticker.history(period="1d", interval="1m")
                 if not hist.empty:
                     latest = hist.iloc[-1]
                     current_price = float(latest["Close"])
                 else:
-                    logger.warning(f"No current real-time tick available for {symbol}, skipping.")
+                    logger.warning(f"No current real-time tick available for {clean_symbol}, skipping.")
                     continue
 
             timestamp = datetime.now(timezone.utc)
-            prev_price = _last_known_prices.get(symbol, current_price)
+            prev_price = _last_known_prices.get(clean_symbol, current_price)
             change_pct = round(((current_price - prev_price) / prev_price * 100.0), 2) if prev_price > 0 else 0.0
-            _last_known_prices[symbol] = current_price
+            _last_known_prices[clean_symbol] = current_price
 
-            iso_code = map_symbol_to_iso(symbol)
+            iso_code = map_symbol_to_iso(clean_symbol)
             tick = {
                 "time": timestamp.isoformat(),
-                "symbol": symbol,
+                "symbol": clean_symbol,
                 "price": round(float(current_price), 4),
                 "open": round(float(current_price), 4),
                 "high": round(float(current_price), 4),
@@ -56,6 +57,6 @@ def fetch_yahoo_ticks(symbols=None):
             }
             ticks.append(tick)
         except Exception as e:
-            logger.error(f"Error fetching real-time market tick for {symbol}: {e}")
+            logger.error(f"Error fetching real-time market tick for {clean_symbol}: {e}")
 
     return ticks

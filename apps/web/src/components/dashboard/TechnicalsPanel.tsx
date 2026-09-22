@@ -153,6 +153,9 @@ export function TechnicalsPanel({ symbol = "AAPL" }: { symbol?: string }) {
     const latestTick = ticks[0];
     if (!latestTick) return;
 
+    // Strict symbol guard to prevent high-index values from corrupting equity charts
+    if (latestTick.symbol && latestTick.symbol.toUpperCase() !== symbol.toUpperCase()) return;
+
     const tickTime = parseTimestamp(latestTick.time);
     const tickPrice = Number(latestTick.price);
 

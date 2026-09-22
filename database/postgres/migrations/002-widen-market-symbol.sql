@@ -1,0 +1,2 @@
+ALTER TABLE market_ticks
+    ALTER COLUMN symbol TYPE VARCHAR(32);

@@ -5,6 +5,9 @@ apscheduler
 requests
 yfinance
 beautifulsoup4
+feedparser
+websocket-client
+websockets
 python-dotenv
 pydantic
 pydantic-settings

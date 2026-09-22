@@ -23,3 +23,11 @@ SELECT
     iso_code
 FROM market_ticks
 GROUP BY bucket, symbol, iso_code;
+
+-- Ensure continuous aggregate policy is active for automatic refresh
+SELECT add_continuous_aggregate_policy(
+    'market_ticks',
+    'time'::timestamptz,
+    if_not_exists => TRUE,
+    schedule_interval => INTERVAL '1 minute'
+);

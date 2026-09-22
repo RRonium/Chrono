@@ -19,6 +19,8 @@ class Settings(BaseSettings):
     REDIS_URL: str = "redis://localhost:6379"
     NODE_ENV: str = "development"
     FRED_API_KEY: str = ""
+    FINNHUB_API_KEY: str = os.getenv("FINNHUB_API_KEY", "")
+    NEWS_API_KEY: str = os.getenv("NEWS_API_KEY", "")
 
     class Config:
         env_file = "../../.env"

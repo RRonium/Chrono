@@ -1,56 +1,202 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
-import { ResponsiveContainer, AreaChart, Area, XAxis, YAxis, Tooltip } from "recharts";
-import { fetchOHLC } from "@/lib/api";
+import React, { useEffect, useRef } from "react";
+import { useWebSocket } from "@/hooks/useWebSocket";
+import { createChart, IChartApi, ISeriesApi } from "lightweight-charts";
+
+// Helper function to safely parse any time format into a primitive Unix timestamp in seconds
+const parseTimestamp = (timeVal: any): number => {
+  if (typeof timeVal === "number") {
+    return timeVal > 1e11 ? Math.floor(timeVal / 1000) : timeVal;
+  }
+  if (timeVal instanceof Date) {
+    return Math.floor(timeVal.getTime() / 1000);
+  }
+  if (typeof timeVal === "string") {
+    const parsed = Date.parse(timeVal);
+    if (!isNaN(parsed)) return Math.floor(parsed / 1000);
+  }
+  return Math.floor(Date.now() / 1000);
+};
 
 export function TechnicalsPanel({ symbol = "AAPL" }: { symbol?: string }) {
-  const [data, setData] = useState<any[]>([]);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const chartRef = useRef<IChartApi | null>(null);
+  const candleSeriesRef = useRef<ISeriesApi<"Candlestick"> | null>(null);
+  const volumeSeriesRef = useRef<ISeriesApi<"Histogram"> | null>(null);
 
+  const { ticks, connected } = useWebSocket();
+
+  // 1. Chart Initialization & Teardown
   useEffect(() => {
-    fetchOHLC(symbol).then((res) => {
-      if (res && res.length > 0) {
-        setData(res.reverse());
-      } else {
-        setData([
-          { time: "10:00", close: 150, sma: 148, ema: 149 },
-          { time: "11:00", close: 152, sma: 149, ema: 150 },
-          { time: "12:00", close: 151, sma: 150, ema: 150 },
-          { time: "13:00", close: 155, sma: 152, ema: 153 },
-          { time: "14:00", close: 154, sma: 153, ema: 153.5 }
-        ]);
-      }
+    if (!containerRef.current) return;
+
+    // Initialize chart with dark theme
+    const chart = createChart(containerRef.current, {
+      width: containerRef.current.clientWidth,
+      height: 220,
+      layout: {
+        background: { color: "#0d1117" },
+        textColor: "#8b949e",
+      },
+      grid: {
+        vertLines: { color: "#21262d" },
+        horzLines: { color: "#21262d" },
+      },
+      rightPriceScale: {
+        borderColor: "#21262d",
+        scaleMargins: { top: 0.1, bottom: 0.25 },
+      },
+      timeScale: {
+        borderColor: "#21262d",
+        timeVisible: true,
+        secondsVisible: false,
+      },
+      crosshair: {
+        mode: 1,
+      },
+      // Hide left scale or disable
+      leftPriceScale: {
+        visible: false,
+      },
     });
+
+    chartRef.current = chart;
+
+    // Candlestick Series initialized and configured via applyOptions
+    const candleSeries = chart.addCandlestickSeries();
+    candleSeries.applyOptions({
+      upColor: "#00ff9d",
+      downColor: "#ff0055",
+      borderUpColor: "#00ff9d",
+      borderDownColor: "#ff0055",
+      wickUpColor: "#00ff9d",
+      wickDownColor: "#ff0055",
+    });
+    candleSeriesRef.current = candleSeries;
+
+    // Volume Histogram Series Overlay
+    const volumeSeries = chart.addHistogramSeries({
+      priceScaleId: "volume",
+      priceFormat: { type: "volume" },
+    });
+    volumeSeries.priceScale().applyOptions({
+      scaleMargins: { top: 0.8, bottom: 0 },
+    });
+    volumeSeriesRef.current = volumeSeries;
+
+    // Initial Fetch for Historical Data
+    fetch(`/api/v1/market/ohlc/${symbol}`)
+      .then((res) => {
+        if (!res.ok) throw new Error("Failed to fetch OHLC data");
+        return res.json();
+      })
+      .then((data: any[]) => {
+        if (!Array.isArray(data) || data.length === 0) {
+          throw new Error("Empty OHLC response");
+        }
+        const candleData = data.map((d) => ({
+          time: parseTimestamp(d.time) as any,
+          open: Number(d.open),
+          high: Number(d.high),
+          low: Number(d.low),
+          close: Number(d.close),
+        }));
+
+        const volumeData = data.map((d) => ({
+          time: parseTimestamp(d.time) as any,
+          value: Number(d.volume ?? 100),
+          color: Number(d.close) >= Number(d.open) ? "#00ff9d80" : "#ff005580",
+        }));
+
+        candleSeries.setData(candleData);
+        volumeSeries.setData(volumeData);
+      })
+      .catch((err) => {
+        console.warn("Using fallback demo data for TechnicalsPanel:", err);
+        const now = Math.floor(Date.now() / 1000);
+        const demoCandles = [
+          { time: (now - 3600 * 3) as any, open: 150, high: 152, low: 149, close: 151 },
+          { time: (now - 3600 * 2) as any, open: 151, high: 153, low: 150, close: 155 },
+          { time: (now - 3600) as any, open: 155, high: 157, low: 154, close: 154 },
+        ];
+        const demoVolume = [
+          { time: (now - 3600 * 3) as any, value: 1200, color: "#00ff9d80" },
+          { time: (now - 3600 * 2) as any, value: 2400, color: "#00ff9d80" },
+          { time: (now - 3600) as any, value: 1800, color: "#ff005580" },
+        ];
+        candleSeries.setData(demoCandles);
+        volumeSeries.setData(demoVolume);
+      });
+
+    // Responsive Container Observer
+    const resizeObserver = new ResizeObserver((entries) => {
+      if (!entries[0] || !chartRef.current || !containerRef.current) return;
+      const { width } = entries[0].contentRect;
+      chartRef.current.applyOptions({ width });
+    });
+    resizeObserver.observe(containerRef.current);
+
+    return () => {
+      resizeObserver.disconnect();
+      chart.remove();
+      chartRef.current = null;
+      candleSeriesRef.current = null;
+      volumeSeriesRef.current = null;
+    };
   }, [symbol]);
 
+  // 2. WebSocket Stream Updates with Strict Primitive Timestamp Conversion
+  useEffect(() => {
+    if (!candleSeriesRef.current || !ticks.length) return;
+
+    const latestTick = ticks[0];
+    if (!latestTick) return;
+
+    const tickTime = parseTimestamp(latestTick.time);
+    const tickPrice = Number(latestTick.price);
+
+    if (isNaN(tickTime) || isNaN(tickPrice)) return;
+
+    try {
+      candleSeriesRef.current.update({
+        time: tickTime as any,
+        open: tickPrice,
+        high: tickPrice,
+        low: tickPrice,
+        close: tickPrice,
+      });
+
+      if (volumeSeriesRef.current) {
+        const vol = Number(latestTick.volume ?? 100);
+        volumeSeriesRef.current.update({
+          time: tickTime as any,
+          value: vol,
+          color: "#00ff9d80",
+        });
+      }
+    } catch (e) {
+      // Lightweight charts can throw if time is not ordered or duplicate
+      console.debug("Chart update skip:", e);
+    }
+  }, [ticks]);
+
   return (
-    <div className="hud-panel rounded-lg p-4 flex flex-col h-72">
-      <div className="flex justify-between items-center mb-3">
-        <h3 className="font-mono text-sm text-cyan-300 tracking-wider font-bold">TECHNICALS & OHLC ({symbol})</h3>
-        <div className="flex items-center space-x-3 text-[10px] font-mono">
-          <span className="text-cyan-400">SMA</span>
-          <span className="text-yellow-400">EMA</span>
-          <span className="text-[#ff00ff]">RSI</span>
-        </div>
+    <div className="hud-panel rounded-lg p-4 flex flex-col h-80 w-full">
+      <div className="flex justify-between items-center mb-2">
+        <h3 className="font-mono text-sm text-cyan-300 tracking-wider font-bold">
+          TECHNICALS & OHLC ({symbol})
+        </h3>
+        <span className="text-xs font-mono text-gray-400">
+          WS:{" "}
+          {connected ? (
+            <span className="text-emerald-400">ONLINE</span>
+          ) : (
+            <span className="text-rose-500">OFFLINE</span>
+          )}
+        </span>
       </div>
-      <div className="flex-1 w-full">
-        <ResponsiveContainer width="100%" height="100%">
-          <AreaChart data={data}>
-            <defs>
-              <linearGradient id="cyanGradient" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="5%" stopColor="#00f0ff" stopOpacity={0.4}/>
-                <stop offset="95%" stopColor="#00f0ff" stopOpacity={0.0}/>
-              </linearGradient>
-            </defs>
-            <XAxis dataKey="time" stroke="#64748b" fontSize={10} />
-            <YAxis stroke="#64748b" fontSize={10} domain={["auto", "auto"]} />
-            <Tooltip contentStyle={{ backgroundColor: "#12121a", borderColor: "#00f0ff" }} />
-            <Area type="monotone" dataKey="close" stroke="#00f0ff" strokeWidth={2} fillOpacity={1} fill="url(#cyanGradient)" />
-            <Area type="monotone" dataKey="sma" stroke="#ffd700" strokeWidth={1.5} fill="none" />
-            <Area type="monotone" dataKey="ema" stroke="#ff00ff" strokeWidth={1.5} fill="none" />
-          </AreaChart>
-        </ResponsiveContainer>
-      </div>
+      <div className="flex-1 w-full relative" ref={containerRef} />
     </div>
   );
 }

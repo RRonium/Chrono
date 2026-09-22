@@ -19,11 +19,14 @@ const parseTimestamp = (timeVal: any): number => {
   return Math.floor(Date.now() / 1000);
 };
 
+const CHART_WINDOW_SECONDS = 5 * 60 * 60;
+
 export function TechnicalsPanel({ symbol = "AAPL" }: { symbol?: string }) {
   const containerRef = useRef<HTMLDivElement>(null);
   const chartRef = useRef<IChartApi | null>(null);
   const candleSeriesRef = useRef<ISeriesApi<"Candlestick"> | null>(null);
   const volumeSeriesRef = useRef<ISeriesApi<"Histogram"> | null>(null);
+  const liveCandlesRef = useRef<Map<number, { open: number; high: number; low: number; close: number; volume: number }>>(new Map());
 
   const { ticks, connected } = useWebSocket();
 
@@ -111,22 +114,31 @@ export function TechnicalsPanel({ symbol = "AAPL" }: { symbol?: string }) {
 
         candleSeries.setData(candleData);
         volumeSeries.setData(volumeData);
+        chart.timeScale().setVisibleRange({
+          from: (Math.floor(Date.now() / 1000) - CHART_WINDOW_SECONDS) as any,
+          to: Math.floor(Date.now() / 1000) as any,
+        });
       })
       .catch((err) => {
         console.warn("Using fallback demo data for TechnicalsPanel:", err);
         const now = Math.floor(Date.now() / 1000);
         const demoCandles = [
-          { time: (now - 3600 * 3) as any, open: 150, high: 152, low: 149, close: 151 },
-          { time: (now - 3600 * 2) as any, open: 151, high: 153, low: 150, close: 155 },
-          { time: (now - 3600) as any, open: 155, high: 157, low: 154, close: 154 },
+          { time: (now - 3600 * 4) as any, open: 150, high: 152, low: 149, close: 151 },
+          { time: (now - 3600 * 3) as any, open: 151, high: 153, low: 150, close: 155 },
+          { time: (now - 3600 * 2) as any, open: 155, high: 157, low: 154, close: 154 },
+          { time: (now - 3600) as any, open: 154, high: 156, low: 152, close: 153 },
+          { time: now as any, open: 153, high: 155, low: 151, close: 154 },
         ];
         const demoVolume = [
+          { time: (now - 3600 * 4) as any, value: 900, color: "#00ff9d80" },
           { time: (now - 3600 * 3) as any, value: 1200, color: "#00ff9d80" },
-          { time: (now - 3600 * 2) as any, value: 2400, color: "#00ff9d80" },
+          { time: (now - 3600 * 2) as any, value: 2400, color: "#ff005580" },
           { time: (now - 3600) as any, value: 1800, color: "#ff005580" },
+          { time: now as any, value: 2100, color: "#00ff9d80" },
         ];
         candleSeries.setData(demoCandles);
         volumeSeries.setData(demoVolume);
+        chart.timeScale().setVisibleRange({ from: (now - CHART_WINDOW_SECONDS) as any, to: now as any });
       });
 
     // Responsive Container Observer
@@ -143,6 +155,7 @@ export function TechnicalsPanel({ symbol = "AAPL" }: { symbol?: string }) {
       chartRef.current = null;
       candleSeriesRef.current = null;
       volumeSeriesRef.current = null;
+      liveCandlesRef.current.clear();
     };
   }, [symbol]);
 
@@ -150,32 +163,37 @@ export function TechnicalsPanel({ symbol = "AAPL" }: { symbol?: string }) {
   useEffect(() => {
     if (!candleSeriesRef.current || !ticks.length) return;
 
-    const latestTick = ticks[0];
+    const latestTick = [...ticks]
+      .filter((tick) => tick?.symbol?.toUpperCase() === symbol.toUpperCase())
+      .sort((left, right) => parseTimestamp(right.time) - parseTimestamp(left.time))[0];
     if (!latestTick) return;
 
-    // Strict symbol guard to prevent high-index values from corrupting equity charts
-    if (latestTick.symbol && latestTick.symbol.toUpperCase() !== symbol.toUpperCase()) return;
-
-    const tickTime = parseTimestamp(latestTick.time);
+    const tickTime = Math.floor(parseTimestamp(latestTick.time) / 60) * 60;
     const tickPrice = Number(latestTick.price);
 
     if (isNaN(tickTime) || isNaN(tickPrice)) return;
 
     try {
+      const previous = liveCandlesRef.current.get(tickTime);
+      const candle = {
+        open: previous?.open ?? Number(latestTick.open ?? tickPrice),
+        high: Math.max(previous?.high ?? tickPrice, Number(latestTick.high ?? tickPrice), tickPrice),
+        low: Math.min(previous?.low ?? tickPrice, Number(latestTick.low ?? tickPrice), tickPrice),
+        close: tickPrice,
+        volume: (previous?.volume ?? 0) + Number(latestTick.volume ?? 0),
+      };
+      liveCandlesRef.current.set(tickTime, candle);
+
       candleSeriesRef.current.update({
         time: tickTime as any,
-        open: tickPrice,
-        high: tickPrice,
-        low: tickPrice,
-        close: tickPrice,
+        ...candle,
       });
 
       if (volumeSeriesRef.current) {
-        const vol = Number(latestTick.volume ?? 100);
         volumeSeriesRef.current.update({
           time: tickTime as any,
-          value: vol,
-          color: "#00ff9d80",
+          value: candle.volume || 100,
+          color: candle.close >= candle.open ? "#00ff9d80" : "#ff005580",
         });
       }
     } catch (e) {

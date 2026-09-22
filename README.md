@@ -1,6 +1,6 @@
 # Chrono
 
-Chrono is a real-time, 3-layer polyglot financial command center that unifies global stock markets, foreign exchange rates, commodities, and geopolitical news into an interactive 3D WebGL spatial canvas. 
+Chrono is a real-time, 3-layer polyglot financial command center that unifies global stock markets, foreign exchange rates, commodities, and geopolitical news into an interactive 3D WebGL spatial canvas.
 
 The architecture decouples data ingestion, time-series analysis, machine learning sentiment classification, and live client streaming using PostgreSQL, TimescaleDB, MongoDB, Redis, and WebSockets.
 
@@ -119,7 +119,7 @@ chrono/
 
 --
 
-## For Testing/Execution 
+## For Testing/Execution
 To perform a full End-to-End System Test of Project Chrono, you will need all services running across 4 separate terminal windows/tabs to form the complete operational pipeline:
 
 1. Container Infrastructure Layer (Layer 1)
@@ -182,3 +182,81 @@ Check the Live News Feed & Price Ticker: new market ticks and classified news it
 Click on a country node (e.g., USA or IND) to open the Agentic Market Brief Modal and confirm it successfully fetches the structured intelligence brief from Layer 4 on port 8001.
 
 Spin up those 4 terminals and open http://localhost:3000! Let me know if everything connects smoothly or if you see any connection errors.
+
+## Run and Stop the Demo Safely
+
+### Stop the Project
+
+1. Stop the Next.js development server and any manually started Python services in their terminal windows:
+
+```text
+Ctrl+C
+```
+
+This applies to local `npm run dev`, backend, analytics, and ingestion processes.
+
+2. From the repository root, stop the Docker containers without deleting images or database data:
+
+```bash
+cd /Users/sannidhyabiswas/Documents/Projekts/Chrono
+docker compose stop
+```
+
+Do not use `docker compose down -v`. The `-v` option removes database volumes and can delete persisted project data.
+
+### Start the Project for a Demo
+
+1. Start the five Docker services using the existing images:
+
+```bash
+cd /Users/sannidhyabiswas/Documents/Projekts/Chrono
+docker compose up -d
+```
+
+Use `docker compose up -d --build` only after changing application code or Dockerfiles. A normal restart does not need to rebuild images.
+
+2. Confirm that all five containers are running and that the databases are healthy:
+
+```bash
+docker compose ps
+```
+
+Expected services:
+
+- `chrono-postgres`
+- `chrono-mongodb`
+- `chrono-redis`
+- `chrono-ingestion`
+- `chrono-backend`
+
+3. Check the backend health endpoint:
+
+```bash
+curl http://localhost:8000/
+```
+
+Expected response:
+
+```json
+{"status":"ok","environment":"development"}
+```
+
+4. Start the Next.js frontend in a separate terminal:
+
+```bash
+cd /Users/sannidhyabiswas/Documents/Projekts/Chrono/apps/web
+npm run dev
+```
+
+5. Open the dashboard at [http://localhost:3000](http://localhost:3000).
+
+### Troubleshooting Before a Presentation
+
+If a container is not running, inspect its logs without rebuilding or deleting data:
+
+```bash
+docker compose logs --tail=50 ingestion backend
+docker compose ps
+```
+
+The normal Docker startup path is `docker compose up -d`; do not also start the same backend or ingestion service manually on the host, because that can create port conflicts or duplicate workers.

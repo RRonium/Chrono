@@ -20,6 +20,7 @@ const parseTimestamp = (timeVal: any): number => {
 };
 
 const CHART_WINDOW_SECONDS = 5 * 60 * 60;
+const BACKEND_URL = "http://localhost:8000";
 
 export function TechnicalsPanel({ symbol = "AAPL" }: { symbol?: string }) {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -89,7 +90,7 @@ export function TechnicalsPanel({ symbol = "AAPL" }: { symbol?: string }) {
     volumeSeriesRef.current = volumeSeries;
 
     // Initial Fetch for Historical Data
-    fetch(`/api/v1/market/ohlc/${symbol}`)
+    fetch(`${BACKEND_URL}/api/v1/market/ohlc/${symbol}`)
       .then((res) => {
         if (!res.ok) throw new Error("Failed to fetch OHLC data");
         return res.json();

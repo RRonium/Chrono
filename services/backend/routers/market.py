@@ -27,15 +27,14 @@ async def get_ohlc(symbol: str, bucket: str = "1 hour"):
     pool = await get_db_pool()
     if not pool:
         raise HTTPException(status_code=500, detail="Database not connected")
-    
-        query = """
-                SELECT bucket, symbol, open, high, low, close, volume, iso_code
-                FROM hourly_ohlc
-                WHERE symbol = $1
-                    AND bucket >= now() - INTERVAL '5 hours'
-                ORDER BY bucket ASC
-                LIMIT 6
-        """
+    query = """
+        SELECT bucket, symbol, open, high, low, close, volume, iso_code
+        FROM hourly_ohlc
+        WHERE symbol = $1
+          AND bucket >= now() - INTERVAL '5 hours'
+        ORDER BY bucket ASC
+        LIMIT 6
+    """
     async with pool.acquire() as connection:
         rows = await connection.fetch(query, symbol.upper())
         result = []

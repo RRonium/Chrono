@@ -1,0 +1,2403 @@
+{
+ "meta": {
+  "generated": "2026-10-26",
+  "indicatorsUpdated": "2026-10-26",
+  "sources": {
+   "boundaries": "Natural Earth 1:50m Admin 0 – Countries (public domain)",
+   "metadata": "mledoze/countries (ODbL)",
+   "indicators": "World Bank, World Development Indicators (CC BY 4.0)"
+  },
+  "indicators": {
+   "gdp": {
+    "code": "NY.GDP.MKTP.CD",
+    "label": "GDP",
+    "unit": "usd",
+    "group": "output"
+   },
+   "gdp_growth": {
+    "code": "NY.GDP.MKTP.KD.ZG",
+    "label": "Real GDP growth",
+    "unit": "pct",
+    "group": "output"
+   },
+   "gdp_per_capita": {
+    "code": "NY.GDP.PCAP.CD",
+    "label": "GDP per capita",
+    "unit": "usd",
+    "group": "output"
+   },
+   "gdp_per_capita_ppp": {
+    "code": "NY.GDP.PCAP.PP.CD",
+    "label": "GDP per capita (PPP)",
+    "unit": "usd",
+    "group": "output"
+   },
+   "population": {
+    "code": "SP.POP.TOTL",
+    "label": "Population",
+    "unit": "people",
+    "group": "output"
+   },
+   "inflation": {
+    "code": "FP.CPI.TOTL.ZG",
+    "label": "Inflation (CPI)",
+    "unit": "pct",
+    "group": "prices"
+   },
+   "unemployment": {
+    "code": "SL.UEM.TOTL.ZS",
+    "label": "Unemployment",
+    "unit": "pct",
+    "group": "prices"
+   },
+   "real_interest_rate": {
+    "code": "FR.INR.RINR",
+    "label": "Real interest rate",
+    "unit": "pct",
+    "group": "prices"
+   },
+   "lending_rate": {
+    "code": "FR.INR.LEND",
+    "label": "Bank lending rate",
+    "unit": "pct",
+    "group": "prices"
+   },
+   "exchange_rate": {
+    "code": "PA.NUS.FCRF",
+    "label": "Exchange rate (per USD)",
+    "unit": "lcu_per_usd",
+    "group": "prices"
+   },
+   "gov_debt": {
+    "code": "GC.DOD.TOTL.GD.ZS",
+    "label": "Central government debt",
+    "unit": "pct_gdp",
+    "group": "fiscal"
+   },
+   "tax_revenue": {
+    "code": "GC.TAX.TOTL.GD.ZS",
+    "label": "Tax revenue",
+    "unit": "pct_gdp",
+    "group": "fiscal"
+   },
+   "current_account": {
+    "code": "BN.CAB.XOKA.GD.ZS",
+    "label": "Current account balance",
+    "unit": "pct_gdp",
+    "group": "external"
+   },
+   "exports": {
+    "code": "NE.EXP.GNFS.ZS",
+    "label": "Exports of goods & services",
+    "unit": "pct_gdp",
+    "group": "external"
+   },
+   "imports": {
+    "code": "NE.IMP.GNFS.ZS",
+    "label": "Imports of goods & services",
+    "unit": "pct_gdp",
+    "group": "external"
+   },
+   "fdi_inflows": {
+    "code": "BX.KLT.DINV.WD.GD.ZS",
+    "label": "FDI net inflows",
+    "unit": "pct_gdp",
+    "group": "external"
+   },
+   "reserves": {
+    "code": "FI.RES.TOTL.CD",
+    "label": "Total reserves (incl. gold)",
+    "unit": "usd",
+    "group": "external"
+   },
+   "market_cap": {
+    "code": "CM.MKT.LCAP.CD",
+    "label": "Listed companies market cap",
+    "unit": "usd",
+    "group": "markets"
+   },
+   "market_cap_gdp": {
+    "code": "CM.MKT.LCAP.GD.ZS",
+    "label": "Market cap",
+    "unit": "pct_gdp",
+    "group": "markets"
+   },
+   "domestic_credit": {
+    "code": "FS.AST.PRVT.GD.ZS",
+    "label": "Credit to private sector",
+    "unit": "pct_gdp",
+    "group": "markets"
+   },
+   "agriculture": {
+    "code": "NV.AGR.TOTL.ZS",
+    "label": "Agriculture",
+    "unit": "pct_gdp",
+    "group": "structure"
+   },
+   "industry": {
+    "code": "NV.IND.TOTL.ZS",
+    "label": "Industry",
+    "unit": "pct_gdp",
+    "group": "structure"
+   },
+   "services": {
+    "code": "NV.SRV.TOTL.ZS",
+    "label": "Services",
+    "unit": "pct_gdp",
+    "group": "structure"
+   }
+  }
+ },
+ "countries": [
+  {
+   "iso3": "AFG",
+   "name": "Afghanistan",
+   "flag": "🇦🇫",
+   "region": "Asia",
+   "subregion": "Southern Asia",
+   "gdp": 17778508875.7396,
+   "hasMarket": false
+  },
+  {
+   "iso3": "ALB",
+   "name": "Albania",
+   "flag": "🇦🇱",
+   "region": "Europe",
+   "subregion": "Southeast Europe",
+   "gdp": 30540188271.3421,
+   "hasMarket": false
+  },
+  {
+   "iso3": "DZA",
+   "name": "Algeria",
+   "flag": "🇩🇿",
+   "region": "Africa",
+   "subregion": "Northern Africa",
+   "gdp": 287031225987.736,
+   "hasMarket": false
+  },
+  {
+   "iso3": "ASM",
+   "name": "American Samoa",
+   "flag": "🇦🇸",
+   "region": "Oceania",
+   "subregion": "Polynesia",
+   "gdp": 871000000.0,
+   "hasMarket": false
+  },
+  {
+   "iso3": "AND",
+   "name": "Andorra",
+   "flag": "🇦🇩",
+   "region": "Europe",
+   "subregion": "Southern Europe",
+   "gdp": 4500982731.8078,
+   "hasMarket": false
+  },
+  {
+   "iso3": "AGO",
+   "name": "Angola",
+   "flag": "🇦🇴",
+   "region": "Africa",
+   "subregion": "Middle Africa",
+   "gdp": 122174889423.635,
+   "hasMarket": false
+  },
+  {
+   "iso3": "AIA",
+   "name": "Anguilla",
+   "flag": "🇦🇮",
+   "region": "Americas",
+   "subregion": "Caribbean",
+   "gdp": null,
+   "hasMarket": false
+  },
+  {
+   "iso3": "ATA",
+   "name": "Antarctica",
+   "flag": "🇦🇶",
+   "region": "Antarctic",
+   "subregion": "",
+   "gdp": null,
+   "hasMarket": false
+  },
+  {
+   "iso3": "ATG",
+   "name": "Antigua and Barbuda",
+   "flag": "🇦🇬",
+   "region": "Americas",
+   "subregion": "Caribbean",
+   "gdp": 2338196296.2963,
+   "hasMarket": false
+  },
+  {
+   "iso3": "ARG",
+   "name": "Argentina",
+   "flag": "🇦🇷",
+   "region": "Americas",
+   "subregion": "South America",
+   "gdp": 683097891618.597,
+   "hasMarket": false
+  },
+  {
+   "iso3": "ARM",
+   "name": "Armenia",
+   "flag": "🇦🇲",
+   "region": "Asia",
+   "subregion": "Western Asia",
+   "gdp": 29243452882.3545,
+   "hasMarket": false
+  },
+  {
+   "iso3": "ABW",
+   "name": "Aruba",
+   "flag": "🇦🇼",
+   "region": "Americas",
+   "subregion": "Caribbean",
+   "gdp": 4167588070.2922,
+   "hasMarket": false
+  },
+  {
+   "iso3": "AUS",
+   "name": "Australia",
+   "flag": "🇦🇺",
+   "region": "Oceania",
+   "subregion": "Australia and New Zealand",
+   "gdp": 1798518933689.21,
+   "hasMarket": false
+  },
+  {
+   "iso3": "AUT",
+   "name": "Austria",
+   "flag": "🇦🇹",
+   "region": "Europe",
+   "subregion": "Central Europe",
+   "gdp": 579470021095.418,
+   "hasMarket": false
+  },
+  {
+   "iso3": "AZE",
+   "name": "Azerbaijan",
+   "flag": "🇦🇿",
+   "region": "Asia",
+   "subregion": "Western Asia",
+   "gdp": 75937647058.8235,
+   "hasMarket": false
+  },
+  {
+   "iso3": "BHS",
+   "name": "Bahamas",
+   "flag": "🇧🇸",
+   "region": "Americas",
+   "subregion": "Caribbean",
+   "gdp": 15832800000.0,
+   "hasMarket": false
+  },
+  {
+   "iso3": "BHR",
+   "name": "Bahrain",
+   "flag": "🇧🇭",
+   "region": "Asia",
+   "subregion": "Western Asia",
+   "gdp": 48965725531.9149,
+   "hasMarket": false
+  },
+  {
+   "iso3": "BGD",
+   "name": "Bangladesh",
+   "flag": "🇧🇩",
+   "region": "Asia",
+   "subregion": "Southern Asia",
+   "gdp": 456319229255.578,
+   "hasMarket": false
+  },
+  {
+   "iso3": "BRB",
+   "name": "Barbados",
+   "flag": "🇧🇧",
+   "region": "Americas",
+   "subregion": "Caribbean",
+   "gdp": 8016550000.0,
+   "hasMarket": false
+  },
+  {
+   "iso3": "BLR",
+   "name": "Belarus",
+   "flag": "🇧🇾",
+   "region": "Europe",
+   "subregion": "Eastern Europe",
+   "gdp": 93397215864.198,
+   "hasMarket": false
+  },
+  {
+   "iso3": "BEL",
+   "name": "Belgium",
+   "flag": "🇧🇪",
+   "region": "Europe",
+   "subregion": "Western Europe",
+   "gdp": 725466462859.646,
+   "hasMarket": false
+  },
+  {
+   "iso3": "BLZ",
+   "name": "Belize",
+   "flag": "🇧🇿",
+   "region": "Americas",
+   "subregion": "Central America",
+   "gdp": 3326500000.0,
+   "hasMarket": false
+  },
+  {
+   "iso3": "BEN",
+   "name": "Benin",
+   "flag": "🇧🇯",
+   "region": "Africa",
+   "subregion": "Western Africa",
+   "gdp": 24566420903.5337,
+   "hasMarket": false
+  },
+  {
+   "iso3": "BMU",
+   "name": "Bermuda",
+   "flag": "🇧🇲",
+   "region": "Americas",
+   "subregion": "North America",
+   "gdp": 9194499000.0,
+   "hasMarket": false
+  },
+  {
+   "iso3": "BTN",
+   "name": "Bhutan",
+   "flag": "🇧🇹",
+   "region": "Asia",
+   "subregion": "Southern Asia",
+   "gdp": 3579320145.1308,
+   "hasMarket": false
+  },
+  {
+   "iso3": "BOL",
+   "name": "Bolivia",
+   "flag": "🇧🇴",
+   "region": "Americas",
+   "subregion": "South America",
+   "gdp": 64768947525.3256,
+   "hasMarket": false
+  },
+  {
+   "iso3": "BIH",
+   "name": "Bosnia and Herzegovina",
+   "flag": "🇧🇦",
+   "region": "Europe",
+   "subregion": "Southeast Europe",
+   "gdp": 32599982936.3931,
+   "hasMarket": false
+  },
+  {
+   "iso3": "BWA",
+   "name": "Botswana",
+   "flag": "🇧🇼",
+   "region": "Africa",
+   "subregion": "Southern Africa",
+   "gdp": 19928479839.4476,
+   "hasMarket": false
+  },
+  {
+   "iso3": "BVT",
+   "name": "Bouvet Island",
+   "flag": "🇧🇻",
+   "region": "Antarctic",
+   "subregion": "",
+   "gdp": null,
+   "hasMarket": false
+  },
+  {
+   "iso3": "BRA",
+   "name": "Brazil",
+   "flag": "🇧🇷",
+   "region": "Americas",
+   "subregion": "South America",
+   "gdp": 2279920092492.13,
+   "hasMarket": false
+  },
+  {
+   "iso3": "IOT",
+   "name": "British Indian Ocean Territory",
+   "flag": "🇮🇴",
+   "region": "Africa",
+   "subregion": "Eastern Africa",
+   "gdp": null,
+   "hasMarket": false
+  },
+  {
+   "iso3": "VGB",
+   "name": "British Virgin Islands",
+   "flag": "🇻🇬",
+   "region": "Americas",
+   "subregion": "Caribbean",
+   "gdp": null,
+   "hasMarket": false
+  },
+  {
+   "iso3": "BRN",
+   "name": "Brunei",
+   "flag": "🇧🇳",
+   "region": "Asia",
+   "subregion": "South-Eastern Asia",
+   "gdp": 15031980994.1121,
+   "hasMarket": false
+  },
+  {
+   "iso3": "BGR",
+   "name": "Bulgaria",
+   "flag": "🇧🇬",
+   "region": "Europe",
+   "subregion": "Southeast Europe",
+   "gdp": 130777235529.606,
+   "hasMarket": false
+  },
+  {
+   "iso3": "BFA",
+   "name": "Burkina Faso",
+   "flag": "🇧🇫",
+   "region": "Africa",
+   "subregion": "Western Africa",
+   "gdp": 27627297461.3181,
+   "hasMarket": false
+  },
+  {
+   "iso3": "BDI",
+   "name": "Burundi",
+   "flag": "🇧🇮",
+   "region": "Africa",
+   "subregion": "Eastern Africa",
+   "gdp": 3364713864.0849,
+   "hasMarket": false
+  },
+  {
+   "iso3": "KHM",
+   "name": "Cambodia",
+   "flag": "🇰🇭",
+   "region": "Asia",
+   "subregion": "South-Eastern Asia",
+   "gdp": 51267065842.9641,
+   "hasMarket": false
+  },
+  {
+   "iso3": "CMR",
+   "name": "Cameroon",
+   "flag": "🇨🇲",
+   "region": "Africa",
+   "subregion": "Middle Africa",
+   "gdp": 58933453923.761,
+   "hasMarket": false
+  },
+  {
+   "iso3": "CAN",
+   "name": "Canada",
+   "flag": "🇨🇦",
+   "region": "Americas",
+   "subregion": "North America",
+   "gdp": 2319899772425.92,
+   "hasMarket": false
+  },
+  {
+   "iso3": "CPV",
+   "name": "Cape Verde",
+   "flag": "🇨🇻",
+   "region": "Africa",
+   "subregion": "Western Africa",
+   "gdp": 3056630435.3246,
+   "hasMarket": false
+  },
+  {
+   "iso3": "BES",
+   "name": "Caribbean Netherlands",
+   "flag": "",
+   "region": "Americas",
+   "subregion": "Caribbean",
+   "gdp": null,
+   "hasMarket": false
+  },
+  {
+   "iso3": "CYM",
+   "name": "Cayman Islands",
+   "flag": "🇰🇾",
+   "region": "Americas",
+   "subregion": "Caribbean",
+   "gdp": 7765336505.3432,
+   "hasMarket": false
+  },
+  {
+   "iso3": "CAF",
+   "name": "Central African Republic",
+   "flag": "🇨🇫",
+   "region": "Africa",
+   "subregion": "Middle Africa",
+   "gdp": 3066109226.4016,
+   "hasMarket": false
+  },
+  {
+   "iso3": "TCD",
+   "name": "Chad",
+   "flag": "🇹🇩",
+   "region": "Africa",
+   "subregion": "Middle Africa",
+   "gdp": 21472835225.4338,
+   "hasMarket": false
+  },
+  {
+   "iso3": "CHL",
+   "name": "Chile",
+   "flag": "🇨🇱",
+   "region": "Americas",
+   "subregion": "South America",
+   "gdp": 357371159574.862,
+   "hasMarket": false
+  },
+  {
+   "iso3": "CHN",
+   "name": "China",
+   "flag": "🇨🇳",
+   "region": "Asia",
+   "subregion": "Eastern Asia",
+   "gdp": 19498039388042.6,
+   "hasMarket": true
+  },
+  {
+   "iso3": "CXR",
+   "name": "Christmas Island",
+   "flag": "🇨🇽",
+   "region": "Oceania",
+   "subregion": "Australia and New Zealand",
+   "gdp": null,
+   "hasMarket": false
+  },
+  {
+   "iso3": "CCK",
+   "name": "Cocos (Keeling) Islands",
+   "flag": "🇨🇨",
+   "region": "Oceania",
+   "subregion": "Australia and New Zealand",
+   "gdp": null,
+   "hasMarket": false
+  },
+  {
+   "iso3": "COL",
+   "name": "Colombia",
+   "flag": "🇨🇴",
+   "region": "Americas",
+   "subregion": "South America",
+   "gdp": 457410034202.523,
+   "hasMarket": false
+  },
+  {
+   "iso3": "COM",
+   "name": "Comoros",
+   "flag": "🇰🇲",
+   "region": "Africa",
+   "subregion": "Eastern Africa",
+   "gdp": 1814920856.2703,
+   "hasMarket": false
+  },
+  {
+   "iso3": "COG",
+   "name": "Congo",
+   "flag": "🇨🇬",
+   "region": "Africa",
+   "subregion": "Middle Africa",
+   "gdp": 16306633778.765,
+   "hasMarket": false
+  },
+  {
+   "iso3": "COK",
+   "name": "Cook Islands",
+   "flag": "🇨🇰",
+   "region": "Oceania",
+   "subregion": "Polynesia",
+   "gdp": null,
+   "hasMarket": false
+  },
+  {
+   "iso3": "CRI",
+   "name": "Costa Rica",
+   "flag": "🇨🇷",
+   "region": "Americas",
+   "subregion": "Central America",
+   "gdp": 102904921157.478,
+   "hasMarket": false
+  },
+  {
+   "iso3": "HRV",
+   "name": "Croatia",
+   "flag": "🇭🇷",
+   "region": "Europe",
+   "subregion": "Southeast Europe",
+   "gdp": 105060182186.274,
+   "hasMarket": false
+  },
+  {
+   "iso3": "CUB",
+   "name": "Cuba",
+   "flag": "🇨🇺",
+   "region": "Americas",
+   "subregion": "Caribbean",
+   "gdp": 107352000000.0,
+   "hasMarket": false
+  },
+  {
+   "iso3": "CUW",
+   "name": "Curaçao",
+   "flag": "🇨🇼",
+   "region": "Americas",
+   "subregion": "Caribbean",
+   "gdp": 3561178212.2905,
+   "hasMarket": false
+  },
+  {
+   "iso3": "CYP",
+   "name": "Cyprus",
+   "flag": "🇨🇾",
+   "region": "Europe",
+   "subregion": "Southern Europe",
+   "gdp": 41225787247.3309,
+   "hasMarket": false
+  },
+  {
+   "iso3": "CZE",
+   "name": "Czechia",
+   "flag": "🇨🇿",
+   "region": "Europe",
+   "subregion": "Central Europe",
+   "gdp": 391026962800.475,
+   "hasMarket": false
+  },
+  {
+   "iso3": "COD",
+   "name": "DR Congo",
+   "flag": "🇨🇩",
+   "region": "Africa",
+   "subregion": "Middle Africa",
+   "gdp": 91030531316.9936,
+   "hasMarket": false
+  },
+  {
+   "iso3": "DNK",
+   "name": "Denmark",
+   "flag": "🇩🇰",
+   "region": "Europe",
+   "subregion": "Northern Europe",
+   "gdp": 462526660468.393,
+   "hasMarket": false
+  },
+  {
+   "iso3": "DJI",
+   "name": "Djibouti",
+   "flag": "🇩🇯",
+   "region": "Africa",
+   "subregion": "Eastern Africa",
+   "gdp": 4624533092.3189,
+   "hasMarket": false
+  },
+  {
+   "iso3": "DMA",
+   "name": "Dominica",
+   "flag": "🇩🇲",
+   "region": "Americas",
+   "subregion": "Caribbean",
+   "gdp": 723859259.2593,
+   "hasMarket": false
+  },
+  {
+   "iso3": "DOM",
+   "name": "Dominican Republic",
+   "flag": "🇩🇴",
+   "region": "Americas",
+   "subregion": "Caribbean",
+   "gdp": 127407463759.043,
+   "hasMarket": false
+  },
+  {
+   "iso3": "ECU",
+   "name": "Ecuador",
+   "flag": "🇪🇨",
+   "region": "Americas",
+   "subregion": "South America",
+   "gdp": 130320560400.0,
+   "hasMarket": false
+  },
+  {
+   "iso3": "EGY",
+   "name": "Egypt",
+   "flag": "🇪🇬",
+   "region": "Africa",
+   "subregion": "Northern Africa",
+   "gdp": 365254630179.737,
+   "hasMarket": false
+  },
+  {
+   "iso3": "SLV",
+   "name": "El Salvador",
+   "flag": "🇸🇻",
+   "region": "Americas",
+   "subregion": "Central America",
+   "gdp": 36708110000.0,
+   "hasMarket": false
+  },
+  {
+   "iso3": "GNQ",
+   "name": "Equatorial Guinea",
+   "flag": "🇬🇶",
+   "region": "Africa",
+   "subregion": "Middle Africa",
+   "gdp": 12823210425.9217,
+   "hasMarket": false
+  },
+  {
+   "iso3": "ERI",
+   "name": "Eritrea",
+   "flag": "🇪🇷",
+   "region": "Africa",
+   "subregion": "Eastern Africa",
+   "gdp": null,
+   "hasMarket": false
+  },
+  {
+   "iso3": "EST",
+   "name": "Estonia",
+   "flag": "🇪🇪",
+   "region": "Europe",
+   "subregion": "Northern Europe",
+   "gdp": 47030833798.5866,
+   "hasMarket": false
+  },
+  {
+   "iso3": "SWZ",
+   "name": "Eswatini",
+   "flag": "🇸🇿",
+   "region": "Africa",
+   "subregion": "Southern Africa",
+   "gdp": 5160679612.8173,
+   "hasMarket": false
+  },
+  {
+   "iso3": "ETH",
+   "name": "Ethiopia",
+   "flag": "🇪🇹",
+   "region": "Africa",
+   "subregion": "Eastern Africa",
+   "gdp": 126358758448.356,
+   "hasMarket": false
+  },
+  {
+   "iso3": "FLK",
+   "name": "Falkland Islands",
+   "flag": "🇫🇰",
+   "region": "Americas",
+   "subregion": "South America",
+   "gdp": null,
+   "hasMarket": false
+  },
+  {
+   "iso3": "FRO",
+   "name": "Faroe Islands",
+   "flag": "🇫🇴",
+   "region": "Europe",
+   "subregion": "Northern Europe",
+   "gdp": 4052937169.7654,
+   "hasMarket": false
+  },
+  {
+   "iso3": "FJI",
+   "name": "Fiji",
+   "flag": "🇫🇯",
+   "region": "Oceania",
+   "subregion": "Melanesia",
+   "gdp": 6198013062.0655,
+   "hasMarket": false
+  },
+  {
+   "iso3": "FIN",
+   "name": "Finland",
+   "flag": "🇫🇮",
+   "region": "Europe",
+   "subregion": "Northern Europe",
+   "gdp": 317039368819.607,
+   "hasMarket": false
+  },
+  {
+   "iso3": "FRA",
+   "name": "France",
+   "flag": "🇫🇷",
+   "region": "Europe",
+   "subregion": "Western Europe",
+   "gdp": 3366315927447.33,
+   "hasMarket": false
+  },
+  {
+   "iso3": "GUF",
+   "name": "French Guiana",
+   "flag": "🇬🇫",
+   "region": "Americas",
+   "subregion": "South America",
+   "gdp": null,
+   "hasMarket": false
+  },
+  {
+   "iso3": "PYF",
+   "name": "French Polynesia",
+   "flag": "🇵🇫",
+   "region": "Oceania",
+   "subregion": "Polynesia",
+   "gdp": 6323716355.0501,
+   "hasMarket": false
+  },
+  {
+   "iso3": "ATF",
+   "name": "French Southern and Antarctic Lands",
+   "flag": "🇹🇫",
+   "region": "Antarctic",
+   "subregion": "",
+   "gdp": null,
+   "hasMarket": false
+  },
+  {
+   "iso3": "GAB",
+   "name": "Gabon",
+   "flag": "🇬🇦",
+   "region": "Africa",
+   "subregion": "Middle Africa",
+   "gdp": 21427119323.2764,
+   "hasMarket": false
+  },
+  {
+   "iso3": "GMB",
+   "name": "Gambia",
+   "flag": "🇬🇲",
+   "region": "Africa",
+   "subregion": "Western Africa",
+   "gdp": 2593673987.5331,
+   "hasMarket": false
+  },
+  {
+   "iso3": "GEO",
+   "name": "Georgia",
+   "flag": "🇬🇪",
+   "region": "Asia",
+   "subregion": "Western Asia",
+   "gdp": 38143612855.1367,
+   "hasMarket": false
+  },
+  {
+   "iso3": "DEU",
+   "name": "Germany",
+   "flag": "🇩🇪",
+   "region": "Europe",
+   "subregion": "Western Europe",
+   "gdp": 5050922925047.05,
+   "hasMarket": true
+  },
+  {
+   "iso3": "GHA",
+   "name": "Ghana",
+   "flag": "🇬🇭",
+   "region": "Africa",
+   "subregion": "Western Africa",
+   "gdp": 114209905278.717,
+   "hasMarket": false
+  },
+  {
+   "iso3": "GIB",
+   "name": "Gibraltar",
+   "flag": "🇬🇮",
+   "region": "Europe",
+   "subregion": "Southern Europe",
+   "gdp": null,
+   "hasMarket": false
+  },
+  {
+   "iso3": "GRC",
+   "name": "Greece",
+   "flag": "🇬🇷",
+   "region": "Europe",
+   "subregion": "Southern Europe",
+   "gdp": 280635521324.441,
+   "hasMarket": false
+  },
+  {
+   "iso3": "GRL",
+   "name": "Greenland",
+   "flag": "🇬🇱",
+   "region": "Americas",
+   "subregion": "North America",
+   "gdp": 3326543974.3919,
+   "hasMarket": false
+  },
+  {
+   "iso3": "GRD",
+   "name": "Grenada",
+   "flag": "🇬🇩",
+   "region": "Americas",
+   "subregion": "Caribbean",
+   "gdp": 1420173228.5695,
+   "hasMarket": false
+  },
+  {
+   "iso3": "GLP",
+   "name": "Guadeloupe",
+   "flag": "🇬🇵",
+   "region": "Americas",
+   "subregion": "Caribbean",
+   "gdp": null,
+   "hasMarket": false
+  },
+  {
+   "iso3": "GUM",
+   "name": "Guam",
+   "flag": "🇬🇺",
+   "region": "Oceania",
+   "subregion": "Micronesia",
+   "gdp": 6910000000.0,
+   "hasMarket": false
+  },
+  {
+   "iso3": "GTM",
+   "name": "Guatemala",
+   "flag": "🇬🇹",
+   "region": "Americas",
+   "subregion": "Central America",
+   "gdp": 123306008821.471,
+   "hasMarket": false
+  },
+  {
+   "iso3": "GGY",
+   "name": "Guernsey",
+   "flag": "🇬🇬",
+   "region": "Europe",
+   "subregion": "Northern Europe",
+   "gdp": null,
+   "hasMarket": false
+  },
+  {
+   "iso3": "GIN",
+   "name": "Guinea",
+   "flag": "🇬🇳",
+   "region": "Africa",
+   "subregion": "Western Africa",
+   "gdp": 28346024753.2924,
+   "hasMarket": false
+  },
+  {
+   "iso3": "GNB",
+   "name": "Guinea-Bissau",
+   "flag": "🇬🇼",
+   "region": "Africa",
+   "subregion": "Western Africa",
+   "gdp": 2527930272.9299,
+   "hasMarket": false
+  },
+  {
+   "iso3": "GUY",
+   "name": "Guyana",
+   "flag": "🇬🇾",
+   "region": "Americas",
+   "subregion": "South America",
+   "gdp": 27097477218.2254,
+   "hasMarket": false
+  },
+  {
+   "iso3": "HTI",
+   "name": "Haiti",
+   "flag": "🇭🇹",
+   "region": "Americas",
+   "subregion": "Caribbean",
+   "gdp": 32077278409.2339,
+   "hasMarket": false
+  },
+  {
+   "iso3": "HMD",
+   "name": "Heard Island and McDonald Islands",
+   "flag": "🇭🇲",
+   "region": "Antarctic",
+   "subregion": "",
+   "gdp": null,
+   "hasMarket": false
+  },
+  {
+   "iso3": "HND",
+   "name": "Honduras",
+   "flag": "🇭🇳",
+   "region": "Americas",
+   "subregion": "Central America",
+   "gdp": 39601409103.3005,
+   "hasMarket": false
+  },
+  {
+   "iso3": "HKG",
+   "name": "Hong Kong",
+   "flag": "🇭🇰",
+   "region": "Asia",
+   "subregion": "Eastern Asia",
+   "gdp": 427310315921.993,
+   "hasMarket": false
+  },
+  {
+   "iso3": "HUN",
+   "name": "Hungary",
+   "flag": "🇭🇺",
+   "region": "Europe",
+   "subregion": "Central Europe",
+   "gdp": 246490213513.054,
+   "hasMarket": false
+  },
+  {
+   "iso3": "ISL",
+   "name": "Iceland",
+   "flag": "🇮🇸",
+   "region": "Europe",
+   "subregion": "Northern Europe",
+   "gdp": 38582528789.0033,
+   "hasMarket": false
+  },
+  {
+   "iso3": "IND",
+   "name": "India",
+   "flag": "🇮🇳",
+   "region": "Asia",
+   "subregion": "Southern Asia",
+   "gdp": 3956067115771.63,
+   "hasMarket": true
+  },
+  {
+   "iso3": "IDN",
+   "name": "Indonesia",
+   "flag": "🇮🇩",
+   "region": "Asia",
+   "subregion": "South-Eastern Asia",
+   "gdp": 1445642584163.81,
+   "hasMarket": false
+  },
+  {
+   "iso3": "IRN",
+   "name": "Iran",
+   "flag": "🇮🇷",
+   "region": "Asia",
+   "subregion": "Southern Asia",
+   "gdp": 362682115433.364,
+   "hasMarket": false
+  },
+  {
+   "iso3": "IRQ",
+   "name": "Iraq",
+   "flag": "🇮🇶",
+   "region": "Asia",
+   "subregion": "Western Asia",
+   "gdp": 254367293538.462,
+   "hasMarket": false
+  },
+  {
+   "iso3": "IRL",
+   "name": "Ireland",
+   "flag": "🇮🇪",
+   "region": "Europe",
+   "subregion": "Northern Europe",
+   "gdp": 721701359046.313,
+   "hasMarket": false
+  },
+  {
+   "iso3": "IMN",
+   "name": "Isle of Man",
+   "flag": "🇮🇲",
+   "region": "Europe",
+   "subregion": "Northern Europe",
+   "gdp": 7576129932.7938,
+   "hasMarket": false
+  },
+  {
+   "iso3": "ISR",
+   "name": "Israel",
+   "flag": "🇮🇱",
+   "region": "Asia",
+   "subregion": "Western Asia",
+   "gdp": 610777842873.595,
+   "hasMarket": false
+  },
+  {
+   "iso3": "ITA",
+   "name": "Italy",
+   "flag": "🇮🇹",
+   "region": "Europe",
+   "subregion": "Southern Europe",
+   "gdp": 2551556954100.35,
+   "hasMarket": false
+  },
+  {
+   "iso3": "CIV",
+   "name": "Ivory Coast",
+   "flag": "🇨🇮",
+   "region": "Africa",
+   "subregion": "Western Africa",
+   "gdp": 99773555666.1988,
+   "hasMarket": false
+  },
+  {
+   "iso3": "JAM",
+   "name": "Jamaica",
+   "flag": "🇯🇲",
+   "region": "Americas",
+   "subregion": "Caribbean",
+   "gdp": 22704903217.5631,
+   "hasMarket": false
+  },
+  {
+   "iso3": "JPN",
+   "name": "Japan",
+   "flag": "🇯🇵",
+   "region": "Asia",
+   "subregion": "Eastern Asia",
+   "gdp": 4435162999976.94,
+   "hasMarket": true
+  },
+  {
+   "iso3": "JEY",
+   "name": "Jersey",
+   "flag": "🇯🇪",
+   "region": "Europe",
+   "subregion": "Northern Europe",
+   "gdp": null,
+   "hasMarket": false
+  },
+  {
+   "iso3": "JOR",
+   "name": "Jordan",
+   "flag": "🇯🇴",
+   "region": "Asia",
+   "subregion": "Western Asia",
+   "gdp": 61610052535.2113,
+   "hasMarket": false
+  },
+  {
+   "iso3": "KAZ",
+   "name": "Kazakhstan",
+   "flag": "🇰🇿",
+   "region": "Asia",
+   "subregion": "Central Asia",
+   "gdp": 306239209650.024,
+   "hasMarket": false
+  },
+  {
+   "iso3": "KEN",
+   "name": "Kenya",
+   "flag": "🇰🇪",
+   "region": "Africa",
+   "subregion": "Eastern Africa",
+   "gdp": 135941278878.815,
+   "hasMarket": false
+  },
+  {
+   "iso3": "KIR",
+   "name": "Kiribati",
+   "flag": "🇰🇮",
+   "region": "Oceania",
+   "subregion": "Micronesia",
+   "gdp": 349227254.1588,
+   "hasMarket": false
+  },
+  {
+   "iso3": "XKX",
+   "name": "Kosovo",
+   "flag": "🇽🇰",
+   "region": "Europe",
+   "subregion": "Southeast Europe",
+   "gdp": 12456403306.8191,
+   "hasMarket": false
+  },
+  {
+   "iso3": "KWT",
+   "name": "Kuwait",
+   "flag": "🇰🇼",
+   "region": "Asia",
+   "subregion": "Western Asia",
+   "gdp": 157209026926.418,
+   "hasMarket": false
+  },
+  {
+   "iso3": "KGZ",
+   "name": "Kyrgyzstan",
+   "flag": "🇰🇬",
+   "region": "Asia",
+   "subregion": "Central Asia",
+   "gdp": 22623752095.4613,
+   "hasMarket": false
+  },
+  {
+   "iso3": "LAO",
+   "name": "Laos",
+   "flag": "🇱🇦",
+   "region": "Asia",
+   "subregion": "South-Eastern Asia",
+   "gdp": 18302970218.5902,
+   "hasMarket": false
+  },
+  {
+   "iso3": "LVA",
+   "name": "Latvia",
+   "flag": "🇱🇻",
+   "region": "Europe",
+   "subregion": "Northern Europe",
+   "gdp": 48618869160.3254,
+   "hasMarket": false
+  },
+  {
+   "iso3": "LBN",
+   "name": "Lebanon",
+   "flag": "🇱🇧",
+   "region": "Asia",
+   "subregion": "Western Asia",
+   "gdp": 25971643441.3408,
+   "hasMarket": false
+  },
+  {
+   "iso3": "LSO",
+   "name": "Lesotho",
+   "flag": "🇱🇸",
+   "region": "Africa",
+   "subregion": "Southern Africa",
+   "gdp": 2573572920.0516,
+   "hasMarket": false
+  },
+  {
+   "iso3": "LBR",
+   "name": "Liberia",
+   "flag": "🇱🇷",
+   "region": "Africa",
+   "subregion": "Western Africa",
+   "gdp": 5245938900.0,
+   "hasMarket": false
+  },
+  {
+   "iso3": "LBY",
+   "name": "Libya",
+   "flag": "🇱🇾",
+   "region": "Africa",
+   "subregion": "Northern Africa",
+   "gdp": 48098909613.6316,
+   "hasMarket": false
+  },
+  {
+   "iso3": "LIE",
+   "name": "Liechtenstein",
+   "flag": "🇱🇮",
+   "region": "Europe",
+   "subregion": "Western Europe",
+   "gdp": 8905764270.4054,
+   "hasMarket": false
+  },
+  {
+   "iso3": "LTU",
+   "name": "Lithuania",
+   "flag": "🇱🇹",
+   "region": "Europe",
+   "subregion": "Northern Europe",
+   "gdp": 95210150818.3512,
+   "hasMarket": false
+  },
+  {
+   "iso3": "LUX",
+   "name": "Luxembourg",
+   "flag": "🇱🇺",
+   "region": "Europe",
+   "subregion": "Western Europe",
+   "gdp": 101157829491.107,
+   "hasMarket": false
+  },
+  {
+   "iso3": "MAC",
+   "name": "Macau",
+   "flag": "🇲🇴",
+   "region": "Asia",
+   "subregion": "Eastern Asia",
+   "gdp": 52061007670.169,
+   "hasMarket": false
+  },
+  {
+   "iso3": "MDG",
+   "name": "Madagascar",
+   "flag": "🇲🇬",
+   "region": "Africa",
+   "subregion": "Eastern Africa",
+   "gdp": 19620352035.7899,
+   "hasMarket": false
+  },
+  {
+   "iso3": "MWI",
+   "name": "Malawi",
+   "flag": "🇲🇼",
+   "region": "Africa",
+   "subregion": "Eastern Africa",
+   "gdp": 14918276698.303,
+   "hasMarket": false
+  },
+  {
+   "iso3": "MYS",
+   "name": "Malaysia",
+   "flag": "🇲🇾",
+   "region": "Asia",
+   "subregion": "South-Eastern Asia",
+   "gdp": 472193128644.597,
+   "hasMarket": false
+  },
+  {
+   "iso3": "MDV",
+   "name": "Maldives",
+   "flag": "🇲🇻",
+   "region": "Asia",
+   "subregion": "Southern Asia",
+   "gdp": 7741066860.6337,
+   "hasMarket": false
+  },
+  {
+   "iso3": "MLI",
+   "name": "Mali",
+   "flag": "🇲🇱",
+   "region": "Africa",
+   "subregion": "Western Africa",
+   "gdp": 30069148580.7688,
+   "hasMarket": false
+  },
+  {
+   "iso3": "MLT",
+   "name": "Malta",
+   "flag": "🇲🇹",
+   "region": "Europe",
+   "subregion": "Southern Europe",
+   "gdp": 27771821560.9411,
+   "hasMarket": false
+  },
+  {
+   "iso3": "MHL",
+   "name": "Marshall Islands",
+   "flag": "🇲🇭",
+   "region": "Oceania",
+   "subregion": "Micronesia",
+   "gdp": 308000000.0,
+   "hasMarket": false
+  },
+  {
+   "iso3": "MTQ",
+   "name": "Martinique",
+   "flag": "🇲🇶",
+   "region": "Americas",
+   "subregion": "Caribbean",
+   "gdp": null,
+   "hasMarket": false
+  },
+  {
+   "iso3": "MRT",
+   "name": "Mauritania",
+   "flag": "🇲🇷",
+   "region": "Africa",
+   "subregion": "Western Africa",
+   "gdp": 11679910946.4371,
+   "hasMarket": false
+  },
+  {
+   "iso3": "MUS",
+   "name": "Mauritius",
+   "flag": "🇲🇺",
+   "region": "Africa",
+   "subregion": "Eastern Africa",
+   "gdp": 16157804491.7614,
+   "hasMarket": false
+  },
+  {
+   "iso3": "MYT",
+   "name": "Mayotte",
+   "flag": "🇾🇹",
+   "region": "Africa",
+   "subregion": "Eastern Africa",
+   "gdp": null,
+   "hasMarket": false
+  },
+  {
+   "iso3": "MEX",
+   "name": "Mexico",
+   "flag": "🇲🇽",
+   "region": "Americas",
+   "subregion": "North America",
+   "gdp": 1832641364775.52,
+   "hasMarket": false
+  },
+  {
+   "iso3": "FSM",
+   "name": "Micronesia",
+   "flag": "🇫🇲",
+   "region": "Oceania",
+   "subregion": "Micronesia",
+   "gdp": 501797600.0,
+   "hasMarket": false
+  },
+  {
+   "iso3": "MDA",
+   "name": "Moldova",
+   "flag": "🇲🇩",
+   "region": "Europe",
+   "subregion": "Eastern Europe",
+   "gdp": 20351796275.2943,
+   "hasMarket": false
+  },
+  {
+   "iso3": "MCO",
+   "name": "Monaco",
+   "flag": "🇲🇨",
+   "region": "Europe",
+   "subregion": "Western Europe",
+   "gdp": 11125788838.2812,
+   "hasMarket": false
+  },
+  {
+   "iso3": "MNG",
+   "name": "Mongolia",
+   "flag": "🇲🇳",
+   "region": "Asia",
+   "subregion": "Eastern Asia",
+   "gdp": 25369107325.4549,
+   "hasMarket": false
+  },
+  {
+   "iso3": "MNE",
+   "name": "Montenegro",
+   "flag": "🇲🇪",
+   "region": "Europe",
+   "subregion": "Southeast Europe",
+   "gdp": 9232801464.7926,
+   "hasMarket": false
+  },
+  {
+   "iso3": "MSR",
+   "name": "Montserrat",
+   "flag": "🇲🇸",
+   "region": "Americas",
+   "subregion": "Caribbean",
+   "gdp": null,
+   "hasMarket": false
+  },
+  {
+   "iso3": "MAR",
+   "name": "Morocco",
+   "flag": "🇲🇦",
+   "region": "Africa",
+   "subregion": "Northern Africa",
+   "gdp": 182374250612.28,
+   "hasMarket": false
+  },
+  {
+   "iso3": "MOZ",
+   "name": "Mozambique",
+   "flag": "🇲🇿",
+   "region": "Africa",
+   "subregion": "Eastern Africa",
+   "gdp": 22337997046.1913,
+   "hasMarket": false
+  },
+  {
+   "iso3": "MMR",
+   "name": "Myanmar",
+   "flag": "🇲🇲",
+   "region": "Asia",
+   "subregion": "South-Eastern Asia",
+   "gdp": 81665773809.5238,
+   "hasMarket": false
+  },
+  {
+   "iso3": "NAM",
+   "name": "Namibia",
+   "flag": "🇳🇦",
+   "region": "Africa",
+   "subregion": "Southern Africa",
+   "gdp": 15080340653.5276,
+   "hasMarket": false
+  },
+  {
+   "iso3": "NRU",
+   "name": "Nauru",
+   "flag": "🇳🇷",
+   "region": "Oceania",
+   "subregion": "Micronesia",
+   "gdp": 176040043.9323,
+   "hasMarket": false
+  },
+  {
+   "iso3": "NPL",
+   "name": "Nepal",
+   "flag": "🇳🇵",
+   "region": "Asia",
+   "subregion": "Southern Asia",
+   "gdp": 45489810283.1132,
+   "hasMarket": false
+  },
+  {
+   "iso3": "NLD",
+   "name": "Netherlands",
+   "flag": "🇳🇱",
+   "region": "Europe",
+   "subregion": "Western Europe",
+   "gdp": 1332767651100.39,
+   "hasMarket": false
+  },
+  {
+   "iso3": "NCL",
+   "name": "New Caledonia",
+   "flag": "🇳🇨",
+   "region": "Oceania",
+   "subregion": "Melanesia",
+   "gdp": 8548919387.1261,
+   "hasMarket": false
+  },
+  {
+   "iso3": "NZL",
+   "name": "New Zealand",
+   "flag": "🇳🇿",
+   "region": "Oceania",
+   "subregion": "Australia and New Zealand",
+   "gdp": 264057413739.965,
+   "hasMarket": false
+  },
+  {
+   "iso3": "NIC",
+   "name": "Nicaragua",
+   "flag": "🇳🇮",
+   "region": "Americas",
+   "subregion": "Central America",
+   "gdp": 22237167113.0916,
+   "hasMarket": false
+  },
+  {
+   "iso3": "NER",
+   "name": "Niger",
+   "flag": "🇳🇪",
+   "region": "Africa",
+   "subregion": "Western Africa",
+   "gdp": 21646191388.2507,
+   "hasMarket": false
+  },
+  {
+   "iso3": "NGA",
+   "name": "Nigeria",
+   "flag": "🇳🇬",
+   "region": "Africa",
+   "subregion": "Western Africa",
+   "gdp": 290794361542.112,
+   "hasMarket": false
+  },
+  {
+   "iso3": "NIU",
+   "name": "Niue",
+   "flag": "🇳🇺",
+   "region": "Oceania",
+   "subregion": "Polynesia",
+   "gdp": null,
+   "hasMarket": false
+  },
+  {
+   "iso3": "NFK",
+   "name": "Norfolk Island",
+   "flag": "🇳🇫",
+   "region": "Oceania",
+   "subregion": "Australia and New Zealand",
+   "gdp": null,
+   "hasMarket": false
+  },
+  {
+   "iso3": "PRK",
+   "name": "North Korea",
+   "flag": "🇰🇵",
+   "region": "Asia",
+   "subregion": "Eastern Asia",
+   "gdp": null,
+   "hasMarket": false
+  },
+  {
+   "iso3": "MKD",
+   "name": "North Macedonia",
+   "flag": "🇲🇰",
+   "region": "Europe",
+   "subregion": "Southeast Europe",
+   "gdp": 19101199817.0174,
+   "hasMarket": false
+  },
+  {
+   "iso3": "MNP",
+   "name": "Northern Mariana Islands",
+   "flag": "🇲🇵",
+   "region": "Oceania",
+   "subregion": "Micronesia",
+   "gdp": 1096000000.0,
+   "hasMarket": false
+  },
+  {
+   "iso3": "NOR",
+   "name": "Norway",
+   "flag": "🇳🇴",
+   "region": "Europe",
+   "subregion": "Northern Europe",
+   "gdp": 530755719438.879,
+   "hasMarket": false
+  },
+  {
+   "iso3": "OMN",
+   "name": "Oman",
+   "flag": "🇴🇲",
+   "region": "Asia",
+   "subregion": "Western Asia",
+   "gdp": 109604780696.23,
+   "hasMarket": false
+  },
+  {
+   "iso3": "PAK",
+   "name": "Pakistan",
+   "flag": "🇵🇰",
+   "region": "Asia",
+   "subregion": "Southern Asia",
+   "gdp": 407307214476.222,
+   "hasMarket": false
+  },
+  {
+   "iso3": "PLW",
+   "name": "Palau",
+   "flag": "🇵🇼",
+   "region": "Oceania",
+   "subregion": "Micronesia",
+   "gdp": 345000000.0,
+   "hasMarket": false
+  },
+  {
+   "iso3": "PSE",
+   "name": "Palestine",
+   "flag": "🇵🇸",
+   "region": "Asia",
+   "subregion": "Western Asia",
+   "gdp": 17167100000.0,
+   "hasMarket": false
+  },
+  {
+   "iso3": "PAN",
+   "name": "Panama",
+   "flag": "🇵🇦",
+   "region": "Americas",
+   "subregion": "Central America",
+   "gdp": 90462600000.0,
+   "hasMarket": false
+  },
+  {
+   "iso3": "PNG",
+   "name": "Papua New Guinea",
+   "flag": "🇵🇬",
+   "region": "Oceania",
+   "subregion": "Melanesia",
+   "gdp": 32498658653.8415,
+   "hasMarket": false
+  },
+  {
+   "iso3": "PRY",
+   "name": "Paraguay",
+   "flag": "🇵🇾",
+   "region": "Americas",
+   "subregion": "South America",
+   "gdp": 49278227554.3339,
+   "hasMarket": false
+  },
+  {
+   "iso3": "PER",
+   "name": "Peru",
+   "flag": "🇵🇪",
+   "region": "Americas",
+   "subregion": "South America",
+   "gdp": 334854659181.893,
+   "hasMarket": false
+  },
+  {
+   "iso3": "PHL",
+   "name": "Philippines",
+   "flag": "🇵🇭",
+   "region": "Asia",
+   "subregion": "South-Eastern Asia",
+   "gdp": 487086123720.417,
+   "hasMarket": false
+  },
+  {
+   "iso3": "PCN",
+   "name": "Pitcairn Islands",
+   "flag": "🇵🇳",
+   "region": "Oceania",
+   "subregion": "Polynesia",
+   "gdp": null,
+   "hasMarket": false
+  },
+  {
+   "iso3": "POL",
+   "name": "Poland",
+   "flag": "🇵🇱",
+   "region": "Europe",
+   "subregion": "Central Europe",
+   "gdp": 1035491784197.44,
+   "hasMarket": false
+  },
+  {
+   "iso3": "PRT",
+   "name": "Portugal",
+   "flag": "🇵🇹",
+   "region": "Europe",
+   "subregion": "Southern Europe",
+   "gdp": 346639825141.821,
+   "hasMarket": false
+  },
+  {
+   "iso3": "PRI",
+   "name": "Puerto Rico",
+   "flag": "🇵🇷",
+   "region": "Americas",
+   "subregion": "Caribbean",
+   "gdp": 129368484000.0,
+   "hasMarket": false
+  },
+  {
+   "iso3": "QAT",
+   "name": "Qatar",
+   "flag": "🇶🇦",
+   "region": "Asia",
+   "subregion": "Western Asia",
+   "gdp": 215559615384.615,
+   "hasMarket": false
+  },
+  {
+   "iso3": "ROU",
+   "name": "Romania",
+   "flag": "🇷🇴",
+   "region": "Europe",
+   "subregion": "Southeast Europe",
+   "gdp": 428677977854.826,
+   "hasMarket": false
+  },
+  {
+   "iso3": "RUS",
+   "name": "Russia",
+   "flag": "🇷🇺",
+   "region": "Europe",
+   "subregion": "Eastern Europe",
+   "gdp": 2561310169358.74,
+   "hasMarket": false
+  },
+  {
+   "iso3": "RWA",
+   "name": "Rwanda",
+   "flag": "🇷🇼",
+   "region": "Africa",
+   "subregion": "Eastern Africa",
+   "gdp": 16372132990.2271,
+   "hasMarket": false
+  },
+  {
+   "iso3": "REU",
+   "name": "Réunion",
+   "flag": "🇷🇪",
+   "region": "Africa",
+   "subregion": "Eastern Africa",
+   "gdp": null,
+   "hasMarket": false
+  },
+  {
+   "iso3": "BLM",
+   "name": "Saint Barthélemy",
+   "flag": "🇧🇱",
+   "region": "Americas",
+   "subregion": "Caribbean",
+   "gdp": null,
+   "hasMarket": false
+  },
+  {
+   "iso3": "SHN",
+   "name": "Saint Helena, Ascension and Tristan da Cunha",
+   "flag": "🇸🇭",
+   "region": "Africa",
+   "subregion": "Western Africa",
+   "gdp": null,
+   "hasMarket": false
+  },
+  {
+   "iso3": "KNA",
+   "name": "Saint Kitts and Nevis",
+   "flag": "🇰🇳",
+   "region": "Americas",
+   "subregion": "Caribbean",
+   "gdp": 1183514814.8148,
+   "hasMarket": false
+  },
+  {
+   "iso3": "LCA",
+   "name": "Saint Lucia",
+   "flag": "🇱🇨",
+   "region": "Americas",
+   "subregion": "Caribbean",
+   "gdp": 2656444444.4444,
+   "hasMarket": false
+  },
+  {
+   "iso3": "MAF",
+   "name": "Saint Martin",
+   "flag": "🇲🇫",
+   "region": "Americas",
+   "subregion": "Caribbean",
+   "gdp": 649206262.8475,
+   "hasMarket": false
+  },
+  {
+   "iso3": "SPM",
+   "name": "Saint Pierre and Miquelon",
+   "flag": "🇵🇲",
+   "region": "Americas",
+   "subregion": "North America",
+   "gdp": null,
+   "hasMarket": false
+  },
+  {
+   "iso3": "VCT",
+   "name": "Saint Vincent and the Grenadines",
+   "flag": "🇻🇨",
+   "region": "Americas",
+   "subregion": "Caribbean",
+   "gdp": 1255222222.2222,
+   "hasMarket": false
+  },
+  {
+   "iso3": "WSM",
+   "name": "Samoa",
+   "flag": "🇼🇸",
+   "region": "Oceania",
+   "subregion": "Polynesia",
+   "gdp": 1287936621.6462,
+   "hasMarket": false
+  },
+  {
+   "iso3": "SMR",
+   "name": "San Marino",
+   "flag": "🇸🇲",
+   "region": "Europe",
+   "subregion": "Southern Europe",
+   "gdp": 2027243193.5116,
+   "hasMarket": false
+  },
+  {
+   "iso3": "SAU",
+   "name": "Saudi Arabia",
+   "flag": "🇸🇦",
+   "region": "Asia",
+   "subregion": "Western Asia",
+   "gdp": 1276942933333.33,
+   "hasMarket": false
+  },
+  {
+   "iso3": "SEN",
+   "name": "Senegal",
+   "flag": "🇸🇳",
+   "region": "Africa",
+   "subregion": "Western Africa",
+   "gdp": 37006536238.3731,
+   "hasMarket": false
+  },
+  {
+   "iso3": "SRB",
+   "name": "Serbia",
+   "flag": "🇷🇸",
+   "region": "Europe",
+   "subregion": "Southeast Europe",
+   "gdp": 99953324472.9042,
+   "hasMarket": false
+  },
+  {
+   "iso3": "SYC",
+   "name": "Seychelles",
+   "flag": "🇸🇨",
+   "region": "Africa",
+   "subregion": "Eastern Africa",
+   "gdp": 2387022853.4858,
+   "hasMarket": false
+  },
+  {
+   "iso3": "SLE",
+   "name": "Sierra Leone",
+   "flag": "🇸🇱",
+   "region": "Africa",
+   "subregion": "Western Africa",
+   "gdp": 7464157904.4351,
+   "hasMarket": false
+  },
+  {
+   "iso3": "SGP",
+   "name": "Singapore",
+   "flag": "🇸🇬",
+   "region": "Asia",
+   "subregion": "South-Eastern Asia",
+   "gdp": 603869516998.738,
+   "hasMarket": false
+  },
+  {
+   "iso3": "SXM",
+   "name": "Sint Maarten",
+   "flag": "🇸🇽",
+   "region": "Americas",
+   "subregion": "Caribbean",
+   "gdp": 1887728480.4469,
+   "hasMarket": false
+  },
+  {
+   "iso3": "SVK",
+   "name": "Slovakia",
+   "flag": "🇸🇰",
+   "region": "Europe",
+   "subregion": "Central Europe",
+   "gdp": 154530066506.895,
+   "hasMarket": false
+  },
+  {
+   "iso3": "SVN",
+   "name": "Slovenia",
+   "flag": "🇸🇮",
+   "region": "Europe",
+   "subregion": "Central Europe",
+   "gdp": 79648204979.3618,
+   "hasMarket": false
+  },
+  {
+   "iso3": "SLB",
+   "name": "Solomon Islands",
+   "flag": "🇸🇧",
+   "region": "Oceania",
+   "subregion": "Melanesia",
+   "gdp": 1749572442.9502,
+   "hasMarket": false
+  },
+  {
+   "iso3": "SOM",
+   "name": "Somalia",
+   "flag": "🇸🇴",
+   "region": "Africa",
+   "subregion": "Eastern Africa",
+   "gdp": 12995200000.2658,
+   "hasMarket": false
+  },
+  {
+   "iso3": "ZAF",
+   "name": "South Africa",
+   "flag": "🇿🇦",
+   "region": "Africa",
+   "subregion": "Southern Africa",
+   "gdp": 427184325997.307,
+   "hasMarket": false
+  },
+  {
+   "iso3": "SGS",
+   "name": "South Georgia",
+   "flag": "🇬🇸",
+   "region": "Antarctic",
+   "subregion": "",
+   "gdp": null,
+   "hasMarket": false
+  },
+  {
+   "iso3": "KOR",
+   "name": "South Korea",
+   "flag": "🇰🇷",
+   "region": "Asia",
+   "subregion": "Eastern Asia",
+   "gdp": 1872374961553.15,
+   "hasMarket": false
+  },
+  {
+   "iso3": "SSD",
+   "name": "South Sudan",
+   "flag": "🇸🇸",
+   "region": "Africa",
+   "subregion": "Middle Africa",
+   "gdp": null,
+   "hasMarket": false
+  },
+  {
+   "iso3": "ESP",
+   "name": "Spain",
+   "flag": "🇪🇸",
+   "region": "Europe",
+   "subregion": "Southern Europe",
+   "gdp": 1906453309985.88,
+   "hasMarket": false
+  },
+  {
+   "iso3": "LKA",
+   "name": "Sri Lanka",
+   "flag": "🇱🇰",
+   "region": "Asia",
+   "subregion": "Southern Asia",
+   "gdp": 108825231671.196,
+   "hasMarket": false
+  },
+  {
+   "iso3": "SDN",
+   "name": "Sudan",
+   "flag": "🇸🇩",
+   "region": "Africa",
+   "subregion": "Northern Africa",
+   "gdp": 60162634574.4689,
+   "hasMarket": false
+  },
+  {
+   "iso3": "SUR",
+   "name": "Suriname",
+   "flag": "🇸🇷",
+   "region": "Americas",
+   "subregion": "South America",
+   "gdp": 4523657796.8642,
+   "hasMarket": false
+  },
+  {
+   "iso3": "SJM",
+   "name": "Svalbard and Jan Mayen",
+   "flag": "🇸🇯",
+   "region": "Europe",
+   "subregion": "Northern Europe",
+   "gdp": null,
+   "hasMarket": false
+  },
+  {
+   "iso3": "SWE",
+   "name": "Sweden",
+   "flag": "🇸🇪",
+   "region": "Europe",
+   "subregion": "Northern Europe",
+   "gdp": 668998664082.081,
+   "hasMarket": false
+  },
+  {
+   "iso3": "CHE",
+   "name": "Switzerland",
+   "flag": "🇨🇭",
+   "region": "Europe",
+   "subregion": "Western Europe",
+   "gdp": 1043529899250.92,
+   "hasMarket": false
+  },
+  {
+   "iso3": "SYR",
+   "name": "Syria",
+   "flag": "🇸🇾",
+   "region": "Asia",
+   "subregion": "Western Asia",
+   "gdp": 23737634644.3994,
+   "hasMarket": false
+  },
+  {
+   "iso3": "STP",
+   "name": "São Tomé and Príncipe",
+   "flag": "🇸🇹",
+   "region": "Africa",
+   "subregion": "Middle Africa",
+   "gdp": 981293586.9064,
+   "hasMarket": false
+  },
+  {
+   "iso3": "TWN",
+   "name": "Taiwan",
+   "flag": "🇹🇼",
+   "region": "Asia",
+   "subregion": "Eastern Asia",
+   "gdp": null,
+   "hasMarket": false
+  },
+  {
+   "iso3": "TJK",
+   "name": "Tajikistan",
+   "flag": "🇹🇯",
+   "region": "Asia",
+   "subregion": "Central Asia",
+   "gdp": 17660626562.4832,
+   "hasMarket": false
+  },
+  {
+   "iso3": "TZA",
+   "name": "Tanzania",
+   "flag": "🇹🇿",
+   "region": "Africa",
+   "subregion": "Eastern Africa",
+   "gdp": 90143496090.4411,
+   "hasMarket": false
+  },
+  {
+   "iso3": "THA",
+   "name": "Thailand",
+   "flag": "🇹🇭",
+   "region": "Asia",
+   "subregion": "South-Eastern Asia",
+   "gdp": 577009981112.015,
+   "hasMarket": false
+  },
+  {
+   "iso3": "TLS",
+   "name": "Timor-Leste",
+   "flag": "🇹🇱",
+   "region": "Asia",
+   "subregion": "South-Eastern Asia",
+   "gdp": 1902180257.8274,
+   "hasMarket": false
+  },
+  {
+   "iso3": "TGO",
+   "name": "Togo",
+   "flag": "🇹🇬",
+   "region": "Africa",
+   "subregion": "Western Africa",
+   "gdp": 11889949067.4697,
+   "hasMarket": false
+  },
+  {
+   "iso3": "TKL",
+   "name": "Tokelau",
+   "flag": "🇹🇰",
+   "region": "Oceania",
+   "subregion": "Polynesia",
+   "gdp": null,
+   "hasMarket": false
+  },
+  {
+   "iso3": "TON",
+   "name": "Tonga",
+   "flag": "🇹🇴",
+   "region": "Oceania",
+   "subregion": "Polynesia",
+   "gdp": 679218218.578,
+   "hasMarket": false
+  },
+  {
+   "iso3": "TTO",
+   "name": "Trinidad and Tobago",
+   "flag": "🇹🇹",
+   "region": "Americas",
+   "subregion": "Caribbean",
+   "gdp": 25942749718.4685,
+   "hasMarket": false
+  },
+  {
+   "iso3": "TUN",
+   "name": "Tunisia",
+   "flag": "🇹🇳",
+   "region": "Africa",
+   "subregion": "Northern Africa",
+   "gdp": 57502836548.0878,
+   "hasMarket": false
+  },
+  {
+   "iso3": "TKM",
+   "name": "Turkmenistan",
+   "flag": "🇹🇲",
+   "region": "Asia",
+   "subregion": "Central Asia",
+   "gdp": 49828621355.6516,
+   "hasMarket": false
+  },
+  {
+   "iso3": "TCA",
+   "name": "Turks and Caicos Islands",
+   "flag": "🇹🇨",
+   "region": "Americas",
+   "subregion": "Caribbean",
+   "gdp": 1745378000.0,
+   "hasMarket": false
+  },
+  {
+   "iso3": "TUV",
+   "name": "Tuvalu",
+   "flag": "🇹🇻",
+   "region": "Oceania",
+   "subregion": "Polynesia",
+   "gdp": 57345434.7235,
+   "hasMarket": false
+  },
+  {
+   "iso3": "TUR",
+   "name": "Türkiye",
+   "flag": "🇹🇷",
+   "region": "Asia",
+   "subregion": "Western Asia",
+   "gdp": 1597293229287.0,
+   "hasMarket": false
+  },
+  {
+   "iso3": "UGA",
+   "name": "Uganda",
+   "flag": "🇺🇬",
+   "region": "Africa",
+   "subregion": "Eastern Africa",
+   "gdp": 61985829288.1496,
+   "hasMarket": false
+  },
+  {
+   "iso3": "UKR",
+   "name": "Ukraine",
+   "flag": "🇺🇦",
+   "region": "Europe",
+   "subregion": "Eastern Europe",
+   "gdp": 214233312784.397,
+   "hasMarket": false
+  },
+  {
+   "iso3": "ARE",
+   "name": "United Arab Emirates",
+   "flag": "🇦🇪",
+   "region": "Asia",
+   "subregion": "Western Asia",
+   "gdp": 552324919095.872,
+   "hasMarket": false
+  },
+  {
+   "iso3": "GBR",
+   "name": "United Kingdom",
+   "flag": "🇬🇧",
+   "region": "Europe",
+   "subregion": "Northern Europe",
+   "gdp": 4002587541846.01,
+   "hasMarket": true
+  },
+  {
+   "iso3": "USA",
+   "name": "United States",
+   "flag": "🇺🇸",
+   "region": "Americas",
+   "subregion": "North America",
+   "gdp": 30769700000000.0,
+   "hasMarket": true
+  },
+  {
+   "iso3": "UMI",
+   "name": "United States Minor Outlying Islands",
+   "flag": "🇺🇲",
+   "region": "Americas",
+   "subregion": "North America",
+   "gdp": null,
+   "hasMarket": false
+  },
+  {
+   "iso3": "VIR",
+   "name": "United States Virgin Islands",
+   "flag": "🇻🇮",
+   "region": "Americas",
+   "subregion": "Caribbean",
+   "gdp": 4672000000.0,
+   "hasMarket": false
+  },
+  {
+   "iso3": "URY",
+   "name": "Uruguay",
+   "flag": "🇺🇾",
+   "region": "Americas",
+   "subregion": "South America",
+   "gdp": 85347696277.6859,
+   "hasMarket": false
+  },
+  {
+   "iso3": "UZB",
+   "name": "Uzbekistan",
+   "flag": "🇺🇿",
+   "region": "Asia",
+   "subregion": "Central Asia",
+   "gdp": 147038081129.405,
+   "hasMarket": false
+  },
+  {
+   "iso3": "VUT",
+   "name": "Vanuatu",
+   "flag": "🇻🇺",
+   "region": "Oceania",
+   "subregion": "Melanesia",
+   "gdp": 1353658840.6399,
+   "hasMarket": false
+  },
+  {
+   "iso3": "VAT",
+   "name": "Vatican City",
+   "flag": "🇻🇦",
+   "region": "Europe",
+   "subregion": "Southern Europe",
+   "gdp": null,
+   "hasMarket": false
+  },
+  {
+   "iso3": "VEN",
+   "name": "Venezuela",
+   "flag": "🇻🇪",
+   "region": "Americas",
+   "subregion": "South America",
+   "gdp": 99661244155.6306,
+   "hasMarket": false
+  },
+  {
+   "iso3": "VNM",
+   "name": "Vietnam",
+   "flag": "🇻🇳",
+   "region": "Asia",
+   "subregion": "South-Eastern Asia",
+   "gdp": 514697215165.065,
+   "hasMarket": false
+  },
+  {
+   "iso3": "WLF",
+   "name": "Wallis and Futuna",
+   "flag": "🇼🇫",
+   "region": "Oceania",
+   "subregion": "Polynesia",
+   "gdp": null,
+   "hasMarket": false
+  },
+  {
+   "iso3": "ESH",
+   "name": "Western Sahara",
+   "flag": "🇪🇭",
+   "region": "Africa",
+   "subregion": "Northern Africa",
+   "gdp": null,
+   "hasMarket": false
+  },
+  {
+   "iso3": "YEM",
+   "name": "Yemen",
+   "flag": "🇾🇪",
+   "region": "Asia",
+   "subregion": "Western Asia",
+   "gdp": null,
+   "hasMarket": false
+  },
+  {
+   "iso3": "ZMB",
+   "name": "Zambia",
+   "flag": "🇿🇲",
+   "region": "Africa",
+   "subregion": "Eastern Africa",
+   "gdp": 28879806220.1264,
+   "hasMarket": false
+  },
+  {
+   "iso3": "ZWE",
+   "name": "Zimbabwe",
+   "flag": "🇿🇼",
+   "region": "Africa",
+   "subregion": "Eastern Africa",
+   "gdp": 51215643905.5886,
+   "hasMarket": false
+  },
+  {
+   "iso3": "ALA",
+   "name": "Åland Islands",
+   "flag": "🇦🇽",
+   "region": "Europe",
+   "subregion": "Northern Europe",
+   "gdp": null,
+   "hasMarket": false
+  }
+ ]
+}

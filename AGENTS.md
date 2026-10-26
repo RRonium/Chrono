@@ -1,7 +1,7 @@
 # AGENTS.md — Chrono context for AI coding agents
 
 > Read this whole file before you change anything. It describes the code **as it is on `main`
-> (commit `97619cc`, 2026-10-26)**, not the design diagram. Where the two differ, this file says so.
+> (updated for country pages, 2026-10-26)**, not the design diagram. Where the two differ, this file says so.
 > If you find something here that no longer matches the code, trust the code, then update this file
 > in the same PR.
 
@@ -24,11 +24,15 @@ What looks live but is not (read section 9 before demoing):
 
 - Globe marker colours are always the default urgency `0.5` (yellow). The ML → Redis → globe path is broken.
 - BULLISH/BEARISH badges on live news are assigned by list position, not by a model.
-- The agent brief (click a globe hub) uses hard-coded prices.
+- The AI market brief on each country page uses hard-coded prices.
 - The news feed and the chart show hard-coded **demo data** when they have nothing real.
 
-Not built: login/auth, the per-country side panel, FX, macro data (FRED/World Bank are written but
-never scheduled), NewsAPI, the Node/Express backend (empty scaffold).
+Country pages: clicking a country on the globe opens `/country/<iso>/`, a full page with a satellite
+map and World Bank macro data (snapshot in `data/countries/`, refreshed monthly by a GitHub Action).
+See section 8.1.
+
+Not built: login/auth, live FX, streaming macro data (the ingestion FRED/World Bank connectors are
+written but never scheduled), NewsAPI, the Node/Express backend (empty scaffold).
 
 ---
 
@@ -66,7 +70,7 @@ The design (`Ideation/Auth:Data Ingestion:Updation Pipeline.png`) has three laye
 | Layer | Box in the diagram | Status | Where / what the code really does |
 |---|---|---|---|
 | 1 Presentation | 3D interactive globe (Three.js / Globe.gl) | **Partial** | `apps/web/src/components/globe/` — react-three-fiber wireframe sphere + 6 hard-coded hub markers. Globe.gl is not used. No country borders, no raycast country picking. |
-| 1 | Country side panel (candles, FX, news) | **Missing** | Clicking a hub opens `AgenticBriefModal` (a popup). `components/drawer/*` are 3–5 line stubs. |
+| 1 | Country side panel (candles, FX, news) | **Built, as pages** | Clicking a country opens `/country/<iso>/` (section 8.1): map, macro indicators, markets, news, AI brief. FX is the World Bank annual rate, not live. `components/drawer/*` are leftover stubs. |
 | 1 | Auth / login screen | **Missing** | `/login` is a placeholder page. Tables exist (section 4.1); no endpoints, hashing or JWT. |
 | 2 Ingestion | Background cron scheduler | **Built** | APScheduler in `services/ingestion/scheduler/cron_jobs.py`: market every 5 s, news every 60 s. |
 | 2 | Moneycontrol / Economic Times scrapers | **Built, fragile** | BeautifulSoup on guessed CSS classes. Scrapy is not used. |
@@ -80,7 +84,7 @@ The design (`Ideation/Auth:Data Ingestion:Updation Pipeline.png`) has three laye
 | 3 | Redis → globe via WebSockets | **Partial** | Ticks and raw articles arrive; urgency never does. |
 
 Extras in the repo that are **not** in the diagram: `services/analytics` (FastAPI on 8001, started
-by hand), `AgenticBriefModal`, and `apps/backend` (empty Express scaffold).
+by hand), and `apps/backend` (empty Express scaffold).
 
 ---
 
@@ -101,7 +105,7 @@ Not in compose:
 | Process | Port | How it is started |
 |---|---|---|
 | Next.js web (`apps/web`) | 3000 | `cd apps/web && npm install && npm run dev` on the host |
-| Analytics (`services/analytics`) | 8001 | `python3 -m uvicorn services.analytics.main:app --port 8001` from repo root, by hand. Needed only for the agent brief popup. |
+| Analytics (`services/analytics`) | 8001 | `python3 -m uvicorn services.analytics.main:app --port 8001` from repo root, by hand. Needed only for the AI brief on country pages. |
 | Express backend (`apps/backend`) | 4000 | Not used. `/health` only. Ignore it. |
 
 Healthcheck facts you must know (and must not "fix" without asking, rule 1):
@@ -315,6 +319,8 @@ FRED: `{series_id, value, date, country_code: "USA", type}`. World Bank: `{indic
 | GET | `/api/v1/market/ohlc/{symbol}?bucket=` | Timescale `hourly_ohlc` | ≤ 6 hourly candles from the last 5 h (`bucket` param is ignored) |
 | GET | `/api/v1/news?iso_code=&limit=20` | Mongo `news_articles` | newest first (by string `published_at`) |
 | GET | `/api/v1/macro/indicators/{iso_code}` | Mongo `economic_indicators` | always `[]` today |
+| GET | `/api/v1/countries` | `data/countries/index.json` | every country + indicator definitions |
+| GET | `/api/v1/countries/{iso}?boundary=` | `data/countries/<ISO>/` | `{profile, market}` (+ `boundary` GeoJSON if asked); 404 for unknown codes |
 | WS | `/ws/live` | Redis channels | every message on the three subscribed channels |
 
 CORS is `*`. No auth on anything. Note: the frontend never calls `/api/v1/news`; the feed only shows
@@ -337,14 +343,17 @@ articles that arrive over the socket after the page loads.
 
 | File | What it is |
 |---|---|
-| `src/app/page.tsx` | The only real page: Header, MarketTicker, Globe3D, TechnicalsPanel(AAPL), SentimentFeed, AgenticBriefModal |
+| `src/app/page.tsx` | Dashboard: Header, MarketTicker, Globe3D, TechnicalsPanel(AAPL), SentimentFeed. A globe click routes to the country page. |
+| `src/app/country/[iso]/page.tsx` | One static page per country (`generateStaticParams` over `data/countries/index.json`) |
+| `src/app/country/page.tsx` | Country directory with search, grouped by region |
+| `src/components/country/*` | Country page: `CountryView` (shell), `SplitPane`, `CountryMap` (Leaflet), `CountryPanel` (data), `MarketSection`, `CountryBrief`, `Charts` |
+| `src/lib/countries/*` | `types.ts` (file shapes), `server.ts` (build-time fs loaders, server components only), `format.ts` |
 | `src/app/login/page.tsx` | Placeholder text |
 | `src/components/globe/Globe3D.tsx` | r3f `Canvas`, wireframe sphere, glow, `OrbitControls` |
 | `src/components/globe/CountryMarkers.tsx` | 6 pulsing hubs from `GLOBAL_HUBS`; colour from urgency (always 0.5) |
 | `src/components/dashboard/MarketTicker.tsx` | Top strip; latest tick per symbol |
 | `src/components/dashboard/TechnicalsPanel.tsx` | lightweight-charts candles + volume |
 | `src/components/dashboard/SentimentFeed.tsx` | News list; 15 demo articles; fake badges |
-| `src/components/dashboard/AgenticBriefModal.tsx` | Calls analytics `:8001` |
 | `src/components/dashboard/Header.tsx` | Connection light, decorative "MESH ACTIVE" |
 | `src/components/canvas/*`, `src/components/drawer/*` | **Stubs** (3–6 lines each) reserved for the planned globe/side panel |
 | `src/hooks/useWebSocket.ts` | The only socket hook |
@@ -360,6 +369,28 @@ red `#ff0055`). Several components use classes like `bg-cyber-bg`, `bg-cyber-car
 `.hud-panel` in `globals.css` is the real panel style.
 
 `NEXT_PUBLIC_API_URL` in `.env.example` (port 4000) is not read by any code.
+
+### 8.1 Country pages and `data/countries/`
+
+- **Routing.** `/country/<iso>/` with a lower-case ISO alpha-3 code, built statically for all 250
+  folders in `data/countries/` (`dynamicParams = false`, so an unknown code is a 404). Links go
+  through `countryHref()` in `src/lib/countries/format.ts`; `next/link` adds the `/Chrono` base path.
+- **Data at build time.** `src/lib/countries/server.ts` reads `../../data/countries` relative to
+  `apps/web`, so builds must run from `apps/web` with the whole repo checked out (the Pages workflow
+  does). Each page embeds its profile, `market.json` and outline; there is no runtime fetch.
+- **Layout.** `SplitPane` puts the map left and data right, each at least 10% of the viewport width,
+  resizable by drag or arrow keys, double-click to reset, width remembered in `localStorage`. Below
+  the `lg` breakpoint the panes stack.
+- **Map.** Leaflet with Esri World Imagery (+ Esri labels), OpenStreetMap or CARTO Dark tiles, all
+  keyless. The country is outlined in gold and the rest of the world dimmed. Countries split by the
+  antimeridian are unwrapped, and the initial view frames the main landmass (mainland France, not
+  every overseas department).
+- **Folder layout and refresh.** See [`data/countries/README.md`](data/countries/README.md). Generated
+  files come from `scripts/refresh_country_data.py` (stdlib only) via the **Refresh country data**
+  workflow. Hand-written `market.json` exists for the six hubs (USA, IND, DEU, GBR, JPN, CHN).
+- **Globe codes.** `public/data/countries.geojson` (110m, used by the globe) carries the same ISO
+  codes as the page folders; Natural Earth's own codes for South Sudan, Palestine, Western Sahara
+  and Kosovo were mapped, and N. Cyprus / Somaliland open Cyprus / Somalia.
 
 ---
 
@@ -426,7 +457,7 @@ curl http://localhost:8000/     # {"status":"ok","environment":"development"}
 
 cd apps/web && npm install && npm run dev     # http://localhost:3000
 
-# optional, for the agent brief popup (from repo root, needs services/analytics/requirements.txt):
+# optional, for the AI brief on country pages (from repo root, needs services/analytics/requirements.txt):
 python3 -m uvicorn services.analytics.main:app --port 8001
 ```
 
@@ -457,6 +488,10 @@ docker exec -it chrono-mongodb mongosh chrono_news --eval "db.news_articles.coun
   Finnhub, `yahoo_symbols` in `run_market_pipeline` for Yahoo), add it to `SYMBOL_ISO_MAP` in
   `etl/iso_tagger.py` (otherwise it is tagged USA), and if it should be a globe hub, to
   `GLOBAL_HUBS` in `apps/web/src/lib/constants.ts`. Symbols longer than 32 chars will not fit.
+- **Make a country a tracked market:** add `data/countries/<ISO>/market.json` (copy `IND/market.json`),
+  add its symbols to ingestion as above, and add it to `GLOBAL_HUBS` for a globe marker and clock.
+- **Add a macro indicator:** add it to `INDICATORS` in `scripts/refresh_country_data.py`, run the
+  **Refresh country data** workflow, then show it from `CountryPanel.tsx`.
 - **Add a news source:** write a function returning a list of article dicts (6.2) with
   `type: "news"`, add it to the `scrapers` list in `run_news_pipeline`. No DB code in the scraper.
 - **Add a new record type:** add a branch in `route_record`, a Redis channel if it is live, add the
@@ -474,7 +509,8 @@ docker exec -it chrono-mongodb mongosh chrono_news --eval "db.news_articles.coun
 
 1. Fix the urgency path (B1) so markers change colour.
 2. Replace demo data with honest empty states.
-3. Build the country side panel (candles, FX, news per country) to replace the popup.
+3. ~~Build the country side panel~~ Done as country pages. Next: live FX, written analysis per
+   country (`data/countries/<ISO>/notes.md`), and per-country news tagging beyond the six hubs.
 4. Auth (FastAPI + Postgres tables already present).
 5. Schedule FRED / World Bank connectors.
 6. Pooling and per-channel/per-country filtering for scale.

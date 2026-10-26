@@ -34,3 +34,12 @@ body {
 .scrollbar-none::-webkit-scrollbar { display: none; }
 .scrollbar-thin::-webkit-scrollbar { width: 6px; }
 .scrollbar-thin::-webkit-scrollbar-thumb { background: rgba(212, 166, 74, 0.25); border-radius: 3px; }
+
+/* Leaflet controls in the Chrono palette */
+.country-map .leaflet-container { background: #0b1a33; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; }
+.country-map .leaflet-bar { border: 1px solid rgba(212, 166, 74, 0.35); box-shadow: none; }
+.country-map .leaflet-bar a { background: rgba(7, 16, 30, 0.85); color: #e8c882; border-bottom-color: rgba(212, 166, 74, 0.2); }
+.country-map .leaflet-bar a:hover { background: #0d1a30; color: #d4a64a; }
+.country-map .leaflet-control-attribution { background: rgba(5, 10, 20, 0.7); color: #8fa0b8; font-size: 9px; }
+.country-map .leaflet-control-attribution a { color: #d4a64a; }
+.country-map .leaflet-tooltip { background: #07101e; color: #e6edf7; border: 1px solid rgba(212, 166, 74, 0.4); }

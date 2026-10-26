@@ -103,7 +103,7 @@ cd apps/web && npm install && cd ../..
 
 5. Open the dashboard at [http://localhost:3000](http://localhost:3000).
 
-6. *(Optional)* The globe's "agent brief" popup needs the analytics service, which is not in Docker
+6. *(Optional)* The AI market brief on each country page needs the analytics service, which is not in Docker
    yet. From the repository root, in another terminal:
 
    ```bash
@@ -118,7 +118,8 @@ cd apps/web && npm install && cd ../..
 - The header shows **SYSTEM ONLINE**, meaning the browser is connected to `ws://localhost:8000/ws/live`.
 - The **LIVE TICKS** strip fills with symbols within a few seconds.
 - The news feed switches from the demo cards to real headlines within about a minute.
-- Clicking a globe hub opens the agent brief (only with step 6 running).
+- Clicking a country on the globe opens its page: satellite map on the left, economic data on the
+  right. Drag the divider to resize the panes. The AI brief there needs step 6.
 - API docs: [http://localhost:8000/docs](http://localhost:8000/docs).
 
 ### Stop the project
@@ -201,17 +202,34 @@ Redis channels: `market:ticks:all`, `market:ticks:<SYMBOL>`, `news:articles`, `n
 
 <img src="docs/assets/divider.svg" alt="" width="100%"/>
 
+## Country pages
+
+Every country and territory has its own page at `/country/<iso>/` (for example
+[`/country/ind/`](https://rronium.github.io/Chrono/country/ind/)), and
+[`/country/`](https://rronium.github.io/Chrono/country/) lists them all. A page keeps the dashboard's
+header and ticker, puts a satellite map of the country where the globe was, and shows on the right:
+key indicators with year-on-year change, growth / inflation / trade trends since 2000, economic
+structure, the country's news, the AI brief and its neighbours. The six hub markets also get
+exchanges, indices, largest companies with live quotes, and the price chart.
+
+Data lives in one folder per country under [`data/countries/`](data/countries/README.md), refreshed
+monthly from the World Bank by a GitHub Action.
+
 ## Repository map
 
 <img src="docs/assets/structure.svg" alt="Repository map: apps/web (Next.js dashboard, layer 1), apps/backend (unused Express scaffold), services/ingestion (layer 2), services/ml_classifier, services/backend (FastAPI gateway), services/analytics (manual), database/ (layer 3 init scripts), docker-compose.yml, Ideation/, AGENTS.md" width="100%"/>
+
+Also: `data/countries/<ISO>/` (per-country data the web app and backend both read) and
+`scripts/refresh_country_data.py` (rebuilds it).
 
 ## Where it is going
 
 | Built | In progress | Planned |
 |---|---|---|
-| Live ticker from Finnhub + Yahoo | Globe colour alerts from the ML classifier | Country side panel: candles, FX, news per country |
+| Live ticker from Finnhub + Yahoo | Globe colour alerts from the ML classifier | Live FX and written analysis per country |
 | TimescaleDB tick history | Hourly candles for the chart | Login and sessions (tables ready in PostgreSQL) |
-| News scraping into MongoDB | Reuters feed | FRED and World Bank macro data |
+| News scraping into MongoDB | Reuters feed | FRED data |
+| Country pages with World Bank macro data | | |
 | Redis → WebSocket fan-out | Agent brief on real data | Per-country channels for scale |
 
 ## Contributing

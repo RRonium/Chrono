@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { fetchNews } from "@/lib/api";
 
 const SOURCE_URLS: Record<string, string> = {
   bloomberg: "https://www.bloomberg.com/",
@@ -188,24 +189,38 @@ function urgencyColor(urgency: number): string {
   return "bg-cyber-green";
 }
 
-export function SentimentFeed({ articles: liveArticles }: { articles?: any[] }) {
-  const [region, setRegion] = useState("ALL");
-  const live = Array.isArray(liveArticles) ? liveArticles : [];
+// With `iso`, the feed shows one country's stories (live, plus stored ones fetched for it) and no region tabs.
+export function SentimentFeed({ articles: liveArticles, iso, title = "GLOBAL NEWSWIRE" }: { articles?: any[]; iso?: string; title?: string }) {
+  const [region, setRegion] = useState(iso ?? "ALL");
+  const [stored, setStored] = useState<any[]>([]);
+  useEffect(() => {
+    if (!iso) return;
+    fetchNews(iso).then((rows) => setStored(Array.isArray(rows) ? rows : []));
+  }, [iso]);
+
+  const inRegion = (a: any) => region === "ALL" || (a.iso_code || "USA") === region;
+  const seen = new Set<string>();
+  const live = [...(Array.isArray(liveArticles) ? liveArticles : []), ...stored].filter((a: any) => {
+    const key = a.url || a.title;
+    if (!key || seen.has(key) || (iso && !inRegion(a))) return false;
+    seen.add(key);
+    return true;
+  });
   const isSample = live.length === 0;
   const all = isSample ? DEMO_FALLBACK_ARTICLES : live;
-  const shown = region === "ALL" ? all : all.filter((a: any) => (a.iso_code || "USA") === region);
+  const shown = all.filter(inRegion);
 
   return (
-    <div className="hud-panel rounded-lg p-4 flex flex-col h-[26rem]">
+    <div className={`hud-panel rounded-lg p-4 flex flex-col ${iso ? "max-h-[26rem]" : "h-[26rem]"}`}>
       <div className="flex justify-between items-center mb-2">
-        <h3 className="font-display text-sm tracking-[0.15em] text-gold">GLOBAL NEWSWIRE</h3>
-        {isSample ? (
+        <h3 className="font-display text-sm tracking-[0.15em] text-gold">{title}</h3>
+        {isSample && shown.length === 0 ? null : isSample ? (
           <span className="text-[10px] font-mono px-1.5 py-0.5 rounded border border-amber-500/40 text-amber-400">SAMPLE DATA</span>
         ) : (
           <span className="text-[10px] font-mono text-cyber-green">● {live.length} LIVE</span>
         )}
       </div>
-      <div className="flex gap-1 mb-3 font-mono text-[10px]">
+      <div className={`flex gap-1 mb-3 font-mono text-[10px] ${iso ? "hidden" : ""}`}>
         {REGIONS.map((r) => (
           <button
             key={r}
@@ -217,7 +232,13 @@ export function SentimentFeed({ articles: liveArticles }: { articles?: any[] }) 
         ))}
       </div>
       <div className="flex-1 overflow-y-auto space-y-3 pr-1 scrollbar-thin">
-        {shown.length === 0 && <p className="text-xs font-mono text-ink-faint">No stories for this region yet.</p>}
+        {shown.length === 0 && (
+          <p className="text-xs font-mono text-ink-faint">
+            {iso
+              ? `No stories tagged ${iso} yet. The scrapers currently tag ${REGIONS.slice(1).join(", ")}.`
+              : "No stories for this region yet."}
+          </p>
+        )}
         {shown.map((article: any, idx: number) => {
           const sentiment: string | undefined = article.sentiment?.label;
           const urgency = typeof article.urgency === "number" ? article.urgency : null;

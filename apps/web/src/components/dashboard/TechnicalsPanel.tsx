@@ -23,7 +23,7 @@ const parseTimestamp = (timeVal: any): number => {
 const CHART_WINDOW_SECONDS = 5 * 60 * 60;
 const CHART_SYMBOLS = ["AAPL", "^GSPC", "^NSEI", "RELIANCE.NS"];
 
-export function TechnicalsPanel({ symbol: initialSymbol = "AAPL" }: { symbol?: string }) {
+export function TechnicalsPanel({ symbol: initialSymbol = "AAPL", symbols = CHART_SYMBOLS }: { symbol?: string; symbols?: string[] }) {
   const [symbol, setSymbol] = useState(initialSymbol);
   const [isSample, setIsSample] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
@@ -217,8 +217,8 @@ export function TechnicalsPanel({ symbol: initialSymbol = "AAPL" }: { symbol?: s
           FEED: {connected ? <span className="text-cyber-green">LIVE</span> : <span className="text-cyber-red">OFFLINE</span>}
         </span>
       </div>
-      <div className="flex gap-1 mb-2 font-mono text-[10px]">
-        {CHART_SYMBOLS.map((s) => (
+      <div className="flex flex-wrap gap-1 mb-2 font-mono text-[10px]">
+        {symbols.map((s) => (
           <button
             key={s}
             onClick={() => setSymbol(s)}

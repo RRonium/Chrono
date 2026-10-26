@@ -1,0 +1,53 @@
+{
+  "summary": "Europe's largest economy and an export-led industrial base; monetary policy is set by the European Central Bank for the euro area.",
+  "exchanges": [
+    {
+      "name": "Frankfurt Stock Exchange (Xetra)",
+      "city": "Frankfurt",
+      "website": "https://www.boerse-frankfurt.de"
+    }
+  ],
+  "indices": [
+    {
+      "name": "DAX",
+      "symbol": "^GDAXI"
+    }
+  ],
+  "centralBank": {
+    "name": "Deutsche Bundesbank (Eurosystem, ECB)",
+    "website": "https://www.bundesbank.de"
+  },
+  "regulator": {
+    "name": "BaFin",
+    "website": "https://www.bafin.de"
+  },
+  "companies": [
+    {
+      "name": "SAP",
+      "symbol": "SAP.DE"
+    },
+    {
+      "name": "Siemens",
+      "symbol": "SIE.DE"
+    },
+    {
+      "name": "Allianz",
+      "symbol": "ALV.DE"
+    },
+    {
+      "name": "BMW",
+      "symbol": "BMW.DE"
+    },
+    {
+      "name": "Deutsche Telekom",
+      "symbol": "DTE.DE"
+    }
+  ],
+  "sectors": [
+    "Industrials",
+    "Automobiles",
+    "Chemicals",
+    "Financials",
+    "Software"
+  ]
+}

@@ -104,6 +104,7 @@ function Earth({
         onPointerMove={(e) => onHover(countryAt(e), e.nativeEvent.offsetX, e.nativeEvent.offsetY)}
         onPointerOut={() => onHover(null, 0, 0)}
         onClick={(e) => {
+          if (e.delta > 4) return; // a drag to rotate the globe, not a click
           const country = countryAt(e);
           if (country) onSelect(country);
         }}
@@ -186,7 +187,7 @@ export function Globe3D({ onSelectHub }: { onSelectHub: (iso: string, name?: str
           <div className="font-semibold text-gold-soft">{hovered.properties.name}</div>
           <div className="text-ink-faint">
             {hovered.properties.iso}
-            {hubIsos.current.has(hovered.properties.iso) ? " · tracked market" : ""} · click for brief
+            {hubIsos.current.has(hovered.properties.iso) ? " · tracked market" : ""} · click to open
           </div>
         </div>
       )}

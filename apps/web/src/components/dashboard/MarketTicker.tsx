@@ -1,14 +1,14 @@
 import React from "react";
 import { symbolLabel } from "@/lib/constants";
 
-function changePercent(tick: any): number {
+export function changePercent(tick: any): number {
   const price = Number(tick.price) || 0;
   const prevClose = Number(tick.prev_close);
   if (prevClose > 0 && price > 0) return ((price - prevClose) / prevClose) * 100;
   return typeof tick.change_pct === "number" ? tick.change_pct : 0;
 }
 
-function formatPrice(tick: any): string {
+export function formatPrice(tick: any): string {
   const price = Number(tick.price) || 0;
   const symbol: string = tick.symbol ?? "";
   if (symbol.startsWith("^")) return price.toLocaleString("en-US", { maximumFractionDigits: 2, minimumFractionDigits: 2 });

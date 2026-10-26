@@ -1,7 +1,7 @@
 {
  "meta": {
   "generated": "2026-10-26",
-  "indicatorsUpdated": "",
+  "indicatorsUpdated": "2026-10-26",
   "sources": {
    "boundaries": "Natural Earth 1:50m Admin 0 – Countries (public domain)",
    "metadata": "mledoze/countries (ODbL)",
@@ -163,7 +163,7 @@
    "flag": "🇦🇫",
    "region": "Asia",
    "subregion": "Southern Asia",
-   "gdp": null,
+   "gdp": 17778508875.7396,
    "hasMarket": false
   },
   {
@@ -172,7 +172,7 @@
    "flag": "🇦🇱",
    "region": "Europe",
    "subregion": "Southeast Europe",
-   "gdp": null,
+   "gdp": 30540188271.3421,
    "hasMarket": false
   },
   {
@@ -181,7 +181,7 @@
    "flag": "🇩🇿",
    "region": "Africa",
    "subregion": "Northern Africa",
-   "gdp": null,
+   "gdp": 287031225987.736,
    "hasMarket": false
   },
   {
@@ -190,7 +190,7 @@
    "flag": "🇦🇸",
    "region": "Oceania",
    "subregion": "Polynesia",
-   "gdp": null,
+   "gdp": 871000000.0,
    "hasMarket": false
   },
   {
@@ -199,7 +199,7 @@
    "flag": "🇦🇩",
    "region": "Europe",
    "subregion": "Southern Europe",
-   "gdp": null,
+   "gdp": 4500982731.8078,
    "hasMarket": false
   },
   {
@@ -208,7 +208,7 @@
    "flag": "🇦🇴",
    "region": "Africa",
    "subregion": "Middle Africa",
-   "gdp": null,
+   "gdp": 122174889423.635,
    "hasMarket": false
   },
   {
@@ -235,7 +235,7 @@
    "flag": "🇦🇬",
    "region": "Americas",
    "subregion": "Caribbean",
-   "gdp": null,
+   "gdp": 2338196296.2963,
    "hasMarket": false
   },
   {
@@ -244,7 +244,7 @@
    "flag": "🇦🇷",
    "region": "Americas",
    "subregion": "South America",
-   "gdp": null,
+   "gdp": 683097891618.597,
    "hasMarket": false
   },
   {
@@ -253,7 +253,7 @@
    "flag": "🇦🇲",
    "region": "Asia",
    "subregion": "Western Asia",
-   "gdp": null,
+   "gdp": 29243452882.3545,
    "hasMarket": false
   },
   {
@@ -262,7 +262,7 @@
    "flag": "🇦🇼",
    "region": "Americas",
    "subregion": "Caribbean",
-   "gdp": null,
+   "gdp": 4167588070.2922,
    "hasMarket": false
   },
   {
@@ -271,7 +271,7 @@
    "flag": "🇦🇺",
    "region": "Oceania",
    "subregion": "Australia and New Zealand",
-   "gdp": null,
+   "gdp": 1798518933689.21,
    "hasMarket": false
   },
   {
@@ -280,7 +280,7 @@
    "flag": "🇦🇹",
    "region": "Europe",
    "subregion": "Central Europe",
-   "gdp": null,
+   "gdp": 579470021095.418,
    "hasMarket": false
   },
   {
@@ -289,7 +289,7 @@
    "flag": "🇦🇿",
    "region": "Asia",
    "subregion": "Western Asia",
-   "gdp": null,
+   "gdp": 75937647058.8235,
    "hasMarket": false
   },
   {
@@ -298,7 +298,7 @@
    "flag": "🇧🇸",
    "region": "Americas",
    "subregion": "Caribbean",
-   "gdp": null,
+   "gdp": 15832800000.0,
    "hasMarket": false
   },
   {
@@ -307,7 +307,7 @@
    "flag": "🇧🇭",
    "region": "Asia",
    "subregion": "Western Asia",
-   "gdp": null,
+   "gdp": 48965725531.9149,
    "hasMarket": false
   },
   {
@@ -316,7 +316,7 @@
    "flag": "🇧🇩",
    "region": "Asia",
    "subregion": "Southern Asia",
-   "gdp": null,
+   "gdp": 456319229255.578,
    "hasMarket": false
   },
   {
@@ -325,7 +325,7 @@
    "flag": "🇧🇧",
    "region": "Americas",
    "subregion": "Caribbean",
-   "gdp": null,
+   "gdp": 8016550000.0,
    "hasMarket": false
   },
   {
@@ -334,7 +334,7 @@
    "flag": "🇧🇾",
    "region": "Europe",
    "subregion": "Eastern Europe",
-   "gdp": null,
+   "gdp": 93397215864.198,
    "hasMarket": false
   },
   {
@@ -343,7 +343,7 @@
    "flag": "🇧🇪",
    "region": "Europe",
    "subregion": "Western Europe",
-   "gdp": null,
+   "gdp": 725466462859.646,
    "hasMarket": false
   },
   {
@@ -352,7 +352,7 @@
    "flag": "🇧🇿",
    "region": "Americas",
    "subregion": "Central America",
-   "gdp": null,
+   "gdp": 3326500000.0,
    "hasMarket": false
   },
   {
@@ -361,7 +361,7 @@
    "flag": "🇧🇯",
    "region": "Africa",
    "subregion": "Western Africa",
-   "gdp": null,
+   "gdp": 24566420903.5337,
    "hasMarket": false
   },
   {
@@ -370,7 +370,7 @@
    "flag": "🇧🇲",
    "region": "Americas",
    "subregion": "North America",
-   "gdp": null,
+   "gdp": 9194499000.0,
    "hasMarket": false
   },
   {
@@ -379,7 +379,7 @@
    "flag": "🇧🇹",
    "region": "Asia",
    "subregion": "Southern Asia",
-   "gdp": null,
+   "gdp": 3579320145.1308,
    "hasMarket": false
   },
   {
@@ -388,7 +388,7 @@
    "flag": "🇧🇴",
    "region": "Americas",
    "subregion": "South America",
-   "gdp": null,
+   "gdp": 64768947525.3256,
    "hasMarket": false
   },
   {
@@ -397,7 +397,7 @@
    "flag": "🇧🇦",
    "region": "Europe",
    "subregion": "Southeast Europe",
-   "gdp": null,
+   "gdp": 32599982936.3931,
    "hasMarket": false
   },
   {
@@ -406,7 +406,7 @@
    "flag": "🇧🇼",
    "region": "Africa",
    "subregion": "Southern Africa",
-   "gdp": null,
+   "gdp": 19928479839.4476,
    "hasMarket": false
   },
   {
@@ -424,7 +424,7 @@
    "flag": "🇧🇷",
    "region": "Americas",
    "subregion": "South America",
-   "gdp": null,
+   "gdp": 2279920092492.13,
    "hasMarket": false
   },
   {
@@ -451,7 +451,7 @@
    "flag": "🇧🇳",
    "region": "Asia",
    "subregion": "South-Eastern Asia",
-   "gdp": null,
+   "gdp": 15031980994.1121,
    "hasMarket": false
   },
   {
@@ -460,7 +460,7 @@
    "flag": "🇧🇬",
    "region": "Europe",
    "subregion": "Southeast Europe",
-   "gdp": null,
+   "gdp": 130777235529.606,
    "hasMarket": false
   },
   {
@@ -469,7 +469,7 @@
    "flag": "🇧🇫",
    "region": "Africa",
    "subregion": "Western Africa",
-   "gdp": null,
+   "gdp": 27627297461.3181,
    "hasMarket": false
   },
   {
@@ -478,7 +478,16 @@
    "flag": "🇧🇮",
    "region": "Africa",
    "subregion": "Eastern Africa",
-   "gdp": null,
+   "gdp": 3364713864.0849,
+   "hasMarket": false
+  },
+  {
+   "iso3": "CHI",
+   "name": "CHI",
+   "flag": null,
+   "region": null,
+   "subregion": null,
+   "gdp": 12507320838.3932,
    "hasMarket": false
   },
   {
@@ -487,7 +496,7 @@
    "flag": "🇰🇭",
    "region": "Asia",
    "subregion": "South-Eastern Asia",
-   "gdp": null,
+   "gdp": 51267065842.9641,
    "hasMarket": false
   },
   {
@@ -496,7 +505,7 @@
    "flag": "🇨🇲",
    "region": "Africa",
    "subregion": "Middle Africa",
-   "gdp": null,
+   "gdp": 58933453923.761,
    "hasMarket": false
   },
   {
@@ -505,7 +514,7 @@
    "flag": "🇨🇦",
    "region": "Americas",
    "subregion": "North America",
-   "gdp": null,
+   "gdp": 2319899772425.92,
    "hasMarket": false
   },
   {
@@ -514,7 +523,7 @@
    "flag": "🇨🇻",
    "region": "Africa",
    "subregion": "Western Africa",
-   "gdp": null,
+   "gdp": 3056630435.3246,
    "hasMarket": false
   },
   {
@@ -532,7 +541,7 @@
    "flag": "🇰🇾",
    "region": "Americas",
    "subregion": "Caribbean",
-   "gdp": null,
+   "gdp": 7765336505.3432,
    "hasMarket": false
   },
   {
@@ -541,7 +550,7 @@
    "flag": "🇨🇫",
    "region": "Africa",
    "subregion": "Middle Africa",
-   "gdp": null,
+   "gdp": 3066109226.4016,
    "hasMarket": false
   },
   {
@@ -550,7 +559,7 @@
    "flag": "🇹🇩",
    "region": "Africa",
    "subregion": "Middle Africa",
-   "gdp": null,
+   "gdp": 21472835225.4338,
    "hasMarket": false
   },
   {
@@ -559,7 +568,7 @@
    "flag": "🇨🇱",
    "region": "Americas",
    "subregion": "South America",
-   "gdp": null,
+   "gdp": 357371159574.862,
    "hasMarket": false
   },
   {
@@ -568,7 +577,7 @@
    "flag": "🇨🇳",
    "region": "Asia",
    "subregion": "Eastern Asia",
-   "gdp": null,
+   "gdp": 19498039388042.6,
    "hasMarket": false
   },
   {
@@ -595,7 +604,7 @@
    "flag": "🇨🇴",
    "region": "Americas",
    "subregion": "South America",
-   "gdp": null,
+   "gdp": 457410034202.523,
    "hasMarket": false
   },
   {
@@ -604,7 +613,7 @@
    "flag": "🇰🇲",
    "region": "Africa",
    "subregion": "Eastern Africa",
-   "gdp": null,
+   "gdp": 1814920856.2703,
    "hasMarket": false
   },
   {
@@ -613,7 +622,7 @@
    "flag": "🇨🇬",
    "region": "Africa",
    "subregion": "Middle Africa",
-   "gdp": null,
+   "gdp": 16306633778.765,
    "hasMarket": false
   },
   {
@@ -631,7 +640,7 @@
    "flag": "🇨🇷",
    "region": "Americas",
    "subregion": "Central America",
-   "gdp": null,
+   "gdp": 102904921157.478,
    "hasMarket": false
   },
   {
@@ -640,7 +649,7 @@
    "flag": "🇭🇷",
    "region": "Europe",
    "subregion": "Southeast Europe",
-   "gdp": null,
+   "gdp": 105060182186.274,
    "hasMarket": false
   },
   {
@@ -649,7 +658,7 @@
    "flag": "🇨🇺",
    "region": "Americas",
    "subregion": "Caribbean",
-   "gdp": null,
+   "gdp": 107352000000.0,
    "hasMarket": false
   },
   {
@@ -658,7 +667,7 @@
    "flag": "🇨🇼",
    "region": "Americas",
    "subregion": "Caribbean",
-   "gdp": null,
+   "gdp": 3561178212.2905,
    "hasMarket": false
   },
   {
@@ -667,7 +676,7 @@
    "flag": "🇨🇾",
    "region": "Europe",
    "subregion": "Southern Europe",
-   "gdp": null,
+   "gdp": 41225787247.3309,
    "hasMarket": false
   },
   {
@@ -676,7 +685,7 @@
    "flag": "🇨🇿",
    "region": "Europe",
    "subregion": "Central Europe",
-   "gdp": null,
+   "gdp": 391026962800.475,
    "hasMarket": false
   },
   {
@@ -685,7 +694,7 @@
    "flag": "🇨🇩",
    "region": "Africa",
    "subregion": "Middle Africa",
-   "gdp": null,
+   "gdp": 91030531316.9936,
    "hasMarket": false
   },
   {
@@ -694,7 +703,7 @@
    "flag": "🇩🇰",
    "region": "Europe",
    "subregion": "Northern Europe",
-   "gdp": null,
+   "gdp": 462526660468.393,
    "hasMarket": false
   },
   {
@@ -703,7 +712,7 @@
    "flag": "🇩🇯",
    "region": "Africa",
    "subregion": "Eastern Africa",
-   "gdp": null,
+   "gdp": 4624533092.3189,
    "hasMarket": false
   },
   {
@@ -712,7 +721,7 @@
    "flag": "🇩🇲",
    "region": "Americas",
    "subregion": "Caribbean",
-   "gdp": null,
+   "gdp": 723859259.2593,
    "hasMarket": false
   },
   {
@@ -721,7 +730,7 @@
    "flag": "🇩🇴",
    "region": "Americas",
    "subregion": "Caribbean",
-   "gdp": null,
+   "gdp": 127407463759.043,
    "hasMarket": false
   },
   {
@@ -730,7 +739,7 @@
    "flag": "🇪🇨",
    "region": "Americas",
    "subregion": "South America",
-   "gdp": null,
+   "gdp": 130320560400.0,
    "hasMarket": false
   },
   {
@@ -739,7 +748,7 @@
    "flag": "🇪🇬",
    "region": "Africa",
    "subregion": "Northern Africa",
-   "gdp": null,
+   "gdp": 365254630179.737,
    "hasMarket": false
   },
   {
@@ -748,7 +757,7 @@
    "flag": "🇸🇻",
    "region": "Americas",
    "subregion": "Central America",
-   "gdp": null,
+   "gdp": 36708110000.0,
    "hasMarket": false
   },
   {
@@ -757,7 +766,7 @@
    "flag": "🇬🇶",
    "region": "Africa",
    "subregion": "Middle Africa",
-   "gdp": null,
+   "gdp": 12823210425.9217,
    "hasMarket": false
   },
   {
@@ -775,7 +784,7 @@
    "flag": "🇪🇪",
    "region": "Europe",
    "subregion": "Northern Europe",
-   "gdp": null,
+   "gdp": 47030833798.5866,
    "hasMarket": false
   },
   {
@@ -784,7 +793,7 @@
    "flag": "🇸🇿",
    "region": "Africa",
    "subregion": "Southern Africa",
-   "gdp": null,
+   "gdp": 5160679612.8173,
    "hasMarket": false
   },
   {
@@ -793,7 +802,7 @@
    "flag": "🇪🇹",
    "region": "Africa",
    "subregion": "Eastern Africa",
-   "gdp": null,
+   "gdp": 126358758448.356,
    "hasMarket": false
   },
   {
@@ -811,7 +820,7 @@
    "flag": "🇫🇴",
    "region": "Europe",
    "subregion": "Northern Europe",
-   "gdp": null,
+   "gdp": 4052937169.7654,
    "hasMarket": false
   },
   {
@@ -820,7 +829,7 @@
    "flag": "🇫🇯",
    "region": "Oceania",
    "subregion": "Melanesia",
-   "gdp": null,
+   "gdp": 6198013062.0655,
    "hasMarket": false
   },
   {
@@ -829,7 +838,7 @@
    "flag": "🇫🇮",
    "region": "Europe",
    "subregion": "Northern Europe",
-   "gdp": null,
+   "gdp": 317039368819.607,
    "hasMarket": false
   },
   {
@@ -838,7 +847,7 @@
    "flag": "🇫🇷",
    "region": "Europe",
    "subregion": "Western Europe",
-   "gdp": null,
+   "gdp": 3366315927447.33,
    "hasMarket": false
   },
   {
@@ -856,7 +865,7 @@
    "flag": "🇵🇫",
    "region": "Oceania",
    "subregion": "Polynesia",
-   "gdp": null,
+   "gdp": 6323716355.0501,
    "hasMarket": false
   },
   {
@@ -874,7 +883,7 @@
    "flag": "🇬🇦",
    "region": "Africa",
    "subregion": "Middle Africa",
-   "gdp": null,
+   "gdp": 21427119323.2764,
    "hasMarket": false
   },
   {
@@ -883,7 +892,7 @@
    "flag": "🇬🇲",
    "region": "Africa",
    "subregion": "Western Africa",
-   "gdp": null,
+   "gdp": 2593673987.5331,
    "hasMarket": false
   },
   {
@@ -892,7 +901,7 @@
    "flag": "🇬🇪",
    "region": "Asia",
    "subregion": "Western Asia",
-   "gdp": null,
+   "gdp": 38143612855.1367,
    "hasMarket": false
   },
   {
@@ -901,7 +910,7 @@
    "flag": "🇩🇪",
    "region": "Europe",
    "subregion": "Western Europe",
-   "gdp": null,
+   "gdp": 5050922925047.05,
    "hasMarket": false
   },
   {
@@ -910,7 +919,7 @@
    "flag": "🇬🇭",
    "region": "Africa",
    "subregion": "Western Africa",
-   "gdp": null,
+   "gdp": 114209905278.717,
    "hasMarket": false
   },
   {
@@ -928,7 +937,7 @@
    "flag": "🇬🇷",
    "region": "Europe",
    "subregion": "Southern Europe",
-   "gdp": null,
+   "gdp": 280635521324.441,
    "hasMarket": false
   },
   {
@@ -937,7 +946,7 @@
    "flag": "🇬🇱",
    "region": "Americas",
    "subregion": "North America",
-   "gdp": null,
+   "gdp": 3326543974.3919,
    "hasMarket": false
   },
   {
@@ -946,7 +955,7 @@
    "flag": "🇬🇩",
    "region": "Americas",
    "subregion": "Caribbean",
-   "gdp": null,
+   "gdp": 1420173228.5695,
    "hasMarket": false
   },
   {
@@ -964,7 +973,7 @@
    "flag": "🇬🇺",
    "region": "Oceania",
    "subregion": "Micronesia",
-   "gdp": null,
+   "gdp": 6910000000.0,
    "hasMarket": false
   },
   {
@@ -973,7 +982,7 @@
    "flag": "🇬🇹",
    "region": "Americas",
    "subregion": "Central America",
-   "gdp": null,
+   "gdp": 123306008821.471,
    "hasMarket": false
   },
   {
@@ -991,7 +1000,7 @@
    "flag": "🇬🇳",
    "region": "Africa",
    "subregion": "Western Africa",
-   "gdp": null,
+   "gdp": 28346024753.2924,
    "hasMarket": false
   },
   {
@@ -1000,7 +1009,7 @@
    "flag": "🇬🇼",
    "region": "Africa",
    "subregion": "Western Africa",
-   "gdp": null,
+   "gdp": 2527930272.9299,
    "hasMarket": false
   },
   {
@@ -1009,7 +1018,7 @@
    "flag": "🇬🇾",
    "region": "Americas",
    "subregion": "South America",
-   "gdp": null,
+   "gdp": 27097477218.2254,
    "hasMarket": false
   },
   {
@@ -1018,7 +1027,7 @@
    "flag": "🇭🇹",
    "region": "Americas",
    "subregion": "Caribbean",
-   "gdp": null,
+   "gdp": 32077278409.2339,
    "hasMarket": false
   },
   {
@@ -1036,7 +1045,7 @@
    "flag": "🇭🇳",
    "region": "Americas",
    "subregion": "Central America",
-   "gdp": null,
+   "gdp": 39601409103.3005,
    "hasMarket": false
   },
   {
@@ -1045,7 +1054,7 @@
    "flag": "🇭🇰",
    "region": "Asia",
    "subregion": "Eastern Asia",
-   "gdp": null,
+   "gdp": 427310315921.993,
    "hasMarket": false
   },
   {
@@ -1054,7 +1063,7 @@
    "flag": "🇭🇺",
    "region": "Europe",
    "subregion": "Central Europe",
-   "gdp": null,
+   "gdp": 246490213513.054,
    "hasMarket": false
   },
   {
@@ -1063,7 +1072,7 @@
    "flag": "🇮🇸",
    "region": "Europe",
    "subregion": "Northern Europe",
-   "gdp": null,
+   "gdp": 38582528789.0033,
    "hasMarket": false
   },
   {
@@ -1072,7 +1081,7 @@
    "flag": "🇮🇳",
    "region": "Asia",
    "subregion": "Southern Asia",
-   "gdp": null,
+   "gdp": 3956067115771.63,
    "hasMarket": false
   },
   {
@@ -1081,7 +1090,7 @@
    "flag": "🇮🇩",
    "region": "Asia",
    "subregion": "South-Eastern Asia",
-   "gdp": null,
+   "gdp": 1445642584163.81,
    "hasMarket": false
   },
   {
@@ -1090,7 +1099,7 @@
    "flag": "🇮🇷",
    "region": "Asia",
    "subregion": "Southern Asia",
-   "gdp": null,
+   "gdp": 362682115433.364,
    "hasMarket": false
   },
   {
@@ -1099,7 +1108,7 @@
    "flag": "🇮🇶",
    "region": "Asia",
    "subregion": "Western Asia",
-   "gdp": null,
+   "gdp": 254367293538.462,
    "hasMarket": false
   },
   {
@@ -1108,7 +1117,7 @@
    "flag": "🇮🇪",
    "region": "Europe",
    "subregion": "Northern Europe",
-   "gdp": null,
+   "gdp": 721701359046.313,
    "hasMarket": false
   },
   {
@@ -1117,7 +1126,7 @@
    "flag": "🇮🇲",
    "region": "Europe",
    "subregion": "Northern Europe",
-   "gdp": null,
+   "gdp": 7576129932.7938,
    "hasMarket": false
   },
   {
@@ -1126,7 +1135,7 @@
    "flag": "🇮🇱",
    "region": "Asia",
    "subregion": "Western Asia",
-   "gdp": null,
+   "gdp": 610777842873.595,
    "hasMarket": false
   },
   {
@@ -1135,7 +1144,7 @@
    "flag": "🇮🇹",
    "region": "Europe",
    "subregion": "Southern Europe",
-   "gdp": null,
+   "gdp": 2551556954100.35,
    "hasMarket": false
   },
   {
@@ -1144,7 +1153,7 @@
    "flag": "🇨🇮",
    "region": "Africa",
    "subregion": "Western Africa",
-   "gdp": null,
+   "gdp": 99773555666.1988,
    "hasMarket": false
   },
   {
@@ -1153,7 +1162,7 @@
    "flag": "🇯🇲",
    "region": "Americas",
    "subregion": "Caribbean",
-   "gdp": null,
+   "gdp": 22704903217.5631,
    "hasMarket": false
   },
   {
@@ -1162,7 +1171,7 @@
    "flag": "🇯🇵",
    "region": "Asia",
    "subregion": "Eastern Asia",
-   "gdp": null,
+   "gdp": 4435162999976.94,
    "hasMarket": false
   },
   {
@@ -1180,7 +1189,7 @@
    "flag": "🇯🇴",
    "region": "Asia",
    "subregion": "Western Asia",
-   "gdp": null,
+   "gdp": 61610052535.2113,
    "hasMarket": false
   },
   {
@@ -1189,7 +1198,7 @@
    "flag": "🇰🇿",
    "region": "Asia",
    "subregion": "Central Asia",
-   "gdp": null,
+   "gdp": 306239209650.024,
    "hasMarket": false
   },
   {
@@ -1198,7 +1207,7 @@
    "flag": "🇰🇪",
    "region": "Africa",
    "subregion": "Eastern Africa",
-   "gdp": null,
+   "gdp": 135941278878.815,
    "hasMarket": false
   },
   {
@@ -1207,7 +1216,7 @@
    "flag": "🇰🇮",
    "region": "Oceania",
    "subregion": "Micronesia",
-   "gdp": null,
+   "gdp": 349227254.1588,
    "hasMarket": false
   },
   {
@@ -1216,7 +1225,7 @@
    "flag": "🇽🇰",
    "region": "Europe",
    "subregion": "Southeast Europe",
-   "gdp": null,
+   "gdp": 12456403306.8191,
    "hasMarket": false
   },
   {
@@ -1225,7 +1234,7 @@
    "flag": "🇰🇼",
    "region": "Asia",
    "subregion": "Western Asia",
-   "gdp": null,
+   "gdp": 157209026926.418,
    "hasMarket": false
   },
   {
@@ -1234,7 +1243,7 @@
    "flag": "🇰🇬",
    "region": "Asia",
    "subregion": "Central Asia",
-   "gdp": null,
+   "gdp": 22623752095.4613,
    "hasMarket": false
   },
   {
@@ -1243,7 +1252,7 @@
    "flag": "🇱🇦",
    "region": "Asia",
    "subregion": "South-Eastern Asia",
-   "gdp": null,
+   "gdp": 18302970218.5902,
    "hasMarket": false
   },
   {
@@ -1252,7 +1261,7 @@
    "flag": "🇱🇻",
    "region": "Europe",
    "subregion": "Northern Europe",
-   "gdp": null,
+   "gdp": 48618869160.3254,
    "hasMarket": false
   },
   {
@@ -1261,7 +1270,7 @@
    "flag": "🇱🇧",
    "region": "Asia",
    "subregion": "Western Asia",
-   "gdp": null,
+   "gdp": 25971643441.3408,
    "hasMarket": false
   },
   {
@@ -1270,7 +1279,7 @@
    "flag": "🇱🇸",
    "region": "Africa",
    "subregion": "Southern Africa",
-   "gdp": null,
+   "gdp": 2573572920.0516,
    "hasMarket": false
   },
   {
@@ -1279,7 +1288,7 @@
    "flag": "🇱🇷",
    "region": "Africa",
    "subregion": "Western Africa",
-   "gdp": null,
+   "gdp": 5245938900.0,
    "hasMarket": false
   },
   {
@@ -1288,7 +1297,7 @@
    "flag": "🇱🇾",
    "region": "Africa",
    "subregion": "Northern Africa",
-   "gdp": null,
+   "gdp": 48098909613.6316,
    "hasMarket": false
   },
   {
@@ -1297,7 +1306,7 @@
    "flag": "🇱🇮",
    "region": "Europe",
    "subregion": "Western Europe",
-   "gdp": null,
+   "gdp": 8905764270.4054,
    "hasMarket": false
   },
   {
@@ -1306,7 +1315,7 @@
    "flag": "🇱🇹",
    "region": "Europe",
    "subregion": "Northern Europe",
-   "gdp": null,
+   "gdp": 95210150818.3512,
    "hasMarket": false
   },
   {
@@ -1315,7 +1324,7 @@
    "flag": "🇱🇺",
    "region": "Europe",
    "subregion": "Western Europe",
-   "gdp": null,
+   "gdp": 101157829491.107,
    "hasMarket": false
   },
   {
@@ -1324,7 +1333,7 @@
    "flag": "🇲🇴",
    "region": "Asia",
    "subregion": "Eastern Asia",
-   "gdp": null,
+   "gdp": 52061007670.169,
    "hasMarket": false
   },
   {
@@ -1333,7 +1342,7 @@
    "flag": "🇲🇬",
    "region": "Africa",
    "subregion": "Eastern Africa",
-   "gdp": null,
+   "gdp": 19620352035.7899,
    "hasMarket": false
   },
   {
@@ -1342,7 +1351,7 @@
    "flag": "🇲🇼",
    "region": "Africa",
    "subregion": "Eastern Africa",
-   "gdp": null,
+   "gdp": 14918276698.303,
    "hasMarket": false
   },
   {
@@ -1351,7 +1360,7 @@
    "flag": "🇲🇾",
    "region": "Asia",
    "subregion": "South-Eastern Asia",
-   "gdp": null,
+   "gdp": 472193128644.597,
    "hasMarket": false
   },
   {
@@ -1360,7 +1369,7 @@
    "flag": "🇲🇻",
    "region": "Asia",
    "subregion": "Southern Asia",
-   "gdp": null,
+   "gdp": 7741066860.6337,
    "hasMarket": false
   },
   {
@@ -1369,7 +1378,7 @@
    "flag": "🇲🇱",
    "region": "Africa",
    "subregion": "Western Africa",
-   "gdp": null,
+   "gdp": 30069148580.7688,
    "hasMarket": false
   },
   {
@@ -1378,7 +1387,7 @@
    "flag": "🇲🇹",
    "region": "Europe",
    "subregion": "Southern Europe",
-   "gdp": null,
+   "gdp": 27771821560.9411,
    "hasMarket": false
   },
   {
@@ -1387,7 +1396,7 @@
    "flag": "🇲🇭",
    "region": "Oceania",
    "subregion": "Micronesia",
-   "gdp": null,
+   "gdp": 308000000.0,
    "hasMarket": false
   },
   {
@@ -1405,7 +1414,7 @@
    "flag": "🇲🇷",
    "region": "Africa",
    "subregion": "Western Africa",
-   "gdp": null,
+   "gdp": 11679910946.4371,
    "hasMarket": false
   },
   {
@@ -1414,7 +1423,7 @@
    "flag": "🇲🇺",
    "region": "Africa",
    "subregion": "Eastern Africa",
-   "gdp": null,
+   "gdp": 16157804491.7614,
    "hasMarket": false
   },
   {
@@ -1432,7 +1441,7 @@
    "flag": "🇲🇽",
    "region": "Americas",
    "subregion": "North America",
-   "gdp": null,
+   "gdp": 1832641364775.52,
    "hasMarket": false
   },
   {
@@ -1441,7 +1450,7 @@
    "flag": "🇫🇲",
    "region": "Oceania",
    "subregion": "Micronesia",
-   "gdp": null,
+   "gdp": 501797600.0,
    "hasMarket": false
   },
   {
@@ -1450,7 +1459,7 @@
    "flag": "🇲🇩",
    "region": "Europe",
    "subregion": "Eastern Europe",
-   "gdp": null,
+   "gdp": 20351796275.2943,
    "hasMarket": false
   },
   {
@@ -1459,7 +1468,7 @@
    "flag": "🇲🇨",
    "region": "Europe",
    "subregion": "Western Europe",
-   "gdp": null,
+   "gdp": 11125788838.2812,
    "hasMarket": false
   },
   {
@@ -1468,7 +1477,7 @@
    "flag": "🇲🇳",
    "region": "Asia",
    "subregion": "Eastern Asia",
-   "gdp": null,
+   "gdp": 25369107325.4549,
    "hasMarket": false
   },
   {
@@ -1477,7 +1486,7 @@
    "flag": "🇲🇪",
    "region": "Europe",
    "subregion": "Southeast Europe",
-   "gdp": null,
+   "gdp": 9232801464.7926,
    "hasMarket": false
   },
   {
@@ -1495,7 +1504,7 @@
    "flag": "🇲🇦",
    "region": "Africa",
    "subregion": "Northern Africa",
-   "gdp": null,
+   "gdp": 182374250612.28,
    "hasMarket": false
   },
   {
@@ -1504,7 +1513,7 @@
    "flag": "🇲🇿",
    "region": "Africa",
    "subregion": "Eastern Africa",
-   "gdp": null,
+   "gdp": 22337997046.1913,
    "hasMarket": false
   },
   {
@@ -1513,7 +1522,7 @@
    "flag": "🇲🇲",
    "region": "Asia",
    "subregion": "South-Eastern Asia",
-   "gdp": null,
+   "gdp": 81665773809.5238,
    "hasMarket": false
   },
   {
@@ -1522,7 +1531,7 @@
    "flag": "🇳🇦",
    "region": "Africa",
    "subregion": "Southern Africa",
-   "gdp": null,
+   "gdp": 15080340653.5276,
    "hasMarket": false
   },
   {
@@ -1531,7 +1540,7 @@
    "flag": "🇳🇷",
    "region": "Oceania",
    "subregion": "Micronesia",
-   "gdp": null,
+   "gdp": 176040043.9323,
    "hasMarket": false
   },
   {
@@ -1540,7 +1549,7 @@
    "flag": "🇳🇵",
    "region": "Asia",
    "subregion": "Southern Asia",
-   "gdp": null,
+   "gdp": 45489810283.1132,
    "hasMarket": false
   },
   {
@@ -1549,7 +1558,7 @@
    "flag": "🇳🇱",
    "region": "Europe",
    "subregion": "Western Europe",
-   "gdp": null,
+   "gdp": 1332767651100.39,
    "hasMarket": false
   },
   {
@@ -1558,7 +1567,7 @@
    "flag": "🇳🇨",
    "region": "Oceania",
    "subregion": "Melanesia",
-   "gdp": null,
+   "gdp": 8548919387.1261,
    "hasMarket": false
   },
   {
@@ -1567,7 +1576,7 @@
    "flag": "🇳🇿",
    "region": "Oceania",
    "subregion": "Australia and New Zealand",
-   "gdp": null,
+   "gdp": 264057413739.965,
    "hasMarket": false
   },
   {
@@ -1576,7 +1585,7 @@
    "flag": "🇳🇮",
    "region": "Americas",
    "subregion": "Central America",
-   "gdp": null,
+   "gdp": 22237167113.0916,
    "hasMarket": false
   },
   {
@@ -1585,7 +1594,7 @@
    "flag": "🇳🇪",
    "region": "Africa",
    "subregion": "Western Africa",
-   "gdp": null,
+   "gdp": 21646191388.2507,
    "hasMarket": false
   },
   {
@@ -1594,7 +1603,7 @@
    "flag": "🇳🇬",
    "region": "Africa",
    "subregion": "Western Africa",
-   "gdp": null,
+   "gdp": 290794361542.112,
    "hasMarket": false
   },
   {
@@ -1630,7 +1639,7 @@
    "flag": "🇲🇰",
    "region": "Europe",
    "subregion": "Southeast Europe",
-   "gdp": null,
+   "gdp": 19101199817.0174,
    "hasMarket": false
   },
   {
@@ -1639,7 +1648,7 @@
    "flag": "🇲🇵",
    "region": "Oceania",
    "subregion": "Micronesia",
-   "gdp": null,
+   "gdp": 1096000000.0,
    "hasMarket": false
   },
   {
@@ -1648,7 +1657,7 @@
    "flag": "🇳🇴",
    "region": "Europe",
    "subregion": "Northern Europe",
-   "gdp": null,
+   "gdp": 530755719438.879,
    "hasMarket": false
   },
   {
@@ -1657,7 +1666,7 @@
    "flag": "🇴🇲",
    "region": "Asia",
    "subregion": "Western Asia",
-   "gdp": null,
+   "gdp": 109604780696.23,
    "hasMarket": false
   },
   {
@@ -1666,7 +1675,7 @@
    "flag": "🇵🇰",
    "region": "Asia",
    "subregion": "Southern Asia",
-   "gdp": null,
+   "gdp": 407307214476.222,
    "hasMarket": false
   },
   {
@@ -1675,7 +1684,7 @@
    "flag": "🇵🇼",
    "region": "Oceania",
    "subregion": "Micronesia",
-   "gdp": null,
+   "gdp": 345000000.0,
    "hasMarket": false
   },
   {
@@ -1684,7 +1693,7 @@
    "flag": "🇵🇸",
    "region": "Asia",
    "subregion": "Western Asia",
-   "gdp": null,
+   "gdp": 17167100000.0,
    "hasMarket": false
   },
   {
@@ -1693,7 +1702,7 @@
    "flag": "🇵🇦",
    "region": "Americas",
    "subregion": "Central America",
-   "gdp": null,
+   "gdp": 90462600000.0,
    "hasMarket": false
   },
   {
@@ -1702,7 +1711,7 @@
    "flag": "🇵🇬",
    "region": "Oceania",
    "subregion": "Melanesia",
-   "gdp": null,
+   "gdp": 32498658653.8415,
    "hasMarket": false
   },
   {
@@ -1711,7 +1720,7 @@
    "flag": "🇵🇾",
    "region": "Americas",
    "subregion": "South America",
-   "gdp": null,
+   "gdp": 49278227554.3339,
    "hasMarket": false
   },
   {
@@ -1720,7 +1729,7 @@
    "flag": "🇵🇪",
    "region": "Americas",
    "subregion": "South America",
-   "gdp": null,
+   "gdp": 334854659181.893,
    "hasMarket": false
   },
   {
@@ -1729,7 +1738,7 @@
    "flag": "🇵🇭",
    "region": "Asia",
    "subregion": "South-Eastern Asia",
-   "gdp": null,
+   "gdp": 487086123720.417,
    "hasMarket": false
   },
   {
@@ -1747,7 +1756,7 @@
    "flag": "🇵🇱",
    "region": "Europe",
    "subregion": "Central Europe",
-   "gdp": null,
+   "gdp": 1035491784197.44,
    "hasMarket": false
   },
   {
@@ -1756,7 +1765,7 @@
    "flag": "🇵🇹",
    "region": "Europe",
    "subregion": "Southern Europe",
-   "gdp": null,
+   "gdp": 346639825141.821,
    "hasMarket": false
   },
   {
@@ -1765,7 +1774,7 @@
    "flag": "🇵🇷",
    "region": "Americas",
    "subregion": "Caribbean",
-   "gdp": null,
+   "gdp": 129368484000.0,
    "hasMarket": false
   },
   {
@@ -1774,7 +1783,7 @@
    "flag": "🇶🇦",
    "region": "Asia",
    "subregion": "Western Asia",
-   "gdp": null,
+   "gdp": 215559615384.615,
    "hasMarket": false
   },
   {
@@ -1783,7 +1792,7 @@
    "flag": "🇷🇴",
    "region": "Europe",
    "subregion": "Southeast Europe",
-   "gdp": null,
+   "gdp": 428677977854.826,
    "hasMarket": false
   },
   {
@@ -1792,7 +1801,7 @@
    "flag": "🇷🇺",
    "region": "Europe",
    "subregion": "Eastern Europe",
-   "gdp": null,
+   "gdp": 2561310169358.74,
    "hasMarket": false
   },
   {
@@ -1801,7 +1810,7 @@
    "flag": "🇷🇼",
    "region": "Africa",
    "subregion": "Eastern Africa",
-   "gdp": null,
+   "gdp": 16372132990.2271,
    "hasMarket": false
   },
   {
@@ -1837,7 +1846,7 @@
    "flag": "🇰🇳",
    "region": "Americas",
    "subregion": "Caribbean",
-   "gdp": null,
+   "gdp": 1183514814.8148,
    "hasMarket": false
   },
   {
@@ -1846,7 +1855,7 @@
    "flag": "🇱🇨",
    "region": "Americas",
    "subregion": "Caribbean",
-   "gdp": null,
+   "gdp": 2656444444.4444,
    "hasMarket": false
   },
   {
@@ -1855,7 +1864,7 @@
    "flag": "🇲🇫",
    "region": "Americas",
    "subregion": "Caribbean",
-   "gdp": null,
+   "gdp": 649206262.8475,
    "hasMarket": false
   },
   {
@@ -1873,7 +1882,7 @@
    "flag": "🇻🇨",
    "region": "Americas",
    "subregion": "Caribbean",
-   "gdp": null,
+   "gdp": 1255222222.2222,
    "hasMarket": false
   },
   {
@@ -1882,7 +1891,7 @@
    "flag": "🇼🇸",
    "region": "Oceania",
    "subregion": "Polynesia",
-   "gdp": null,
+   "gdp": 1287936621.6462,
    "hasMarket": false
   },
   {
@@ -1891,7 +1900,7 @@
    "flag": "🇸🇲",
    "region": "Europe",
    "subregion": "Southern Europe",
-   "gdp": null,
+   "gdp": 2027243193.5116,
    "hasMarket": false
   },
   {
@@ -1900,7 +1909,7 @@
    "flag": "🇸🇦",
    "region": "Asia",
    "subregion": "Western Asia",
-   "gdp": null,
+   "gdp": 1276942933333.33,
    "hasMarket": false
   },
   {
@@ -1909,7 +1918,7 @@
    "flag": "🇸🇳",
    "region": "Africa",
    "subregion": "Western Africa",
-   "gdp": null,
+   "gdp": 37006536238.3731,
    "hasMarket": false
   },
   {
@@ -1918,7 +1927,7 @@
    "flag": "🇷🇸",
    "region": "Europe",
    "subregion": "Southeast Europe",
-   "gdp": null,
+   "gdp": 99953324472.9042,
    "hasMarket": false
   },
   {
@@ -1927,7 +1936,7 @@
    "flag": "🇸🇨",
    "region": "Africa",
    "subregion": "Eastern Africa",
-   "gdp": null,
+   "gdp": 2387022853.4858,
    "hasMarket": false
   },
   {
@@ -1936,7 +1945,7 @@
    "flag": "🇸🇱",
    "region": "Africa",
    "subregion": "Western Africa",
-   "gdp": null,
+   "gdp": 7464157904.4351,
    "hasMarket": false
   },
   {
@@ -1945,7 +1954,7 @@
    "flag": "🇸🇬",
    "region": "Asia",
    "subregion": "South-Eastern Asia",
-   "gdp": null,
+   "gdp": 603869516998.738,
    "hasMarket": false
   },
   {
@@ -1954,7 +1963,7 @@
    "flag": "🇸🇽",
    "region": "Americas",
    "subregion": "Caribbean",
-   "gdp": null,
+   "gdp": 1887728480.4469,
    "hasMarket": false
   },
   {
@@ -1963,7 +1972,7 @@
    "flag": "🇸🇰",
    "region": "Europe",
    "subregion": "Central Europe",
-   "gdp": null,
+   "gdp": 154530066506.895,
    "hasMarket": false
   },
   {
@@ -1972,7 +1981,7 @@
    "flag": "🇸🇮",
    "region": "Europe",
    "subregion": "Central Europe",
-   "gdp": null,
+   "gdp": 79648204979.3618,
    "hasMarket": false
   },
   {
@@ -1981,7 +1990,7 @@
    "flag": "🇸🇧",
    "region": "Oceania",
    "subregion": "Melanesia",
-   "gdp": null,
+   "gdp": 1749572442.9502,
    "hasMarket": false
   },
   {
@@ -1990,7 +1999,7 @@
    "flag": "🇸🇴",
    "region": "Africa",
    "subregion": "Eastern Africa",
-   "gdp": null,
+   "gdp": 12995200000.2658,
    "hasMarket": false
   },
   {
@@ -1999,7 +2008,7 @@
    "flag": "🇿🇦",
    "region": "Africa",
    "subregion": "Southern Africa",
-   "gdp": null,
+   "gdp": 427184325997.307,
    "hasMarket": false
   },
   {
@@ -2017,7 +2026,7 @@
    "flag": "🇰🇷",
    "region": "Asia",
    "subregion": "Eastern Asia",
-   "gdp": null,
+   "gdp": 1872374961553.15,
    "hasMarket": false
   },
   {
@@ -2035,7 +2044,7 @@
    "flag": "🇪🇸",
    "region": "Europe",
    "subregion": "Southern Europe",
-   "gdp": null,
+   "gdp": 1906453309985.88,
    "hasMarket": false
   },
   {
@@ -2044,7 +2053,7 @@
    "flag": "🇱🇰",
    "region": "Asia",
    "subregion": "Southern Asia",
-   "gdp": null,
+   "gdp": 108825231671.196,
    "hasMarket": false
   },
   {
@@ -2053,7 +2062,7 @@
    "flag": "🇸🇩",
    "region": "Africa",
    "subregion": "Northern Africa",
-   "gdp": null,
+   "gdp": 60162634574.4689,
    "hasMarket": false
   },
   {
@@ -2062,7 +2071,7 @@
    "flag": "🇸🇷",
    "region": "Americas",
    "subregion": "South America",
-   "gdp": null,
+   "gdp": 4523657796.8642,
    "hasMarket": false
   },
   {
@@ -2080,7 +2089,7 @@
    "flag": "🇸🇪",
    "region": "Europe",
    "subregion": "Northern Europe",
-   "gdp": null,
+   "gdp": 668998664082.081,
    "hasMarket": false
   },
   {
@@ -2089,7 +2098,7 @@
    "flag": "🇨🇭",
    "region": "Europe",
    "subregion": "Western Europe",
-   "gdp": null,
+   "gdp": 1043529899250.92,
    "hasMarket": false
   },
   {
@@ -2098,7 +2107,7 @@
    "flag": "🇸🇾",
    "region": "Asia",
    "subregion": "Western Asia",
-   "gdp": null,
+   "gdp": 23737634644.3994,
    "hasMarket": false
   },
   {
@@ -2107,7 +2116,7 @@
    "flag": "🇸🇹",
    "region": "Africa",
    "subregion": "Middle Africa",
-   "gdp": null,
+   "gdp": 981293586.9064,
    "hasMarket": false
   },
   {
@@ -2125,7 +2134,7 @@
    "flag": "🇹🇯",
    "region": "Asia",
    "subregion": "Central Asia",
-   "gdp": null,
+   "gdp": 17660626562.4832,
    "hasMarket": false
   },
   {
@@ -2134,7 +2143,7 @@
    "flag": "🇹🇿",
    "region": "Africa",
    "subregion": "Eastern Africa",
-   "gdp": null,
+   "gdp": 90143496090.4411,
    "hasMarket": false
   },
   {
@@ -2143,7 +2152,7 @@
    "flag": "🇹🇭",
    "region": "Asia",
    "subregion": "South-Eastern Asia",
-   "gdp": null,
+   "gdp": 577009981112.015,
    "hasMarket": false
   },
   {
@@ -2152,7 +2161,7 @@
    "flag": "🇹🇱",
    "region": "Asia",
    "subregion": "South-Eastern Asia",
-   "gdp": null,
+   "gdp": 1902180257.8274,
    "hasMarket": false
   },
   {
@@ -2161,7 +2170,7 @@
    "flag": "🇹🇬",
    "region": "Africa",
    "subregion": "Western Africa",
-   "gdp": null,
+   "gdp": 11889949067.4697,
    "hasMarket": false
   },
   {
@@ -2179,7 +2188,7 @@
    "flag": "🇹🇴",
    "region": "Oceania",
    "subregion": "Polynesia",
-   "gdp": null,
+   "gdp": 679218218.578,
    "hasMarket": false
   },
   {
@@ -2188,7 +2197,7 @@
    "flag": "🇹🇹",
    "region": "Americas",
    "subregion": "Caribbean",
-   "gdp": null,
+   "gdp": 25942749718.4685,
    "hasMarket": false
   },
   {
@@ -2197,7 +2206,7 @@
    "flag": "🇹🇳",
    "region": "Africa",
    "subregion": "Northern Africa",
-   "gdp": null,
+   "gdp": 57502836548.0878,
    "hasMarket": false
   },
   {
@@ -2206,7 +2215,7 @@
    "flag": "🇹🇲",
    "region": "Asia",
    "subregion": "Central Asia",
-   "gdp": null,
+   "gdp": 49828621355.6516,
    "hasMarket": false
   },
   {
@@ -2215,7 +2224,7 @@
    "flag": "🇹🇨",
    "region": "Americas",
    "subregion": "Caribbean",
-   "gdp": null,
+   "gdp": 1745378000.0,
    "hasMarket": false
   },
   {
@@ -2224,7 +2233,7 @@
    "flag": "🇹🇻",
    "region": "Oceania",
    "subregion": "Polynesia",
-   "gdp": null,
+   "gdp": 57345434.7235,
    "hasMarket": false
   },
   {
@@ -2233,7 +2242,7 @@
    "flag": "🇹🇷",
    "region": "Asia",
    "subregion": "Western Asia",
-   "gdp": null,
+   "gdp": 1597293229287.0,
    "hasMarket": false
   },
   {
@@ -2242,7 +2251,7 @@
    "flag": "🇺🇬",
    "region": "Africa",
    "subregion": "Eastern Africa",
-   "gdp": null,
+   "gdp": 61985829288.1496,
    "hasMarket": false
   },
   {
@@ -2251,7 +2260,7 @@
    "flag": "🇺🇦",
    "region": "Europe",
    "subregion": "Eastern Europe",
-   "gdp": null,
+   "gdp": 214233312784.397,
    "hasMarket": false
   },
   {
@@ -2260,7 +2269,7 @@
    "flag": "🇦🇪",
    "region": "Asia",
    "subregion": "Western Asia",
-   "gdp": null,
+   "gdp": 552324919095.872,
    "hasMarket": false
   },
   {
@@ -2269,7 +2278,7 @@
    "flag": "🇬🇧",
    "region": "Europe",
    "subregion": "Northern Europe",
-   "gdp": null,
+   "gdp": 4002587541846.01,
    "hasMarket": false
   },
   {
@@ -2278,7 +2287,7 @@
    "flag": "🇺🇸",
    "region": "Americas",
    "subregion": "North America",
-   "gdp": null,
+   "gdp": 30769700000000.0,
    "hasMarket": false
   },
   {
@@ -2296,7 +2305,7 @@
    "flag": "🇻🇮",
    "region": "Americas",
    "subregion": "Caribbean",
-   "gdp": null,
+   "gdp": 4672000000.0,
    "hasMarket": false
   },
   {
@@ -2305,7 +2314,7 @@
    "flag": "🇺🇾",
    "region": "Americas",
    "subregion": "South America",
-   "gdp": null,
+   "gdp": 85347696277.6859,
    "hasMarket": false
   },
   {
@@ -2314,7 +2323,7 @@
    "flag": "🇺🇿",
    "region": "Asia",
    "subregion": "Central Asia",
-   "gdp": null,
+   "gdp": 147038081129.405,
    "hasMarket": false
   },
   {
@@ -2323,7 +2332,7 @@
    "flag": "🇻🇺",
    "region": "Oceania",
    "subregion": "Melanesia",
-   "gdp": null,
+   "gdp": 1353658840.6399,
    "hasMarket": false
   },
   {
@@ -2341,7 +2350,7 @@
    "flag": "🇻🇪",
    "region": "Americas",
    "subregion": "South America",
-   "gdp": null,
+   "gdp": 99661244155.6306,
    "hasMarket": false
   },
   {
@@ -2350,7 +2359,7 @@
    "flag": "🇻🇳",
    "region": "Asia",
    "subregion": "South-Eastern Asia",
-   "gdp": null,
+   "gdp": 514697215165.065,
    "hasMarket": false
   },
   {
@@ -2386,7 +2395,7 @@
    "flag": "🇿🇲",
    "region": "Africa",
    "subregion": "Eastern Africa",
-   "gdp": null,
+   "gdp": 28879806220.1264,
    "hasMarket": false
   },
   {
@@ -2395,7 +2404,7 @@
    "flag": "🇿🇼",
    "region": "Africa",
    "subregion": "Eastern Africa",
-   "gdp": null,
+   "gdp": 51215643905.5886,
    "hasMarket": false
   },
   {

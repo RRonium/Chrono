@@ -9,12 +9,13 @@ from apscheduler.triggers.interval import IntervalTrigger
 
 from services.ingestion.connectors.finnhub_stream import start_finnhub_stream, _streamer_instance
 from services.ingestion.scrapers.moneycontrol import scrape_moneycontrol
-from services.ingestion.scrapers.economic_times import scrape_economic_times, scrape_reuters_rss
+from services.ingestion.scrapers.economic_times import scrape_economic_times
 from services.ingestion.scrapers.newsapi_fallback import scrape_newsapi_topheadlines
+from services.ingestion.scrapers.rss_feeds import scrape_rss_feeds
+from services.ingestion.connectors.finnhub_news import fetch_finnhub_news
 from services.ingestion.etl.transform import transform_record
 from services.ingestion.etl.iso_tagger import tag_country
 from services.ingestion.etl.persistence_router import route_record
-from services.ml_classifier.publisher.redis_publisher import publish_article_enriched
 from services.ml_classifier.model.finbert_sentiment import classify_sentiment
 from services.ml_classifier.model.urgency_scorer import score_urgency
 from services.ingestion.config import settings
@@ -76,12 +77,13 @@ async def _safe_scrape(scraper_coro_or_func, name: str):
 
 
 async def run_news_pipeline():
-    """Run news pipeline: Moneycontrol + Economic Times + Reuters RSS + NewsAPI concurrently using asyncio.gather()."""
+    """Collect news from every source concurrently, score it, store it, and broadcast new articles."""
     scrapers = [
-        (_safe_scrape(scrape_moneycontrol, "Moneycontrol")),
-        (_safe_scrape(scrape_economic_times, "Economic Times")),
-        (_safe_scrape(scrape_reuters_rss, "Reuters RSS")),
-        (_safe_scrape(scrape_newsapi_topheadlines, "NewsAPI")),
+        _safe_scrape(scrape_moneycontrol, "Moneycontrol"),
+        _safe_scrape(scrape_economic_times, "Economic Times"),
+        _safe_scrape(scrape_rss_feeds, "RSS feeds"),
+        _safe_scrape(fetch_finnhub_news, "Finnhub news"),
+        _safe_scrape(scrape_newsapi_topheadlines, "NewsAPI"),
     ]
 
     results = await asyncio.gather(*scrapers, return_exceptions=True)
@@ -92,39 +94,38 @@ async def run_news_pipeline():
 
     logger.info(f"Concurrent news collection gathered {len(all_articles)} total raw articles")
 
-    # Transform, tag, route, and enrich with ML classification
+    # Score each article before it is stored, so MongoDB and the live
+    # news:articles stream both carry sentiment and urgency for the globe markers.
+    new_count = 0
     for article in all_articles:
         try:
             transformed = transform_record(article)
             tagged = tag_country(transformed)
-            route_record(tagged)
 
-            text = article.get("title", "") + " " + article.get("content", "")
-            if text.strip():
+            text = f"{tagged.get('title', '')} {tagged.get('content', '')}".strip()
+            if text:
                 urgency_result = score_urgency(
                     text=text,
-                    source=article.get("source", "default"),
-                    published_at=article.get("published_at"),
-                    iso_mentioned=article.get("iso_code") not in (None, "USA", ""),
+                    source=tagged.get("source", "default"),
+                    published_at=tagged.get("published_at"),
+                    iso_mentioned=tagged.get("iso_code") not in (None, "USA", ""),
                 )
-                urgency = urgency_result.get("urgency", 0.5)
-
                 sent_result = classify_sentiment(text)
                 if isinstance(sent_result, list) and len(sent_result) > 0:
                     sent_result = sent_result[0]
-                sentiment = {
+                tagged["sentiment"] = {
                     "label": sent_result.get("label", "NEUTRAL"),
                     "score": sent_result.get("score", 0.0),
                 }
+                tagged["urgency"] = urgency_result.get("urgency", 0.5)
+                tagged["urgency_color"] = urgency_result.get("urgency_color", "yellow")
 
-                article["sentiment"] = sentiment
-                article["urgency"] = urgency
-
-                await publish_article_enriched(article, channel="news:classified")
+            if route_record(tagged):
+                new_count += 1
         except Exception as e:
             logger.error(f"Error routing/enriching article '{article.get('title', 'unknown')}': {e}", exc_info=False)
 
-    logger.info(f"News pipeline completed: total {len(all_articles)} articles processed across all sources")
+    logger.info(f"News pipeline completed: {len(all_articles)} articles processed, {new_count} new")
 
 
 def setup_scheduler():

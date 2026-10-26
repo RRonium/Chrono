@@ -1,262 +1,231 @@
-# Chrono
+<div align="center">
 
-Chrono is a real-time, 3-layer polyglot financial command center that unifies global stock markets, foreign exchange rates, commodities, and geopolitical news into an interactive 3D WebGL spatial canvas.
+<img src="docs/assets/banner.svg" alt="Chrono: global financial command center" width="100%"/>
 
-The architecture decouples data ingestion, time-series analysis, machine learning sentiment classification, and live client streaming using PostgreSQL, TimescaleDB, MongoDB, Redis, and WebSockets.
+<br/>
 
----
+![Python](https://img.shields.io/badge/Python-3.11-0b1324?style=flat-square&logo=python&logoColor=00f0ff&labelColor=070b14)
+![FastAPI](https://img.shields.io/badge/FastAPI-gateway-0b1324?style=flat-square&logo=fastapi&logoColor=00ff9d&labelColor=070b14)
+![Next.js](https://img.shields.io/badge/Next.js-14-0b1324?style=flat-square&logo=nextdotjs&logoColor=ffffff&labelColor=070b14)
+![TimescaleDB](https://img.shields.io/badge/TimescaleDB-pg15-0b1324?style=flat-square&logo=postgresql&logoColor=00f0ff&labelColor=070b14)
+![MongoDB](https://img.shields.io/badge/MongoDB-7-0b1324?style=flat-square&logo=mongodb&logoColor=00ff9d&labelColor=070b14)
+![Redis](https://img.shields.io/badge/Redis-7-0b1324?style=flat-square&logo=redis&logoColor=ff0055&labelColor=070b14)
+![Docker](https://img.shields.io/badge/Docker-compose-0b1324?style=flat-square&logo=docker&logoColor=7c8cff&labelColor=070b14)
 
-## Architectural Overview
+</div>
 
-- Layer 1 (Presentation): Next.js single-page application rendering a full-screen WebGL globe via Three.js and Globe.gl. Features 3D raycasting for nation selection and localized financial drawers.
-- Layer 2 (Ingestion & Processing): Decoupled Python ETL pipelines using APScheduler/Celery. Handles structured financial metrics via REST/GraphQL APIs and unstructured web scraping via BeautifulSoup and Scrapy.
-- Layer 3 (Polyglot Engine & ML): Relational auth and user state in PostgreSQL (DB1), partitioned time-series OHLC ticks in TimescaleDB (DB2), raw news payloads in MongoDB (DB3), and an asynchronous ML FinBERT model that publishes dynamic marker urgency flags through Redis Pub/Sub and WebSockets.
+**Chrono** is a real-time financial command center. It pulls stock, index and crypto prices and
+financial headlines from around the world, stores each kind of data in the database built for it,
+and streams everything live to a dashboard built around an interactive 3D globe.
 
----
+> [!NOTE]
+> **Status (October 2026): working prototype.** Live prices and live headlines flow end to end.
+> Globe colour alerts, the per-country side panel, macro data and login are still in progress, and a
+> few panels show labelled **demo data** when they have nothing live. The full, honest inventory
+> is in [`AGENTS.md`](AGENTS.md#9-known-bugs-and-fake-data-inventory).
 
-## Repository Directory Structure
+<img src="docs/assets/divider.svg" alt="" width="100%"/>
 
-```text
-chrono/
-├── docker-compose.yml              # Multi-container setup for DB1, DB2, DB3, and Redis
-├── .env.example                    # Global environment variables template
-├── README.md                       # System architecture & developer guidelines
-│
-├── apps/
-│   ├── web/                        # LAYER 1: Frontend Spatial Command Center (Next.js)
-│   │   ├── package.json
-│   │   ├── tsconfig.json
-│   │   ├── next.config.js
-│   │   ├── public/
-│   │   │   └── data/               # GeoJSON datasets for countries & spatial mapping
-│   │   └── src/
-│   │       ├── app/
-│   │       │   ├── layout.tsx
-│   │       │   ├── page.tsx        # Main 3D Canvas entrypoint
-│   │       │   ├── login/          # Auth route
-│   │       │   │   └── page.tsx
-│   │       │   └── api/            # Next.js API route handlers
-│   │       ├── components/
-│   │       │   ├── canvas/         # Globe.gl / Three.js 3D viewport
-│   │       │   │   ├── GlobeCanvas.tsx
-│   │       │   │   ├── Raycaster.ts    # 3D mouse intersection & ISO resolver
-│   │       │   │   └── Markers.tsx     # Instanced mesh markers for financial hubs
-│   │       │   ├── drawer/         # Country financial side panel UI
-│   │       │   │   ├── CountryDrawer.tsx
-│   │       │   │   ├── CandlestickChart.tsx
-│   │       │   │   ├── FXWidget.tsx
-│   │       │   │   └── NewsFeed.tsx
-│   │       │   └── ui/             # Reusable UI primitives
-│   │       ├── hooks/
-│   │       │   ├── useWebSocket.ts # Live Redis Pub/Sub listener hook
-│   │       │   └── useGlobe.ts     # Camera controls & spatial state management
-│   │       └── lib/
-│   │           ├── constants.ts
-│   │           └── types/          # Shared TypeScript interfaces
-│   │               ├── market.ts
-│   │               ├── news.ts
-│   │               └── user.ts
-│   │
-│   └── backend/                    # Core Backend API & Socket Service (Node.js/Express)
-│       ├── package.json
-│       ├── tsconfig.json
-│       └── src/
-│           ├── server.ts           # Express server & WebSocket server setup
-│           ├── config/             # Connection configurations for polyglot databases
-│           │   ├── postgres.ts     # DB1 connection
-│           │   ├── timescaledb.ts  # DB2 connection
-│           │   ├── mongodb.ts      # DB3 connection
-│           │   └── redis.ts        # Redis client & Pub/Sub broker
-│           ├── routes/             # REST API routes
-│           │   ├── auth.routes.ts
-│           │   ├── market.routes.ts
-│           │   ├── news.routes.ts
-│           │   └── country.routes.ts
-│           ├── controllers/        # Request controllers
-│           └── websockets/         # WebSocket handlers broadcasting Redis events
-│               └── streamHandler.ts
-│
-├── services/
-│   ├── ingestion/                  # LAYER 2: Ingestion & Processing Pipeline (Python)
-│   │   ├── requirements.txt
-│   │   ├── main.py                 # Pipeline entrypoint & scheduler execution
-│   │   ├── config.py
-│   │   ├── scheduler/              # APScheduler / Celery task definitions
-│   │   │   └── cron_jobs.py
-│   │   ├── connectors/             # Structured Financial API Connectors
-│   │   │   ├── yahoo_finance.py
-│   │   │   ├── fred_api.py
-│   │   │   └── world_bank.py
-│   │   ├── scrapers/               # Unstructured Web Scraping Engines
-│   │   │   ├── moneycontrol.py
-│   │   │   ├── economic_times.py
-│   │   │   └── reuters.py
-│   │   ├── etl/                    # Data Cleaning & Normalization
-│   │   │   ├── transform.py        # Currency normalization & UTC conversion
-│   │   │   ├── iso_tagger.py       # Tagging articles with ISO country codes
-│   │   │   └── persistence_router.py # Bulk writes to DB2 (Timescale) & DB3 (Mongo)
-│   │   └── utils/
-│   │
-│   └── ml_classifier/              # LAYER 3: Async Sentiment & Urgency Service (Python)
-│       ├── requirements.txt
-│       ├── main.py                 # MongoDB change stream listener & ML worker
-│       ├── model/
-│       │   ├── finbert_sentiment.py # Sentiment analysis (Bullish/Bearish/Neutral)
-│       │   └── urgency_scorer.py   # Market volatility impact calculator
-│       └── publisher/
-│           └── redis_publisher.py  # Publishes urgency flags & color updates to Redis
-│
-└── database/                       # LAYER 3: Database Schemas & Migrations
-    ├── postgres/                   # DB1 Setup
-    │   ├── init.sql                # Auth, users, sessions schema
-    │   └── migrations/
-    ├── timescaledb/                # DB2 Setup
-    │   ├── init.sql                # OHLC tick tables, Hypertables, Continuous Aggregates
-    │   └── hypertables/
-    └── mongodb/                    # DB3 Setup
-        ├── indexes.js              # Full-text & ISO spatial index setups
-        └── collections/
+## Architecture
 
---
+<img src="docs/assets/architecture.svg" alt="Chrono system design as built: ingestion sources feed an ETL router into TimescaleDB, MongoDB and Redis; a FastAPI gateway streams to the Next.js dashboard" width="100%"/>
 
-## For Testing/Execution
-To perform a full End-to-End System Test of Project Chrono, you will need all services running across 4 separate terminal windows/tabs to form the complete operational pipeline:
+Chrono follows a three-layer design (original diagram:
+[`Ideation/Auth:Data Ingestion:Updation Pipeline.png`](Ideation/Auth%3AData%20Ingestion%3AUpdation%20Pipeline.png)).
 
-1. Container Infrastructure Layer (Layer 1)
-Ensure your multi-model persistence containers are active in Docker.
+| Layer | What it does | Built with |
+|---|---|---|
+| **2 · Ingestion & processing** | A Python worker streams trades from Finnhub, polls Yahoo Finance every 5 s, scrapes Moneycontrol, Economic Times and Reuters every 60 s, cleans each record, tags it with a country code and hands it to one router. A FinBERT classifier scores headline sentiment and urgency. | APScheduler, websocket-client, yfinance, BeautifulSoup, feedparser, transformers |
+| **3 · Polyglot persistence** | Each kind of data goes to the store built for it: users and metadata in **PostgreSQL**, price ticks and hourly candles in **TimescaleDB**, scraped articles in **MongoDB**, and live messages through **Redis** pub/sub. | PostgreSQL 15 + TimescaleDB (one container), MongoDB 7, Redis 7 |
+| **1 · Presentation** | A FastAPI gateway serves history over REST and fans every Redis message out over one WebSocket. The Next.js dashboard draws the globe, the live ticker, a candlestick chart and the news feed. | FastAPI, Next.js 14, react-three-fiber, lightweight-charts, Tailwind |
 
-Check status:
+**How a price reaches your screen:** Finnhub trade → `route_record` → row in `market_ticks` +
+message on `market:ticks:all` → FastAPI `/ws/live` → ticker and chart, with no polling in between.
 
-Bash
-docker ps
-Required active containers:
+<img src="docs/assets/divider.svg" alt="" width="100%"/>
 
-chrono-postgres (TimescaleDB engine on port 5432)
+## Run it
 
-chrono-mongodb (Document store on port 27017)
+### What you need
 
-chrono-redis (In-memory cache & Pub/Sub gateway on port 6379)
+- Docker Desktop (or Docker Engine with the Compose plugin)
+- Node.js 18+ and npm, for the dashboard
+- Optional: a free [Finnhub](https://finnhub.io) API key for streaming US stock and crypto trades.
+  Without it, Chrono polls those symbols from Yahoo Finance instead.
 
-(If any are stopped, start them with docker-compose up -d from the project root).
-
-2. Terminal 1: Backend API Gateway (Layer 3)
-Acts as the central gateway, database proxy, and WebSocket server (ws://localhost:8000/ws/live).
-
-Bash
-# Run from project root
-python3 -m uvicorn services.backend.main:app --reload --port 8000
-Verify: http://localhost:8000/docs
-
-3. Terminal 2: Analytics & Agentic Engine (Layer 4)
-Calculates technical indicators, classifies headline sentiment, and generates executive market briefs.
-
-Bash
-# Run from project root
-python3 -m uvicorn services.analytics.main:app --reload --port 8001
-Verify: http://localhost:8001/docs
-
-4. Terminal 3: Data Ingestion & Live Pipeline (Layer 2)
-Fetches market ticks and financial headlines, processes them via the persistence router, and broadcasts them live across Redis channels.
-
-Bash
-# Run from project root
-python3 -m services.ingestion.main
-5. Terminal 4: Frontend Command Center & 3D Globe (Layer 5)
-The Next.js dashboard and 3D WebGL globe.
-
-Bash
-# Run from apps/web directory
-cd apps/web
-npm run dev
-Verify: http://localhost:3000
-
-How to Verify the End-to-End Integration:
-Open http://localhost:3000 in your browser.
-
-Check the connection indicator in the header—it should show WebSocket Connected (ws://localhost:8000/ws/live).
-
-Observe the 3D Interactive Globe: nodes (USA, IND, DEU, etc.) should animate and update their stress/sentiment colors as the ingestion script in Terminal 3 fires.
-
-Check the Live News Feed & Price Ticker: new market ticks and classified news items should stream across the dashboard in real time without refreshing.
-
-Click on a country node (e.g., USA or IND) to open the Agentic Market Brief Modal and confirm it successfully fetches the structured intelligence brief from Layer 4 on port 8001.
-
-Spin up those 4 terminals and open http://localhost:3000! Let me know if everything connects smoothly or if you see any connection errors.
-
-## Run and Stop the Demo Safely
-
-### Stop the Project
-
-1. Stop the Next.js development server and any manually started Python services in their terminal windows:
-
-```text
-Ctrl+C
-```
-
-This applies to local `npm run dev`, backend, analytics, and ingestion processes.
-
-2. From the repository root, stop the Docker containers without deleting images or database data:
+### First-time setup
 
 ```bash
-cd /Users/sannidhyabiswas/Documents/Projekts/Chrono
-docker compose stop
+git clone https://github.com/RRonium/Chrono.git
+cd Chrono
+cp .env.example .env              # then add FINNHUB_API_KEY=... if you have one
+cd apps/web && npm install && cd ../..
 ```
 
-Do not use `docker compose down -v`. The `-v` option removes database volumes and can delete persisted project data.
+### Start the project
 
-### Start the Project for a Demo
+1. From the repository root, start the five Docker services using the existing images:
 
-1. Start the five Docker services using the existing images:
+   ```bash
+   docker compose up -d
+   ```
 
-```bash
-cd /Users/sannidhyabiswas/Documents/Projekts/Chrono
-docker compose up -d
-```
+   Use `docker compose up -d --build` only after changing Python code or a Dockerfile. A normal
+   restart does not need a rebuild.
 
-Use `docker compose up -d --build` only after changing application code or Dockerfiles. A normal restart does not need to rebuild images.
+2. Confirm that all five containers are running and the three databases are healthy:
 
-2. Confirm that all five containers are running and that the databases are healthy:
+   ```bash
+   docker compose ps
+   ```
 
-```bash
-docker compose ps
-```
-
-Expected services:
-
-- `chrono-postgres`
-- `chrono-mongodb`
-- `chrono-redis`
-- `chrono-ingestion`
-- `chrono-backend`
+   Expected services: `chrono-postgres`, `chrono-mongodb`, `chrono-redis` (all `healthy`),
+   `chrono-ingestion` and `chrono-backend` (`running`).
 
 3. Check the backend health endpoint:
 
-```bash
-curl http://localhost:8000/
-```
+   ```bash
+   curl http://localhost:8000/
+   ```
 
-Expected response:
+   Expected response:
 
-```json
-{"status":"ok","environment":"development"}
-```
+   ```json
+   {"status":"ok","environment":"development"}
+   ```
 
-4. Start the Next.js frontend in a separate terminal:
+4. Start the Next.js dashboard in a separate terminal:
 
-```bash
-cd /Users/sannidhyabiswas/Documents/Projekts/Chrono/apps/web
-npm run dev
-```
+   ```bash
+   cd apps/web
+   npm run dev
+   ```
 
 5. Open the dashboard at [http://localhost:3000](http://localhost:3000).
 
-### Troubleshooting Before a Presentation
+6. *(Optional)* The globe's "agent brief" popup needs the analytics service, which is not in Docker
+   yet. From the repository root, in another terminal:
 
-If a container is not running, inspect its logs without rebuilding or deleting data:
+   ```bash
+   pip install -r services/analytics/requirements.txt
+   python3 -m uvicorn services.analytics.main:app --reload --port 8001
+   ```
+
+   Verify at [http://localhost:8001/docs](http://localhost:8001/docs).
+
+### Check that it works
+
+- The header shows **SYSTEM ONLINE**, meaning the browser is connected to `ws://localhost:8000/ws/live`.
+- The **LIVE TICKS** strip fills with symbols within a few seconds.
+- The news feed switches from the demo cards to real headlines within about a minute.
+- Clicking a globe hub opens the agent brief (only with step 6 running).
+- API docs: [http://localhost:8000/docs](http://localhost:8000/docs).
+
+### Stop the project
+
+1. Stop the Next.js dev server, and the analytics service if you started it, in their terminals:
+
+   ```text
+   Ctrl+C
+   ```
+
+2. From the repository root, stop the Docker containers without deleting images or data:
+
+   ```bash
+   docker compose stop
+   ```
+
+> [!CAUTION]
+> Do not use `docker compose down -v`. The `-v` flag deletes the database volumes and with them
+> every stored tick and article.
+
+To start again later, repeat **Start the project** from step 1.
+
+### Troubleshooting
+
+If a container is not running, read its logs without rebuilding or deleting anything:
 
 ```bash
 docker compose logs --tail=50 ingestion backend
 docker compose ps
 ```
 
-The normal Docker startup path is `docker compose up -d`; do not also start the same backend or ingestion service manually on the host, because that can create port conflicts or duplicate workers.
+Do not also start the backend or the ingestion worker by hand while Docker is running them. That
+causes port conflicts on 8000 and duplicate workers that write every tick twice.
+
+<details>
+<summary><b>Run the Python services on the host instead (for development)</b></summary>
+
+<br/>
+
+Keep only the databases in Docker, then run each service in its own terminal from the repository
+root. In `.env`, set `TIMESCALE_URL` to port **5432** (the example file says 5433, which is wrong
+for this setup).
+
+```bash
+# Terminal 0: databases only
+docker compose up -d postgres mongodb redis
+docker compose stop ingestion backend     # if they were already running
+
+# Terminal 1: FastAPI gateway + WebSocket  ->  http://localhost:8000/docs
+python3 -m uvicorn services.backend.main:app --reload --port 8000
+
+# Terminal 2: analytics (optional)  ->  http://localhost:8001/docs
+python3 -m uvicorn services.analytics.main:app --reload --port 8001
+
+# Terminal 3: ingestion worker
+python3 -m services.ingestion.main
+
+# Terminal 4: dashboard  ->  http://localhost:3000
+cd apps/web && npm run dev
+```
+
+Install each service's dependencies first with `pip install -r services/<name>/requirements.txt`.
+Always run Python from the repository root; the services import each other as `services.<name>`.
+
+</details>
+
+### Ports and live channels
+
+| Service | Container | Port | |
+|---|---|---|---|
+| PostgreSQL + TimescaleDB | `chrono-postgres` | 5432 | db `chrono_db` |
+| MongoDB | `chrono-mongodb` | 27017 | db `chrono_news` |
+| Redis | `chrono-redis` | 6379 | pub/sub |
+| FastAPI gateway | `chrono-backend` | 8000 | REST `/api/v1/*`, WebSocket `/ws/live` |
+| Ingestion worker | `chrono-ingestion` | none | |
+| Analytics | host, manual | 8001 | optional |
+| Dashboard | host, `npm run dev` | 3000 | |
+
+Redis channels: `market:ticks:all`, `market:ticks:<SYMBOL>`, `news:articles`, `news:classified`.
+
+<img src="docs/assets/divider.svg" alt="" width="100%"/>
+
+## Repository map
+
+<img src="docs/assets/structure.svg" alt="Repository map: apps/web (Next.js dashboard, layer 1), apps/backend (unused Express scaffold), services/ingestion (layer 2), services/ml_classifier, services/backend (FastAPI gateway), services/analytics (manual), database/ (layer 3 init scripts), docker-compose.yml, Ideation/, AGENTS.md" width="100%"/>
+
+## Where it is going
+
+| Built | In progress | Planned |
+|---|---|---|
+| Live ticker from Finnhub + Yahoo | Globe colour alerts from the ML classifier | Country side panel: candles, FX, news per country |
+| TimescaleDB tick history | Hourly candles for the chart | Login and sessions (tables ready in PostgreSQL) |
+| News scraping into MongoDB | Reuters feed | FRED and World Bank macro data |
+| Redis → WebSocket fan-out | Agent brief on real data | Per-country channels for scale |
+
+## Contributing
+
+Read [`AGENTS.md`](AGENTS.md) first. It is the full technical context for people and AI coding
+agents alike: every service, store, channel and known bug, plus the rules that keep the stack
+healthy. The short version:
+
+- Do not change the Docker healthchecks or `depends_on` in `docker-compose.yml` without asking.
+- All database writes go through `services/ingestion/etl/persistence_router.py`.
+- Schema changes go in `database/postgres/migrations/`, because init scripts only run on empty volumes.
+
+<div align="center">
+<br/>
+<img src="docs/assets/divider.svg" alt="" width="100%"/>
+<sub>Built by <a href="https://github.com/RRonium">@RRonium</a> · prices from Finnhub and Yahoo Finance · headlines from Moneycontrol, Economic Times and Reuters</sub>
+</div>

@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 34" width="1200" height="34" role="img" aria-label="Divider: Redis channel names scrolling like a ticker tape">
+  <defs>
+    <linearGradient id="f" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#070b14"/>
+      <stop offset="0.08" stop-color="#070b14" stop-opacity="0"/>
+      <stop offset="0.92" stop-color="#070b14" stop-opacity="0"/>
+      <stop offset="1" stop-color="#070b14"/>
+    </linearGradient>
+    <clipPath id="c"><rect width="1200" height="34" rx="17"/></clipPath>
+  </defs>
+  <g clip-path="url(#c)" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="12" letter-spacing="1">
+    <rect width="1200" height="34" fill="#070b14"/>
+    <g>
+      <animateTransform attributeName="transform" type="translate" from="0 0" to="-600 0" dur="18s" repeatCount="indefinite"/>
+      <g id="r">
+        <text x="20" y="21.5" fill="#00f0ff">● market:ticks:all</text>
+        <text x="190" y="21.5" fill="#ffc94d">● news:articles</text>
+        <text x="335" y="21.5" fill="#ff0055">● news:classified</text>
+        <text x="495" y="21.5" fill="#4a5870">/ws/live</text>
+      </g>
+      <use href="#r" x="600"/>
+      <use href="#r" x="1200"/>
+    </g>
+    <rect width="1200" height="34" fill="url(#f)"/>
+    <rect x="0.5" y="0.5" width="1199" height="33" rx="16.5" fill="none" stroke="#1d2a3d"/>
+  </g>
+</svg>

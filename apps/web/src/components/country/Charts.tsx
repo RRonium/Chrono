@@ -5,11 +5,11 @@ import type { IndicatorUnit, SeriesPoint } from "@/lib/countries/types";
 import { formatValue } from "@/lib/countries/format";
 
 // Categorical slots validated for CVD and contrast on the #0b1424 panel surface.
-export const SERIES_COLORS = ["#3987e5", "#c98500", "#199e70"];
+export const SERIES_COLORS = ["#3987e5", "#c98500", "#199e70", "#9085e9", "#d55181"];
 
 export type ChartSeries = { id: string; label: string; points: SeriesPoint[] };
 
-const HEIGHT = 170;
+const DEFAULT_HEIGHT = 170;
 const PAD = { top: 10, right: 12, bottom: 22, left: 44 };
 
 function niceTicks(min: number, max: number, count = 4): number[] {
@@ -36,7 +36,7 @@ function useWidth<T extends HTMLElement>() {
 }
 
 // Multi-series line chart on one y-axis, with a year crosshair and tooltip on hover.
-export function LineChart({ series, unit, title }: { series: ChartSeries[]; unit: IndicatorUnit; title: string }) {
+export function LineChart({ series, unit, title, height: HEIGHT = DEFAULT_HEIGHT }: { series: ChartSeries[]; unit: IndicatorUnit; title: string; height?: number }) {
   const [ref, width] = useWidth<HTMLDivElement>();
   const [hoverYear, setHoverYear] = useState<number | null>(null);
   const visible = useMemo(() => series.filter((s) => s.points.length > 1), [series]);
@@ -59,7 +59,7 @@ export function LineChart({ series, unit, title }: { series: ChartSeries[]; unit
       y: (value: number) => PAD.top + (1 - (value - y0) / (y1 - y0 || 1)) * plotH,
       yearAt: (px: number) => Math.round(x0 + ((px - PAD.left) / plotW) * (x1 - x0)),
     };
-  }, [visible, width]);
+  }, [visible, width, HEIGHT]);
 
   if (!visible.length) return null;
 
@@ -150,6 +150,85 @@ export function LineChart({ series, unit, title }: { series: ChartSeries[]; unit
                 <span className="inline-block h-0.5 w-2.5 rounded" style={{ background: SERIES_COLORS[series.indexOf(s)] }} />
                 <span className="text-ink-muted">{s.label}</span>
                 <span className="ml-auto tabular-nums">{point ? formatValue(point[1], unit) : "–"}</span>
+              </div>
+            ))}
+          </div>
+        )}
+      </div>
+    </figure>
+  );
+}
+
+export type BarSeries = { label: string; values: (number | null)[] };
+
+// Grouped vertical bars: one group per category (a country or a year), one bar per series.
+export function BarChart({ categories, series, unit, title, height = DEFAULT_HEIGHT }: { categories: string[]; series: BarSeries[]; unit: IndicatorUnit; title: string; height?: number }) {
+  const [ref, width] = useWidth<HTMLDivElement>();
+  const [hover, setHover] = useState<number | null>(null);
+  const values = series.flatMap((s) => s.values.filter((v): v is number => v !== null));
+  if (!values.length) return null;
+  const ticks = niceTicks(Math.min(0, ...values), Math.max(0, ...values));
+  const [y0, y1] = [ticks[0], ticks[ticks.length - 1]];
+  const plotW = Math.max(0, width - PAD.left - PAD.right);
+  const plotH = height - PAD.top - PAD.bottom;
+  const y = (v: number) => PAD.top + (1 - (v - y0) / (y1 - y0 || 1)) * plotH;
+  const groupW = plotW / categories.length;
+  const barW = Math.max(3, Math.min(28, (groupW * 0.75) / series.length - 2));
+  const groupX = (i: number) => PAD.left + i * groupW + (groupW - series.length * (barW + 2)) / 2;
+
+  return (
+    <figure className="m-0">
+      <figcaption className="flex flex-wrap items-center justify-between gap-x-4 gap-y-1 mb-1.5">
+        <span className="font-mono text-[11px] text-ink-muted">{title}</span>
+        {series.length > 1 && (
+          <span className="flex flex-wrap gap-3 font-mono text-[10px] text-ink-muted">
+            {series.map((s, i) => (
+              <span key={s.label} className="flex items-center gap-1">
+                <span className="inline-block h-2 w-2 rounded-sm" style={{ background: SERIES_COLORS[i] }} />
+                {s.label}
+              </span>
+            ))}
+          </span>
+        )}
+      </figcaption>
+      <div ref={ref} className="relative w-full" style={{ height }}>
+        {width > 0 && (
+          <svg width={width} height={height} role="img" aria-label={title} onPointerLeave={() => setHover(null)}>
+            {ticks.map((tick) => (
+              <g key={tick}>
+                <line x1={PAD.left} x2={width - PAD.right} y1={y(tick)} y2={y(tick)} stroke={tick === 0 ? "rgba(230,237,247,0.35)" : "rgba(255,255,255,0.06)"} />
+                <text x={PAD.left - 6} y={y(tick)} dy="0.32em" textAnchor="end" className="fill-ink-faint font-mono text-[9px]">
+                  {formatValue(tick, unit)}
+                </text>
+              </g>
+            ))}
+            {categories.map((category, i) => (
+              <g key={category} onPointerEnter={() => setHover(i)}>
+                <rect x={PAD.left + i * groupW} y={PAD.top} width={groupW} height={plotH} fill={hover === i ? "rgba(232,200,130,0.06)" : "transparent"} />
+                {series.map((s, j) => {
+                  const v = s.values[i];
+                  if (v === null || v === undefined) return null;
+                  const top = Math.min(y(v), y(0));
+                  return <rect key={s.label} x={groupX(i) + j * (barW + 2)} y={top} width={barW} height={Math.max(1, Math.abs(y(v) - y(0)))} rx={2} fill={SERIES_COLORS[j]} />;
+                })}
+                <text x={PAD.left + (i + 0.5) * groupW} y={height - 6} textAnchor="middle" className="fill-ink-faint font-mono text-[9px]">
+                  {category.length > 12 ? `${category.slice(0, 11)}…` : category}
+                </text>
+              </g>
+            ))}
+          </svg>
+        )}
+        {hover !== null && width > 0 && (
+          <div
+            className="pointer-events-none absolute top-0 z-10 rounded border border-gold/40 bg-[#07101e]/95 px-2 py-1 font-mono text-[10px] text-ink shadow-lg"
+            style={(hover + 0.5) / categories.length > 0.5 ? { right: width - PAD.left - hover * groupW + 4 } : { left: PAD.left + (hover + 1) * groupW + 4 }}
+          >
+            <div className="text-gold-soft">{categories[hover]}</div>
+            {series.map((s, j) => (
+              <div key={s.label} className="flex items-center gap-1.5 whitespace-nowrap">
+                <span className="inline-block h-2 w-2 rounded-sm" style={{ background: SERIES_COLORS[j] }} />
+                <span className="text-ink-muted">{s.label}</span>
+                <span className="ml-auto tabular-nums">{s.values[hover] == null ? "–" : formatValue(s.values[hover]!, unit)}</span>
               </div>
             ))}
           </div>

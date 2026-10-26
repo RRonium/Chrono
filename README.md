@@ -215,6 +215,24 @@ exchanges, indices, largest companies with live quotes, and the price chart.
 Data lives in one folder per country under [`data/countries/`](data/countries/README.md), refreshed
 monthly from the World Bank by a GitHub Action.
 
+### Ask Chrono (country chat)
+
+Each country page has a chat pane under the price chart, and a **Charts & Tables** pane under it.
+Ask about the economy, markets or news; the agent (Google Gemini) pulls the numbers from Chrono's own
+data and draws charts and tables into the pane below, numbered so the reply can point at them.
+Conversations are kept per country in your browser.
+
+To turn it on, give the backend a free Gemini key from [Google AI Studio](https://aistudio.google.com/apikey):
+
+```bash
+echo "GEMINI_API_KEY=your-key" >> .env      # repo root; .env is gitignored, never commit it
+docker compose up -d --build backend        # the backend image copies .env at build time
+```
+
+The key stays on the backend; the website never sees it. The chat only works while the backend is
+reachable, like live prices. Free-tier models are sometimes busy, so the backend retries and falls
+back across `GEMINI_MODELS`.
+
 ## Repository map
 
 <img src="docs/assets/structure.svg" alt="Repository map: apps/web (Next.js dashboard, layer 1), apps/backend (unused Express scaffold), services/ingestion (layer 2), services/ml_classifier, services/backend (FastAPI gateway), services/analytics (manual), database/ (layer 3 init scripts), docker-compose.yml, Ideation/, AGENTS.md" width="100%"/>

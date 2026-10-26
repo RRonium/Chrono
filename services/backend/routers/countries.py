@@ -11,14 +11,14 @@ router = APIRouter(prefix="/api/v1/countries", tags=["countries"])
 
 
 @lru_cache(maxsize=None)
-def _read(*parts: str):
+def read_country_file(*parts: str):
     path = COUNTRIES_DIR.joinpath(*parts)
     return json.loads(path.read_text(encoding="utf-8")) if path.exists() else None
 
 
 @router.get("")
 async def list_countries():
-    index = _read("index.json")
+    index = read_country_file("index.json")
     if index is None:
         raise HTTPException(status_code=503, detail="Country data missing; run scripts/refresh_country_data.py")
     return index
@@ -29,10 +29,10 @@ async def get_country(iso_code: str, boundary: bool = False):
     iso = iso_code.upper()
     if not iso.isalpha() or len(iso) != 3:
         raise HTTPException(status_code=400, detail="Use an ISO 3166-1 alpha-3 code")
-    profile = _read(iso, "profile.json")
+    profile = read_country_file(iso, "profile.json")
     if profile is None:
         raise HTTPException(status_code=404, detail="Country not found")
-    result = {"profile": profile, "market": _read(iso, "market.json")}
+    result = {"profile": profile, "market": read_country_file(iso, "market.json")}
     if boundary:
-        result["boundary"] = _read(iso, "boundary.geojson")
+        result["boundary"] = read_country_file(iso, "boundary.geojson")
     return result

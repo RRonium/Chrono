@@ -1,5 +1,4 @@
-const BACKEND_URL = "http://localhost:8000";
-const ANALYTICS_URL = "http://localhost:8001";
+import { API_URL as BACKEND_URL, ANALYTICS_URL } from "@/lib/constants";
 
 export async function fetchLatestTick(symbol: string) {
   try {

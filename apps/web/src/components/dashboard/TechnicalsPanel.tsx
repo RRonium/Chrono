@@ -1,8 +1,9 @@
 "use client";
 
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useWebSocket } from "@/hooks/useWebSocket";
 import { createChart, IChartApi, ISeriesApi } from "lightweight-charts";
+import { API_URL, symbolLabel } from "@/lib/constants";
 
 // Helper function to safely parse any time format into a primitive Unix timestamp in seconds
 const parseTimestamp = (timeVal: any): number => {
@@ -20,9 +21,11 @@ const parseTimestamp = (timeVal: any): number => {
 };
 
 const CHART_WINDOW_SECONDS = 5 * 60 * 60;
-const BACKEND_URL = "http://localhost:8000";
+const CHART_SYMBOLS = ["AAPL", "^GSPC", "^NSEI", "RELIANCE.NS"];
 
-export function TechnicalsPanel({ symbol = "AAPL" }: { symbol?: string }) {
+export function TechnicalsPanel({ symbol: initialSymbol = "AAPL" }: { symbol?: string }) {
+  const [symbol, setSymbol] = useState(initialSymbol);
+  const [isSample, setIsSample] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
   const chartRef = useRef<IChartApi | null>(null);
   const candleSeriesRef = useRef<ISeriesApi<"Candlestick"> | null>(null);
@@ -38,14 +41,14 @@ export function TechnicalsPanel({ symbol = "AAPL" }: { symbol?: string }) {
     // Initialize chart with dark theme
     const chart = createChart(containerRef.current, {
       width: containerRef.current.clientWidth,
-      height: 220,
+      height: 200,
       layout: {
-        background: { color: "#0d1117" },
-        textColor: "#8b949e",
+        background: { color: "transparent" },
+        textColor: "#8fa0b8",
       },
       grid: {
-        vertLines: { color: "#21262d" },
-        horzLines: { color: "#21262d" },
+        vertLines: { color: "rgba(255,255,255,0.04)" },
+        horzLines: { color: "rgba(255,255,255,0.04)" },
       },
       rightPriceScale: {
         borderColor: "#21262d",
@@ -70,12 +73,12 @@ export function TechnicalsPanel({ symbol = "AAPL" }: { symbol?: string }) {
     // Candlestick Series initialized and configured via applyOptions
     const candleSeries = chart.addCandlestickSeries();
     candleSeries.applyOptions({
-      upColor: "#00ff9d",
-      downColor: "#ff0055",
-      borderUpColor: "#00ff9d",
-      borderDownColor: "#ff0055",
-      wickUpColor: "#00ff9d",
-      wickDownColor: "#ff0055",
+      upColor: "#22c55e",
+      downColor: "#ef4444",
+      borderUpColor: "#22c55e",
+      borderDownColor: "#ef4444",
+      wickUpColor: "#22c55e",
+      wickDownColor: "#ef4444",
     });
     candleSeriesRef.current = candleSeries;
 
@@ -90,7 +93,8 @@ export function TechnicalsPanel({ symbol = "AAPL" }: { symbol?: string }) {
     volumeSeriesRef.current = volumeSeries;
 
     // Initial Fetch for Historical Data
-    fetch(`${BACKEND_URL}/api/v1/market/ohlc/${symbol}`)
+    setIsSample(false);
+    fetch(`${API_URL}/api/v1/market/ohlc/${encodeURIComponent(symbol)}`)
       .then((res) => {
         if (!res.ok) throw new Error("Failed to fetch OHLC data");
         return res.json();
@@ -110,7 +114,7 @@ export function TechnicalsPanel({ symbol = "AAPL" }: { symbol?: string }) {
         const volumeData = data.map((d) => ({
           time: parseTimestamp(d.time) as any,
           value: Number(d.volume ?? 100),
-          color: Number(d.close) >= Number(d.open) ? "#00ff9d80" : "#ff005580",
+          color: Number(d.close) >= Number(d.open) ? "#22c55e80" : "#ef444480",
         }));
 
         candleSeries.setData(candleData);
@@ -122,6 +126,7 @@ export function TechnicalsPanel({ symbol = "AAPL" }: { symbol?: string }) {
       })
       .catch((err) => {
         console.warn("Using fallback demo data for TechnicalsPanel:", err);
+        setIsSample(true);
         const now = Math.floor(Date.now() / 1000);
         const demoCandles = [
           { time: (now - 3600 * 4) as any, open: 150, high: 152, low: 149, close: 151 },
@@ -131,11 +136,11 @@ export function TechnicalsPanel({ symbol = "AAPL" }: { symbol?: string }) {
           { time: now as any, open: 153, high: 155, low: 151, close: 154 },
         ];
         const demoVolume = [
-          { time: (now - 3600 * 4) as any, value: 900, color: "#00ff9d80" },
-          { time: (now - 3600 * 3) as any, value: 1200, color: "#00ff9d80" },
-          { time: (now - 3600 * 2) as any, value: 2400, color: "#ff005580" },
-          { time: (now - 3600) as any, value: 1800, color: "#ff005580" },
-          { time: now as any, value: 2100, color: "#00ff9d80" },
+          { time: (now - 3600 * 4) as any, value: 900, color: "#22c55e80" },
+          { time: (now - 3600 * 3) as any, value: 1200, color: "#22c55e80" },
+          { time: (now - 3600 * 2) as any, value: 2400, color: "#ef444480" },
+          { time: (now - 3600) as any, value: 1800, color: "#ef444480" },
+          { time: now as any, value: 2100, color: "#22c55e80" },
         ];
         candleSeries.setData(demoCandles);
         volumeSeries.setData(demoVolume);
@@ -194,7 +199,7 @@ export function TechnicalsPanel({ symbol = "AAPL" }: { symbol?: string }) {
         volumeSeriesRef.current.update({
           time: tickTime as any,
           value: candle.volume || 100,
-          color: candle.close >= candle.open ? "#00ff9d80" : "#ff005580",
+          color: candle.close >= candle.open ? "#22c55e80" : "#ef444480",
         });
       }
     } catch (e) {
@@ -206,17 +211,22 @@ export function TechnicalsPanel({ symbol = "AAPL" }: { symbol?: string }) {
   return (
     <div className="hud-panel rounded-lg p-4 flex flex-col h-80 w-full">
       <div className="flex justify-between items-center mb-2">
-        <h3 className="font-mono text-sm text-cyan-300 tracking-wider font-bold">
-          TECHNICALS & OHLC ({symbol})
-        </h3>
-        <span className="text-xs font-mono text-gray-400">
-          WS:{" "}
-          {connected ? (
-            <span className="text-emerald-400">ONLINE</span>
-          ) : (
-            <span className="text-rose-500">OFFLINE</span>
-          )}
+        <h3 className="font-display text-sm tracking-[0.15em] text-gold">PRICE ACTION</h3>
+        <span className="text-[10px] font-mono text-ink-faint">
+          {isSample && <span className="mr-2 px-1.5 py-0.5 rounded border border-amber-500/40 text-amber-400">SAMPLE DATA</span>}
+          FEED: {connected ? <span className="text-cyber-green">LIVE</span> : <span className="text-cyber-red">OFFLINE</span>}
         </span>
+      </div>
+      <div className="flex gap-1 mb-2 font-mono text-[10px]">
+        {CHART_SYMBOLS.map((s) => (
+          <button
+            key={s}
+            onClick={() => setSymbol(s)}
+            className={`px-2 py-0.5 rounded border ${symbol === s ? "border-gold text-gold bg-gold/10" : "border-white/10 text-ink-faint hover:text-ink"}`}
+          >
+            {symbolLabel(s)}
+          </button>
+        ))}
       </div>
       <div className="flex-1 w-full relative" ref={containerRef} />
     </div>

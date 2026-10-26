@@ -1,0 +1,180 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 380" width="1200" height="380" role="img" aria-labelledby="t d">
+  <title id="t">Chrono</title>
+  <desc id="d">Animated banner: a rotating wireframe globe with pulsing market hubs, a drawing price line, and a scrolling ticker tape.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#05070f"/>
+      <stop offset="0.6" stop-color="#0a0f1f"/>
+      <stop offset="1" stop-color="#071a24"/>
+    </linearGradient>
+    <radialGradient id="halo" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0.55" stop-color="#00f0ff" stop-opacity="0.18"/>
+      <stop offset="1" stop-color="#00f0ff" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="core" cx="0.38" cy="0.35" r="0.75">
+      <stop offset="0" stop-color="#0f2a3a"/>
+      <stop offset="1" stop-color="#060b16"/>
+    </radialGradient>
+    <linearGradient id="line" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#00f0ff" stop-opacity="0"/>
+      <stop offset="0.25" stop-color="#00f0ff"/>
+      <stop offset="1" stop-color="#00ff9d"/>
+    </linearGradient>
+    <linearGradient id="fade" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#05070f"/>
+      <stop offset="0.06" stop-color="#05070f" stop-opacity="0"/>
+      <stop offset="0.94" stop-color="#05070f" stop-opacity="0"/>
+      <stop offset="1" stop-color="#05070f"/>
+    </linearGradient>
+    <pattern id="dots" width="24" height="24" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="2" r="1" fill="#1d2a3d"/>
+    </pattern>
+    <clipPath id="globeClip"><circle cx="905" cy="165" r="122"/></clipPath>
+    <clipPath id="frame"><rect width="1200" height="380" rx="18"/></clipPath>
+  </defs>
+
+  <g clip-path="url(#frame)">
+    <rect width="1200" height="380" fill="url(#bg)"/>
+    <rect width="1200" height="380" fill="url(#dots)"/>
+
+    <!-- faint price line drawing across the background -->
+    <path d="M0 250 L60 238 L110 246 L170 220 L220 228 L270 196 L330 210 L380 182 L430 190 L480 160 L540 172 L600 140 L650 150 L700 128"
+          fill="none" stroke="url(#line)" stroke-width="2" stroke-opacity="0.35" stroke-dasharray="900" stroke-dashoffset="900">
+      <animate attributeName="stroke-dashoffset" values="900;0;0;900" keyTimes="0;0.45;0.85;1" dur="9s" repeatCount="indefinite"/>
+    </path>
+
+    <!-- faint candlesticks -->
+    <g opacity="0.22">
+      <g stroke="#00ff9d" fill="#00ff9d">
+        <line x1="470" y1="70" x2="470" y2="120"/><rect x="465" y="82" width="10" height="26"/>
+        <line x1="500" y1="58" x2="500" y2="104"/><rect x="495" y="66" width="10" height="28"/>
+        <line x1="560" y1="40" x2="560" y2="92"/><rect x="555" y="50" width="10" height="30"/>
+      </g>
+      <g stroke="#ff0055" fill="#ff0055">
+        <line x1="530" y1="62" x2="530" y2="112"/><rect x="525" y="72" width="10" height="22"/>
+        <line x1="590" y1="48" x2="590" y2="96"/><rect x="585" y="58" width="10" height="20"/>
+      </g>
+    </g>
+
+    <!-- title block -->
+    <g font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">
+      <text x="64" y="92" fill="#00f0ff" font-size="13" letter-spacing="5">GLOBAL FINANCIAL COMMAND CENTER</text>
+      <text x="60" y="168" fill="#ffffff" font-size="78" font-weight="700" letter-spacing="14">CHRONO</text>
+      <rect x="64" y="186" width="96" height="3" fill="#00f0ff">
+        <animate attributeName="width" values="96;300;96" dur="6s" repeatCount="indefinite"/>
+      </rect>
+    </g>
+    <text x="64" y="224" fill="#a9b6c8" font-size="17" font-family="Inter, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif">
+      Live prices, headlines and sentiment from world markets, on a 3D globe.
+    </text>
+    <g font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="12">
+      <g transform="translate(64 246)">
+        <rect width="118" height="26" rx="13" fill="#00f0ff" fill-opacity="0.08" stroke="#00f0ff" stroke-opacity="0.45"/>
+        <text x="59" y="17" fill="#7ff6ff" text-anchor="middle">TimescaleDB</text>
+      </g>
+      <g transform="translate(192 246)">
+        <rect width="92" height="26" rx="13" fill="#00ff9d" fill-opacity="0.08" stroke="#00ff9d" stroke-opacity="0.45"/>
+        <text x="46" y="17" fill="#7dffc9" text-anchor="middle">MongoDB</text>
+      </g>
+      <g transform="translate(294 246)">
+        <rect width="74" height="26" rx="13" fill="#ff0055" fill-opacity="0.08" stroke="#ff0055" stroke-opacity="0.5"/>
+        <text x="37" y="17" fill="#ff7fa8" text-anchor="middle">Redis</text>
+      </g>
+      <g transform="translate(378 246)">
+        <rect width="86" height="26" rx="13" fill="#ffc94d" fill-opacity="0.08" stroke="#ffc94d" stroke-opacity="0.5"/>
+        <text x="43" y="17" fill="#ffdf94" text-anchor="middle">FastAPI</text>
+      </g>
+      <g transform="translate(474 246)">
+        <rect width="86" height="26" rx="13" fill="#b28dff" fill-opacity="0.08" stroke="#b28dff" stroke-opacity="0.5"/>
+        <text x="43" y="17" fill="#d4c2ff" text-anchor="middle">Next.js</text>
+      </g>
+    </g>
+
+    <!-- globe -->
+    <circle cx="905" cy="165" r="165" fill="url(#halo)"/>
+    <circle cx="905" cy="165" r="122" fill="url(#core)" stroke="#00f0ff" stroke-opacity="0.65" stroke-width="1.5"/>
+    <g clip-path="url(#globeClip)" fill="none" stroke="#00f0ff" stroke-width="1">
+      <!-- latitudes -->
+      <g stroke-opacity="0.28">
+        <ellipse cx="905" cy="165" rx="122" ry="18"/>
+        <ellipse cx="905" cy="120" rx="113" ry="15"/>
+        <ellipse cx="905" cy="210" rx="113" ry="15"/>
+        <ellipse cx="905" cy="80" rx="88" ry="11"/>
+        <ellipse cx="905" cy="250" rx="88" ry="11"/>
+      </g>
+      <!-- meridians: rx sweeps to fake rotation -->
+      <g stroke-opacity="0.45">
+        <ellipse cx="905" cy="165" rx="122" ry="122"><animate attributeName="rx" values="122;0;122" dur="12s" begin="0s" repeatCount="indefinite"/></ellipse>
+        <ellipse cx="905" cy="165" rx="122" ry="122"><animate attributeName="rx" values="122;0;122" dur="12s" begin="-2s" repeatCount="indefinite"/></ellipse>
+        <ellipse cx="905" cy="165" rx="122" ry="122"><animate attributeName="rx" values="122;0;122" dur="12s" begin="-4s" repeatCount="indefinite"/></ellipse>
+        <ellipse cx="905" cy="165" rx="122" ry="122"><animate attributeName="rx" values="122;0;122" dur="12s" begin="-6s" repeatCount="indefinite"/></ellipse>
+        <ellipse cx="905" cy="165" rx="122" ry="122"><animate attributeName="rx" values="122;0;122" dur="12s" begin="-8s" repeatCount="indefinite"/></ellipse>
+        <ellipse cx="905" cy="165" rx="122" ry="122"><animate attributeName="rx" values="122;0;122" dur="12s" begin="-10s" repeatCount="indefinite"/></ellipse>
+      </g>
+    </g>
+
+    <!-- trade arcs between hubs -->
+    <g fill="none" stroke-width="1.6" stroke-linecap="round">
+      <path d="M842 128 Q 900 60 968 118" stroke="#00f0ff" stroke-dasharray="4 7">
+        <animate attributeName="stroke-dashoffset" values="0;-44" dur="1.6s" repeatCount="indefinite"/>
+      </path>
+      <path d="M968 118 Q 1010 160 960 212" stroke="#00ff9d" stroke-dasharray="4 7">
+        <animate attributeName="stroke-dashoffset" values="0;-44" dur="1.9s" repeatCount="indefinite"/>
+      </path>
+      <path d="M842 128 Q 840 200 900 236" stroke="#ffc94d" stroke-dasharray="4 7">
+        <animate attributeName="stroke-dashoffset" values="0;-44" dur="2.2s" repeatCount="indefinite"/>
+      </path>
+    </g>
+
+    <!-- hubs -->
+    <g font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10" letter-spacing="1">
+      <g>
+        <circle cx="842" cy="128" r="12" fill="none" stroke="#00ff9d"><animate attributeName="r" values="5;16;5" dur="2.4s" repeatCount="indefinite"/><animate attributeName="stroke-opacity" values="0.9;0;0.9" dur="2.4s" repeatCount="indefinite"/></circle>
+        <circle cx="842" cy="128" r="4.5" fill="#00ff9d"/>
+        <text x="800" y="116" fill="#7dffc9">NYSE</text>
+      </g>
+      <g>
+        <circle cx="968" cy="118" r="12" fill="none" stroke="#ffc94d"><animate attributeName="r" values="5;16;5" dur="2s" begin="-0.7s" repeatCount="indefinite"/><animate attributeName="stroke-opacity" values="0.9;0;0.9" dur="2s" begin="-0.7s" repeatCount="indefinite"/></circle>
+        <circle cx="968" cy="118" r="4.5" fill="#ffc94d"/>
+        <text x="980" y="110" fill="#ffdf94">LSE</text>
+      </g>
+      <g>
+        <circle cx="960" cy="212" r="12" fill="none" stroke="#ff0055"><animate attributeName="r" values="5;18;5" dur="1.3s" begin="-0.3s" repeatCount="indefinite"/><animate attributeName="stroke-opacity" values="1;0;1" dur="1.3s" begin="-0.3s" repeatCount="indefinite"/></circle>
+        <circle cx="960" cy="212" r="4.5" fill="#ff0055"/>
+        <text x="974" y="222" fill="#ff7fa8">NSE</text>
+      </g>
+      <g>
+        <circle cx="900" cy="236" r="12" fill="none" stroke="#00ff9d"><animate attributeName="r" values="5;16;5" dur="2.8s" begin="-1.2s" repeatCount="indefinite"/><animate attributeName="stroke-opacity" values="0.9;0;0.9" dur="2.8s" begin="-1.2s" repeatCount="indefinite"/></circle>
+        <circle cx="900" cy="236" r="4" fill="#00ff9d"/>
+        <text x="860" y="256" fill="#7dffc9">B3</text>
+      </g>
+    </g>
+
+    <!-- ticker tape -->
+    <rect x="0" y="322" width="1200" height="58" fill="#04060c"/>
+    <line x1="0" y1="322" x2="1200" y2="322" stroke="#00f0ff" stroke-opacity="0.35"/>
+    <g font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="15" font-weight="600">
+      <g>
+        <animateTransform attributeName="transform" type="translate" from="0 0" to="-1200 0" dur="24s" repeatCount="indefinite"/>
+        <g id="tape">
+          <text x="20" y="357" fill="#cfe9ff">AAPL <tspan fill="#00ff9d">▲</tspan></text>
+          <text x="140" y="357" fill="#cfe9ff">MSFT <tspan fill="#00ff9d">▲</tspan></text>
+          <text x="260" y="357" fill="#cfe9ff">^NSEI <tspan fill="#ff0055">▼</tspan></text>
+          <text x="390" y="357" fill="#cfe9ff">RELIANCE.NS <tspan fill="#00ff9d">▲</tspan></text>
+          <text x="580" y="357" fill="#cfe9ff">^GSPC <tspan fill="#00ff9d">▲</tspan></text>
+          <text x="710" y="357" fill="#cfe9ff">TSLA <tspan fill="#ff0055">▼</tspan></text>
+          <text x="820" y="357" fill="#cfe9ff">BTCUSDT <tspan fill="#00ff9d">▲</tspan></text>
+          <text x="970" y="357" fill="#cfe9ff">ETHUSDT <tspan fill="#ff0055">▼</tspan></text>
+          <text x="1110" y="357" fill="#00f0ff">◆</text>
+        </g>
+        <use href="#tape" x="1200"/>
+      </g>
+    </g>
+    <rect x="0" y="322" width="1200" height="58" fill="url(#fade)"/>
+    <g font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10" letter-spacing="2">
+      <rect x="1088" y="20" width="92" height="22" rx="4" fill="#ff0055" fill-opacity="0.12" stroke="#ff0055" stroke-opacity="0.6"/>
+      <circle cx="1102" cy="31" r="3.5" fill="#ff0055"><animate attributeName="opacity" values="1;0.2;1" dur="1.2s" repeatCount="indefinite"/></circle>
+      <text x="1112" y="35" fill="#ff7fa8">LIVE</text>
+    </g>
+  </g>
+</svg>

@@ -1,0 +1,162 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 900" width="1200" height="900" role="img" aria-labelledby="t d"><title id="t">Chrono system design, as built</title><desc id="d">Three layers: ingestion sources feed an ETL router that writes to TimescaleDB, MongoDB and Redis; a FastAPI gateway streams Redis messages over a WebSocket to the Next.js dashboard. Status pills mark each part live, partial, demo, broken or planned.</desc>
+<defs><marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#5d6f88"/></marker><pattern id="dots" width="24" height="24" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r="1" fill="#16223a"/></pattern></defs>
+<rect width="1200" height="900" rx="18" fill="#060a14"/><rect width="1200" height="900" rx="18" fill="url(#dots)"/>
+<text x="30" y="44" fill="#ffffff" font-size="20" font-weight="700" letter-spacing="2" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">SYSTEM DESIGN <tspan fill="#00f0ff">// AS BUILT</tspan></text>
+<g transform="translate(560 28)"><rect width="46" height="18" rx="9" fill="#00ff9d" fill-opacity="0.12" stroke="#00ff9d" stroke-opacity="0.6"/><text x="23.0" y="12.5" fill="#7dffc9" font-size="9.5" letter-spacing="1" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">LIVE</text></g>
+<g transform="translate(616 28)"><rect width="67" height="18" rx="9" fill="#ffc94d" fill-opacity="0.12" stroke="#ffc94d" stroke-opacity="0.6"/><text x="33.5" y="12.5" fill="#ffdf94" font-size="9.5" letter-spacing="1" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">PARTIAL</text></g>
+<g transform="translate(693 28)"><rect width="46" height="18" rx="9" fill="#b28dff" fill-opacity="0.12" stroke="#b28dff" stroke-opacity="0.6"/><text x="23.0" y="12.5" fill="#d4c2ff" font-size="9.5" letter-spacing="1" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">DEMO</text></g>
+<g transform="translate(749 28)"><rect width="60" height="18" rx="9" fill="#ff0055" fill-opacity="0.12" stroke="#ff0055" stroke-opacity="0.6"/><text x="30.0" y="12.5" fill="#ff7fa8" font-size="9.5" letter-spacing="1" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">BROKEN</text></g>
+<g transform="translate(819 28)"><rect width="67" height="18" rx="9" fill="#6b7a90" fill-opacity="0.12" stroke="#6b7a90" stroke-opacity="0.6"/><text x="33.5" y="12.5" fill="#9aa8bb" font-size="9.5" letter-spacing="1" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">PLANNED</text></g>
+<text x="1170" y="42" fill="#6b7a90" font-size="10.5" text-anchor="end" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">main @ 97619cc</text>
+<rect x="28" y="70" width="1144" height="250" rx="14" fill="#ff9e3d" fill-opacity="0.035" stroke="#ff9e3d" stroke-opacity="0.35"/>
+<text x="44" y="92" fill="#ff9e3d" font-size="11" letter-spacing="3" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">LAYER 2 · INGESTION &amp; PROCESSING</text>
+<text x="1156" y="92" fill="#6b7a90" font-size="10.5" text-anchor="end" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">chrono-ingestion · APScheduler (5 s / 60 s)</text>
+<g opacity="1"><rect x="44" y="108" width="172" height="70" rx="10" fill="#0b1324" stroke="#00ff9d" stroke-opacity="0.7"/>
+<rect x="44" y="118" width="3" height="50" rx="1.5" fill="#00ff9d"/>
+<text x="58" y="150" fill="#e8f1ff" font-size="13" font-weight="600" font-family="Inter, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif">Finnhub WebSocket</text>
+<text x="58" y="167" fill="#8b9bb3" font-size="10.5" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">US + crypto · push</text></g>
+<g transform="translate(162 116)"><rect width="46" height="18" rx="9" fill="#00ff9d" fill-opacity="0.12" stroke="#00ff9d" stroke-opacity="0.6"/><text x="23.0" y="12.5" fill="#7dffc9" font-size="9.5" letter-spacing="1" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">LIVE</text></g>
+<g opacity="1"><rect x="230" y="108" width="172" height="70" rx="10" fill="#0b1324" stroke="#00ff9d" stroke-opacity="0.7"/>
+<rect x="230" y="118" width="3" height="50" rx="1.5" fill="#00ff9d"/>
+<text x="244" y="150" fill="#e8f1ff" font-size="13" font-weight="600" font-family="Inter, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif">Yahoo Finance</text>
+<text x="244" y="167" fill="#8b9bb3" font-size="10.5" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">NSE + idx · 5 s poll</text></g>
+<g transform="translate(348 116)"><rect width="46" height="18" rx="9" fill="#00ff9d" fill-opacity="0.12" stroke="#00ff9d" stroke-opacity="0.6"/><text x="23.0" y="12.5" fill="#7dffc9" font-size="9.5" letter-spacing="1" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">LIVE</text></g>
+<g opacity="1"><rect x="416" y="108" width="172" height="70" rx="10" fill="#0b1324" stroke="#00ff9d" stroke-opacity="0.7"/>
+<rect x="416" y="118" width="3" height="50" rx="1.5" fill="#00ff9d"/>
+<text x="430" y="150" fill="#e8f1ff" font-size="13" font-weight="600" font-family="Inter, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif">Moneycontrol · ET</text>
+<text x="430" y="167" fill="#8b9bb3" font-size="10.5" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">BeautifulSoup · 60 s</text></g>
+<g transform="translate(534 116)"><rect width="46" height="18" rx="9" fill="#00ff9d" fill-opacity="0.12" stroke="#00ff9d" stroke-opacity="0.6"/><text x="23.0" y="12.5" fill="#7dffc9" font-size="9.5" letter-spacing="1" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">LIVE</text></g>
+<g opacity="1"><rect x="602" y="108" width="172" height="70" rx="10" fill="#0b1324" stroke="#ffc94d" stroke-opacity="0.7"/>
+<rect x="602" y="118" width="3" height="50" rx="1.5" fill="#ffc94d"/>
+<text x="616" y="150" fill="#e8f1ff" font-size="13" font-weight="600" font-family="Inter, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif">Reuters RSS</text>
+<text x="616" y="167" fill="#8b9bb3" font-size="10.5" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">feedparser · 60 s</text></g>
+<g transform="translate(699 116)"><rect width="67" height="18" rx="9" fill="#ffc94d" fill-opacity="0.12" stroke="#ffc94d" stroke-opacity="0.6"/><text x="33.5" y="12.5" fill="#ffdf94" font-size="9.5" letter-spacing="1" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">PARTIAL</text></g>
+<g opacity="0.55"><rect x="788" y="108" width="172" height="70" rx="10" fill="#0b1324" stroke="#6b7a90" stroke-opacity="0.7" stroke-dasharray="5 5"/>
+<rect x="788" y="118" width="3" height="50" rx="1.5" fill="#6b7a90"/>
+<text x="802" y="150" fill="#e8f1ff" font-size="13" font-weight="600" font-family="Inter, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif">NewsAPI</text>
+<text x="802" y="167" fill="#8b9bb3" font-size="10.5" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">key not wired</text></g>
+<g transform="translate(885 116)"><rect width="67" height="18" rx="9" fill="#6b7a90" fill-opacity="0.12" stroke="#6b7a90" stroke-opacity="0.6"/><text x="33.5" y="12.5" fill="#9aa8bb" font-size="9.5" letter-spacing="1" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">PLANNED</text></g>
+<g opacity="0.55"><rect x="974" y="108" width="172" height="70" rx="10" fill="#0b1324" stroke="#6b7a90" stroke-opacity="0.7" stroke-dasharray="5 5"/>
+<rect x="974" y="118" width="3" height="50" rx="1.5" fill="#6b7a90"/>
+<text x="988" y="150" fill="#e8f1ff" font-size="13" font-weight="600" font-family="Inter, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif">FRED · World Bank</text>
+<text x="988" y="167" fill="#8b9bb3" font-size="10.5" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">written, not scheduled</text></g>
+<g transform="translate(1071 116)"><rect width="67" height="18" rx="9" fill="#6b7a90" fill-opacity="0.12" stroke="#6b7a90" stroke-opacity="0.6"/><text x="33.5" y="12.5" fill="#9aa8bb" font-size="9.5" letter-spacing="1" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">PLANNED</text></g>
+<path id="s0" d="M130 178 L130 226" fill="none" stroke="#5d6f88" stroke-opacity="0.55" stroke-width="1.5" marker-end="url(#arr)"/>
+<path id="s1" d="M316 178 L316 226" fill="none" stroke="#5d6f88" stroke-opacity="0.55" stroke-width="1.5" marker-end="url(#arr)"/>
+<path id="s2" d="M502 178 L502 226" fill="none" stroke="#5d6f88" stroke-opacity="0.55" stroke-width="1.5" marker-end="url(#arr)"/>
+<path id="s3" d="M688 178 L600 226" fill="none" stroke="#5d6f88" stroke-opacity="0.55" stroke-width="1.5" marker-end="url(#arr)"/>
+<g opacity="1"><rect x="44" y="228" width="600" height="70" rx="10" fill="#0b1324" stroke="#00ff9d" stroke-opacity="0.7"/>
+<rect x="44" y="238" width="3" height="50" rx="1.5" fill="#00ff9d"/>
+<text x="58" y="270" fill="#e8f1ff" font-size="13" font-weight="600" font-family="Inter, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif">ETL router</text>
+<text x="58" y="287" fill="#8b9bb3" font-size="10.5" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">transform_record → tag_country → route_record</text></g>
+<g transform="translate(590 236)"><rect width="46" height="18" rx="9" fill="#00ff9d" fill-opacity="0.12" stroke="#00ff9d" stroke-opacity="0.6"/><text x="23.0" y="12.5" fill="#7dffc9" font-size="9.5" letter-spacing="1" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">LIVE</text></g>
+<g opacity="1"><rect x="690" y="228" width="456" height="70" rx="10" fill="#0b1324" stroke="#ffc94d" stroke-opacity="0.7"/>
+<rect x="690" y="238" width="3" height="50" rx="1.5" fill="#ffc94d"/>
+<text x="704" y="270" fill="#e8f1ff" font-size="13" font-weight="600" font-family="Inter, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif">ML classifier (inline, not a container)</text>
+<text x="704" y="287" fill="#8b9bb3" font-size="10.5" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">FinBERT sentiment + urgency score 0–1</text></g>
+<g transform="translate(1071 236)"><rect width="67" height="18" rx="9" fill="#ffc94d" fill-opacity="0.12" stroke="#ffc94d" stroke-opacity="0.6"/><text x="33.5" y="12.5" fill="#ffdf94" font-size="9.5" letter-spacing="1" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">PARTIAL</text></g>
+<path d="M644 263 L688 263" fill="none" stroke="#5d6f88" stroke-opacity="0.55" stroke-width="1.5" marker-end="url(#arr)"/>
+<rect x="28" y="344" width="1144" height="190" rx="14" fill="#00ff9d" fill-opacity="0.035" stroke="#00ff9d" stroke-opacity="0.35"/>
+<text x="44" y="366" fill="#00ff9d" font-size="11" letter-spacing="3" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">LAYER 3 · POLYGLOT PERSISTENCE</text>
+<text x="1156" y="366" fill="#6b7a90" font-size="10.5" text-anchor="end" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">DB1 + DB2 share one container: chrono-postgres :5432</text>
+<g><path d="M44 392 V486 A115.0 12 0 0 0 274 486 V392" fill="#0b1324" stroke="#6b7a90" stroke-opacity="0.75"/>
+<ellipse cx="159.0" cy="392" rx="115.0" ry="12" fill="#10203a" stroke="#6b7a90" stroke-opacity="0.9"/>
+<text x="159.0" y="445.0" fill="#e8f1ff" font-size="14" font-weight="600" text-anchor="middle" font-family="Inter, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif">DB1 · PostgreSQL</text>
+<text x="159.0" y="463.0" fill="#8b9bb3" font-size="10.5" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">users · sessions · metadata</text></g>
+<g transform="translate(111.5 492)"><rect width="95" height="18" rx="9" fill="#ffc94d" fill-opacity="0.12" stroke="#ffc94d" stroke-opacity="0.6"/><text x="47.5" y="12.5" fill="#ffdf94" font-size="9.5" letter-spacing="1" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">TABLES ONLY</text></g>
+<g><path d="M334 392 V486 A115.0 12 0 0 0 564 486 V392" fill="#0b1324" stroke="#00f0ff" stroke-opacity="0.75"/>
+<ellipse cx="449.0" cy="392" rx="115.0" ry="12" fill="#10203a" stroke="#00f0ff" stroke-opacity="0.9"/>
+<text x="449.0" y="445.0" fill="#e8f1ff" font-size="14" font-weight="600" text-anchor="middle" font-family="Inter, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif">DB2 · TimescaleDB</text>
+<text x="449.0" y="463.0" fill="#8b9bb3" font-size="10.5" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">market_ticks · hourly_ohlc</text></g>
+<g transform="translate(426.0 492)"><rect width="46" height="18" rx="9" fill="#00ff9d" fill-opacity="0.12" stroke="#00ff9d" stroke-opacity="0.6"/><text x="23.0" y="12.5" fill="#7dffc9" font-size="9.5" letter-spacing="1" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">LIVE</text></g>
+<g><path d="M624 392 V486 A115.0 12 0 0 0 854 486 V392" fill="#0b1324" stroke="#00ff9d" stroke-opacity="0.75"/>
+<ellipse cx="739.0" cy="392" rx="115.0" ry="12" fill="#10203a" stroke="#00ff9d" stroke-opacity="0.9"/>
+<text x="739.0" y="445.0" fill="#e8f1ff" font-size="14" font-weight="600" text-anchor="middle" font-family="Inter, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif">DB3 · MongoDB</text>
+<text x="739.0" y="463.0" fill="#8b9bb3" font-size="10.5" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">chrono_news.news_articles</text></g>
+<g transform="translate(716.0 492)"><rect width="46" height="18" rx="9" fill="#00ff9d" fill-opacity="0.12" stroke="#00ff9d" stroke-opacity="0.6"/><text x="23.0" y="12.5" fill="#7dffc9" font-size="9.5" letter-spacing="1" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">LIVE</text></g>
+<g><path d="M914 392 V486 A115.0 12 0 0 0 1144 486 V392" fill="#0b1324" stroke="#ff0055" stroke-opacity="0.75"/>
+<ellipse cx="1029.0" cy="392" rx="115.0" ry="12" fill="#10203a" stroke="#ff0055" stroke-opacity="0.9"/>
+<text x="1029.0" y="445.0" fill="#e8f1ff" font-size="14" font-weight="600" text-anchor="middle" font-family="Inter, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif">Redis 7</text>
+<text x="1029.0" y="463.0" fill="#8b9bb3" font-size="10.5" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">pub/sub · baseline keys</text></g>
+<g transform="translate(1006.0 492)"><rect width="46" height="18" rx="9" fill="#00ff9d" fill-opacity="0.12" stroke="#00ff9d" stroke-opacity="0.6"/><text x="23.0" y="12.5" fill="#7dffc9" font-size="9.5" letter-spacing="1" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">LIVE</text></g>
+<path id="e_ts" d="M449 298 L449 378" fill="none" stroke="#00f0ff" stroke-opacity="0.5" stroke-width="1.5" marker-end="url(#arr)"/>
+<path id="e_mg" d="M600 298 L739 378" fill="none" stroke="#00ff9d" stroke-opacity="0.5" stroke-width="1.5" marker-end="url(#arr)"/>
+<path id="e_rd" d="M630 298 C 760 330, 980 330, 1010 378" fill="none" stroke="#ff0055" stroke-opacity="0.5" stroke-width="1.5" marker-end="url(#arr)"/>
+<path id="e_ml" d="M1100 298 L1100 378" fill="none" stroke="#ff0055" stroke-width="1.5" stroke-dasharray="4 5" stroke-opacity="0.8"/>
+<g transform="translate(1100 336)"><circle r="10" fill="#060a14" stroke="#ff0055"/><path d="M-4 -4 L4 4 M4 -4 L-4 4" stroke="#ff0055" stroke-width="2"/></g>
+<text x="1086" y="330" text-anchor="end" fill="#ff7fa8" font-size="9.5" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">news:classified</text><text x="1086" y="343" text-anchor="end" fill="#ff7fa8" font-size="9.5" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">publish fails</text>
+<g opacity="1"><rect x="300" y="560" width="560" height="70" rx="10" fill="#0b1324" stroke="#00ff9d" stroke-opacity="0.7"/>
+<rect x="300" y="570" width="3" height="50" rx="1.5" fill="#00ff9d"/>
+<text x="314" y="602" fill="#e8f1ff" font-size="13" font-weight="600" font-family="Inter, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif">FastAPI gateway · chrono-backend :8000</text>
+<text x="314" y="619" fill="#8b9bb3" font-size="10.5" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">REST /api/v1/*  ·  WebSocket /ws/live (fan-out)</text></g>
+<g transform="translate(806 568)"><rect width="46" height="18" rx="9" fill="#00ff9d" fill-opacity="0.12" stroke="#00ff9d" stroke-opacity="0.6"/><text x="23.0" y="12.5" fill="#7dffc9" font-size="9.5" letter-spacing="1" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">LIVE</text></g>
+<g opacity="1"><rect x="914" y="560" width="230" height="70" rx="10" fill="#0b1324" stroke="#b28dff" stroke-opacity="0.7"/>
+<rect x="914" y="570" width="3" height="50" rx="1.5" fill="#b28dff"/>
+<text x="928" y="602" fill="#e8f1ff" font-size="13" font-weight="600" font-family="Inter, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif">Analytics :8001</text>
+<text x="928" y="619" fill="#8b9bb3" font-size="10.5" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">indicators · agent brief</text></g>
+<g transform="translate(1076 568)"><rect width="60" height="18" rx="9" fill="#b28dff" fill-opacity="0.12" stroke="#b28dff" stroke-opacity="0.6"/><text x="30.0" y="12.5" fill="#d4c2ff" font-size="9.5" letter-spacing="1" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">MANUAL</text></g>
+<path d="M449 512 L449 558" fill="none" stroke="#5d6f88" stroke-opacity="0.55" stroke-width="1.5" marker-end="url(#arr)"/>
+<path d="M739 512 L739 558" fill="none" stroke="#5d6f88" stroke-opacity="0.55" stroke-width="1.5" marker-end="url(#arr)"/>
+<path id="e_gw" d="M1029 512 L1029 538 L820 538 L820 558" fill="none" stroke="#ff0055" stroke-opacity="0.5" stroke-width="1.5" marker-end="url(#arr)"/>
+<rect x="28" y="660" width="1144" height="214" rx="14" fill="#7c8cff" fill-opacity="0.035" stroke="#7c8cff" stroke-opacity="0.35"/>
+<text x="44" y="682" fill="#7c8cff" font-size="11" letter-spacing="3" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">LAYER 1 · PRESENTATION</text>
+<text x="1156" y="682" fill="#6b7a90" font-size="10.5" text-anchor="end" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">Next.js 14 · react-three-fiber · host :3000</text>
+<g opacity="1"><rect x="44" y="700" width="148" height="86" rx="10" fill="#0b1324" stroke="#ffc94d" stroke-opacity="0.7"/>
+<rect x="44" y="710" width="3" height="66" rx="1.5" fill="#ffc94d"/>
+<text x="58" y="758" fill="#e8f1ff" font-size="13" font-weight="600" font-family="Inter, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif">3D Globe</text>
+<text x="58" y="775" fill="#8b9bb3" font-size="10.5" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">r3f · 6 hubs</text></g>
+<g transform="translate(117 708)"><rect width="67" height="18" rx="9" fill="#ffc94d" fill-opacity="0.12" stroke="#ffc94d" stroke-opacity="0.6"/><text x="33.5" y="12.5" fill="#ffdf94" font-size="9.5" letter-spacing="1" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">PARTIAL</text></g>
+<g opacity="1"><rect x="202" y="700" width="148" height="86" rx="10" fill="#0b1324" stroke="#00ff9d" stroke-opacity="0.7"/>
+<rect x="202" y="710" width="3" height="66" rx="1.5" fill="#00ff9d"/>
+<text x="216" y="758" fill="#e8f1ff" font-size="13" font-weight="600" font-family="Inter, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif">Live Ticker</text>
+<text x="216" y="775" fill="#8b9bb3" font-size="10.5" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">latest tick / symbol</text></g>
+<g transform="translate(296 708)"><rect width="46" height="18" rx="9" fill="#00ff9d" fill-opacity="0.12" stroke="#00ff9d" stroke-opacity="0.6"/><text x="23.0" y="12.5" fill="#7dffc9" font-size="9.5" letter-spacing="1" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">LIVE</text></g>
+<g opacity="1"><rect x="360" y="700" width="148" height="86" rx="10" fill="#0b1324" stroke="#00ff9d" stroke-opacity="0.7"/>
+<rect x="360" y="710" width="3" height="66" rx="1.5" fill="#00ff9d"/>
+<text x="374" y="758" fill="#e8f1ff" font-size="13" font-weight="600" font-family="Inter, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif">AAPL Chart</text>
+<text x="374" y="775" fill="#8b9bb3" font-size="10.5" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">lightweight-charts</text></g>
+<g transform="translate(447 708)"><rect width="53" height="18" rx="9" fill="#00ff9d" fill-opacity="0.12" stroke="#00ff9d" stroke-opacity="0.6"/><text x="26.5" y="12.5" fill="#7dffc9" font-size="9.5" letter-spacing="1" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">LIVE*</text></g>
+<g opacity="1"><rect x="518" y="700" width="148" height="86" rx="10" fill="#0b1324" stroke="#00ff9d" stroke-opacity="0.7"/>
+<rect x="518" y="710" width="3" height="66" rx="1.5" fill="#00ff9d"/>
+<text x="532" y="758" fill="#e8f1ff" font-size="13" font-weight="600" font-family="Inter, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif">News Feed</text>
+<text x="532" y="775" fill="#8b9bb3" font-size="10.5" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">socket stream</text></g>
+<g transform="translate(605 708)"><rect width="53" height="18" rx="9" fill="#00ff9d" fill-opacity="0.12" stroke="#00ff9d" stroke-opacity="0.6"/><text x="26.5" y="12.5" fill="#7dffc9" font-size="9.5" letter-spacing="1" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">LIVE*</text></g>
+<g opacity="1"><rect x="676" y="700" width="148" height="86" rx="10" fill="#0b1324" stroke="#b28dff" stroke-opacity="0.7"/>
+<rect x="676" y="710" width="3" height="66" rx="1.5" fill="#b28dff"/>
+<text x="690" y="758" fill="#e8f1ff" font-size="13" font-weight="600" font-family="Inter, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif">Agent Brief</text>
+<text x="690" y="775" fill="#8b9bb3" font-size="10.5" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">popup → :8001</text></g>
+<g transform="translate(770 708)"><rect width="46" height="18" rx="9" fill="#b28dff" fill-opacity="0.12" stroke="#b28dff" stroke-opacity="0.6"/><text x="23.0" y="12.5" fill="#d4c2ff" font-size="9.5" letter-spacing="1" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">DEMO</text></g>
+<g opacity="0.55"><rect x="834" y="700" width="148" height="86" rx="10" fill="#0b1324" stroke="#6b7a90" stroke-opacity="0.7" stroke-dasharray="5 5"/>
+<rect x="834" y="710" width="3" height="66" rx="1.5" fill="#6b7a90"/>
+<text x="848" y="758" fill="#e8f1ff" font-size="13" font-weight="600" font-family="Inter, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif">Country Panel</text>
+<text x="848" y="775" fill="#8b9bb3" font-size="10.5" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">candles · FX · news</text></g>
+<g transform="translate(907 708)"><rect width="67" height="18" rx="9" fill="#6b7a90" fill-opacity="0.12" stroke="#6b7a90" stroke-opacity="0.6"/><text x="33.5" y="12.5" fill="#9aa8bb" font-size="9.5" letter-spacing="1" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">PLANNED</text></g>
+<g opacity="0.55"><rect x="992" y="700" width="148" height="86" rx="10" fill="#0b1324" stroke="#6b7a90" stroke-opacity="0.7" stroke-dasharray="5 5"/>
+<rect x="992" y="710" width="3" height="66" rx="1.5" fill="#6b7a90"/>
+<text x="1006" y="758" fill="#e8f1ff" font-size="13" font-weight="600" font-family="Inter, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif">Login / Auth</text>
+<text x="1006" y="775" fill="#8b9bb3" font-size="10.5" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">→ DB1</text></g>
+<g transform="translate(1065 708)"><rect width="67" height="18" rx="9" fill="#6b7a90" fill-opacity="0.12" stroke="#6b7a90" stroke-opacity="0.6"/><text x="33.5" y="12.5" fill="#9aa8bb" font-size="9.5" letter-spacing="1" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">PLANNED</text></g>
+<path id="u0" d="M480 630 L118 698" fill="none" stroke="#7c8cff" stroke-opacity="0.45" stroke-width="1.5" marker-end="url(#arr)"/>
+<path id="u1" d="M540 630 L276 698" fill="none" stroke="#7c8cff" stroke-opacity="0.45" stroke-width="1.5" marker-end="url(#arr)"/>
+<path id="u2" d="M600 630 L434 698" fill="none" stroke="#7c8cff" stroke-opacity="0.45" stroke-width="1.5" marker-end="url(#arr)"/>
+<path id="u3" d="M660 630 L592 698" fill="none" stroke="#7c8cff" stroke-opacity="0.45" stroke-width="1.5" marker-end="url(#arr)"/>
+<path d="M1029 630 L750 698" fill="none" stroke="#b28dff" stroke-opacity="0.45" stroke-width="1.5" marker-end="url(#arr)"/>
+<text x="44" y="820" fill="#6b7a90" font-size="10.5" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">* falls back to hard-coded demo data when the live source is empty   ·   globe hubs stay at urgency 0.5 until the classifier publish is fixed</text>
+<circle cx="48" cy="848" r="3.5" fill="#00f0ff"/><circle cx="108" cy="848" r="3.5" fill="#ffc94d"/>
+<text x="58" y="852" fill="#6b7a90" font-size="10.5" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">tick</text><text x="118" y="852" fill="#6b7a90" font-size="10.5" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">article</text>
+<circle r="3.5" fill="#00f0ff"><animateMotion dur="1.6s" begin="0s" repeatCount="indefinite"><mpath href="#s0"/></animateMotion></circle>
+<circle r="3.5" fill="#00f0ff"><animateMotion dur="1.6s" begin="-0.8s" repeatCount="indefinite"><mpath href="#s1"/></animateMotion></circle>
+<circle r="3.5" fill="#ffc94d"><animateMotion dur="2.2s" begin="0s" repeatCount="indefinite"><mpath href="#s2"/></animateMotion></circle>
+<circle r="3.5" fill="#ffc94d"><animateMotion dur="2.6s" begin="-1s" repeatCount="indefinite"><mpath href="#s3"/></animateMotion></circle>
+<circle r="3.5" fill="#00f0ff"><animateMotion dur="1.4s" begin="0s" repeatCount="indefinite"><mpath href="#e_ts"/></animateMotion></circle>
+<circle r="3.5" fill="#00f0ff"><animateMotion dur="2.0s" begin="-0.5s" repeatCount="indefinite"><mpath href="#e_rd"/></animateMotion></circle>
+<circle r="3.5" fill="#ffc94d"><animateMotion dur="2.4s" begin="0s" repeatCount="indefinite"><mpath href="#e_mg"/></animateMotion></circle>
+<circle r="3.5" fill="#ffc94d"><animateMotion dur="2.8s" begin="-1.6s" repeatCount="indefinite"><mpath href="#e_rd"/></animateMotion></circle>
+<circle r="3.5" fill="#00f0ff"><animateMotion dur="1.8s" begin="0s" repeatCount="indefinite"><mpath href="#e_gw"/></animateMotion></circle>
+<circle r="3.5" fill="#ffc94d"><animateMotion dur="2.6s" begin="-1.2s" repeatCount="indefinite"><mpath href="#e_gw"/></animateMotion></circle>
+<circle r="3.5" fill="#00f0ff"><animateMotion dur="1.5s" begin="-0.3s" repeatCount="indefinite"><mpath href="#u0"/></animateMotion></circle>
+<circle r="3.5" fill="#00f0ff"><animateMotion dur="1.5s" begin="0s" repeatCount="indefinite"><mpath href="#u1"/></animateMotion></circle>
+<circle r="3.5" fill="#00f0ff"><animateMotion dur="1.7s" begin="-0.6s" repeatCount="indefinite"><mpath href="#u2"/></animateMotion></circle>
+<circle r="3.5" fill="#ffc94d"><animateMotion dur="2.0s" begin="0s" repeatCount="indefinite"><mpath href="#u3"/></animateMotion></circle>
+<circle r="3.5" fill="#ff0055"><animateMotion dur="2s" repeatCount="indefinite" keyPoints="0;0.48;0.48" keyTimes="0;0.6;1" calcMode="linear"><mpath href="#e_ml"/></animateMotion><animate attributeName="opacity" values="1;1;0;0" keyTimes="0;0.55;0.62;1" dur="2s" repeatCount="indefinite"/></circle>
+</svg>

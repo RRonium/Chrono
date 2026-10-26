@@ -5,7 +5,7 @@ import { Canvas, ThreeEvent, useLoader } from "@react-three/fiber";
 import { OrbitControls } from "@react-three/drei";
 import * as THREE from "three";
 import { CountryMarkers, latLngToVector3, vector3ToLatLng } from "./CountryMarkers";
-import { GLOBAL_HUBS } from "@/lib/constants";
+import { BASE_PATH, GLOBAL_HUBS } from "@/lib/constants";
 
 const EARTH_RADIUS = 2;
 
@@ -83,7 +83,7 @@ function Earth({
   onHover: (feature: CountryFeature | null, x: number, y: number) => void;
   onSelect: (feature: CountryFeature) => void;
 }) {
-  const [dayMap, bumpMap] = useLoader(THREE.TextureLoader, ["/img/earth-day.jpg", "/img/earth-bump.png"]);
+  const [dayMap, bumpMap] = useLoader(THREE.TextureLoader, [`${BASE_PATH}/img/earth-day.jpg`, `${BASE_PATH}/img/earth-bump.png`]);
   dayMap.colorSpace = THREE.SRGBColorSpace;
   dayMap.anisotropy = 8;
 
@@ -140,7 +140,7 @@ export function Globe3D({ onSelectHub }: { onSelectHub: (iso: string, name?: str
   const hubIsos = useRef(new Set(GLOBAL_HUBS.map((hub) => hub.iso)));
 
   useEffect(() => {
-    fetch("/data/countries.geojson")
+    fetch(`${BASE_PATH}/data/countries.geojson`)
       .then((res) => res.json())
       .then((data) => setFeatures(data.features ?? []))
       .catch(() => setFeatures([]));

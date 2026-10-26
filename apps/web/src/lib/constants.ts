@@ -38,3 +38,6 @@ export function symbolLabel(symbol: string): string {
 export const API_URL = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
 export const ANALYTICS_URL = process.env.NEXT_PUBLIC_ANALYTICS_URL ?? "http://localhost:8001";
 export const WS_URL = process.env.NEXT_PUBLIC_WS_URL ?? "ws://localhost:8000/ws/live";
+
+// Prefix for files in /public when the site is served from a sub-path (GitHub Pages project site)
+export const BASE_PATH = process.env.NEXT_PUBLIC_BASE_PATH ?? "";

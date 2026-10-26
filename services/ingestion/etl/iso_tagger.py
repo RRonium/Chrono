@@ -1,3 +1,5 @@
+import re
+
 SYMBOL_ISO_MAP = {
     "AAPL": "USA",
     "MSFT": "USA",
@@ -19,17 +21,26 @@ SYMBOL_ISO_MAP = {
 def map_symbol_to_iso(symbol: str) -> str:
     return SYMBOL_ISO_MAP.get(symbol.upper(), "USA")
 
-def map_text_to_iso(text: str) -> str:
+TEXT_ISO_KEYWORDS = [
+    ("IND", ["india", "sensex", "nifty", "rupee", "mumbai", "rbi", "modi", "reliance", "sebi", "bse", "nse"]),
+    ("GBR", ["uk", "britain", "british", "london", "ftse", "pound", "boe", "sterling"]),
+    ("DEU", ["germany", "frankfurt", "dax", "berlin", "ecb", "bundesbank"]),
+    ("JPN", ["japan", "tokyo", "nikkei", "yen", "boj"]),
+    ("CHN", ["china", "beijing", "shanghai", "yuan", "pboc", "hang seng"]),
+]
+
+def match_text_to_iso(text: str):
+    """Return the ISO code whose keywords appear in the text, or None if nothing matches."""
+    words = set(re.findall(r"[a-z]+", text.lower()))
     lower = text.lower()
-    if any(kw in lower for kw in ["india", "sensex", "nifty", "rupee", "mumbai", "RBI", "modi", "reliance"]):
-        return "IND"
-    if any(kw in lower for kw in ["uk", "britain", "london", "ftse", "pound", "boe"]):
-        return "GBR"
-    if any(kw in lower for kw in ["germany", "frankfurt", "dax", "berlin", "ecb"]):
-        return "DEU"
-    if any(kw in lower for kw in ["japan", "tokyo", "nikkei", "yen", "boj"]):
-        return "JPN"
-    return "USA"
+    for iso, keywords in TEXT_ISO_KEYWORDS:
+        for kw in keywords:
+            if (" " in kw and kw in lower) or kw in words:
+                return iso
+    return None
+
+def map_text_to_iso(text: str) -> str:
+    return match_text_to_iso(text) or "USA"
 
 def tag_country(record: dict, country_code: str = None) -> dict:
     if "iso_code" in record and record["iso_code"]:

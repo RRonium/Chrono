@@ -37,8 +37,10 @@ def fetch_yahoo_ticks(symbols=None):
                     continue
 
             timestamp = datetime.now(timezone.utc)
-            prev_price = _last_known_prices.get(clean_symbol, current_price)
-            change_pct = round(((current_price - prev_price) / prev_price * 100.0), 2) if prev_price > 0 else 0.0
+            # Day change is measured against the previous session's close, like any market terminal.
+            # Fall back to the last polled price only when Yahoo has no previous close.
+            prev_close = getattr(info, "previous_close", None) or _last_known_prices.get(clean_symbol, current_price)
+            change_pct = round(((current_price - prev_close) / prev_close * 100.0), 2) if prev_close else 0.0
             _last_known_prices[clean_symbol] = current_price
 
             iso_code = map_symbol_to_iso(clean_symbol)
@@ -46,6 +48,7 @@ def fetch_yahoo_ticks(symbols=None):
                 "time": timestamp.isoformat(),
                 "symbol": clean_symbol,
                 "price": round(float(current_price), 4),
+                "prev_close": round(float(prev_close), 4),
                 "open": round(float(current_price), 4),
                 "high": round(float(current_price), 4),
                 "low": round(float(current_price), 4),

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { fetchAgentBrief } from "@/lib/api";
 import { X, Sparkles } from "lucide-react";
 
-export function AgenticBriefModal({ isoCode, onClose }: { isoCode: string | null; onClose: () => void }) {
+export function AgenticBriefModal({ isoCode, countryName, onClose }: { isoCode: string | null; countryName?: string; onClose: () => void }) {
   const [brief, setBrief] = useState<any>(null);
   const [loading, setLoading] = useState(false);
 
@@ -20,13 +20,13 @@ export function AgenticBriefModal({ isoCode, onClose }: { isoCode: string | null
 
   return (
     <div className="fixed inset-0 bg-black/70 backdrop-blur-sm z-50 flex items-center justify-center p-4">
-      <div className="bg-cyber-card border border-cyber-accent rounded-lg max-w-lg w-full p-6 shadow-2xl relative">
-        <button onClick={onClose} className="absolute top-4 right-4 text-slate-400 hover:text-white">
+      <div className="bg-cyber-card border border-cyber-border rounded-lg max-w-lg w-full p-6 shadow-2xl relative">
+        <button onClick={onClose} aria-label="Close" className="absolute top-4 right-4 text-slate-400 hover:text-white">
           <X className="w-5 h-5" />
         </button>
         <div className="flex items-center space-x-2 mb-4">
-          <Sparkles className="w-5 h-5 text-cyber-accent animate-spin" />
-          <h2 className="text-lg font-bold font-mono text-white">EXECUTIVE AGENT BRIEF ({isoCode})</h2>
+          <Sparkles className="w-5 h-5 text-cyber-accent" />
+          <h2 className="text-lg font-bold font-mono text-white">{countryName ? `${countryName} (${isoCode})` : isoCode} · MARKET BRIEF</h2>
         </div>
         {loading ? (
           <p className="font-mono text-xs text-slate-400">Synthesizing macro & market data...</p>

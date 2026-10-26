@@ -21,7 +21,8 @@ def get_redis_client():
         _redis_pool = redis.ConnectionPool.from_url(settings.REDIS_URL, decode_responses=True)
     return redis.Redis(connection_pool=_redis_pool)
 
-def route_record(record: dict):
+def route_record(record: dict) -> bool:
+    """Persist and broadcast a record. For news, returns True when the article was new."""
     rec_type = record.get("type")
     
     if rec_type == "market":
@@ -50,25 +51,30 @@ def route_record(record: dict):
             logger.error(f"Failed to publish market tick to Redis: {e}", exc_info=False)
 
     elif rec_type == "news":
-        # 1. MongoDB news persistence
+        # 1. MongoDB news persistence (upsert by URL; only brand-new articles are broadcast)
+        is_new = False
         try:
             client = get_mongo_client()
             db = client.chrono_news
-            db.news_articles.update_one(
+            result = db.news_articles.update_one(
                 {"url": record["url"]},
                 {"$set": record},
                 upsert=True
             )
+            is_new = result.upserted_id is not None
             client.close()
         except Exception as e:
             logger.error(f"Failed to persist news article to MongoDB: {e}", exc_info=False)
+            is_new = True  # still show it live if storage is down
 
         # 2. Redis news stream
-        try:
-            r = get_redis_client()
-            r.publish("news:articles", json.dumps(record))
-        except Exception as e:
-            logger.error(f"Failed to publish news article to Redis: {e}", exc_info=False)
+        if is_new:
+            try:
+                r = get_redis_client()
+                r.publish("news:articles", json.dumps(record, default=str))
+            except Exception as e:
+                logger.error(f"Failed to publish news article to Redis: {e}", exc_info=False)
+        return is_new
 
     elif rec_type == "economic":
         try:

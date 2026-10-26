@@ -29,7 +29,8 @@ def _build_newsapi_payload(q="business", sources=None, page_size=20):
 def scrape_newsapi_topheadlines(sources=None):
     """Fetch top headlines from NewsAPI as a fallback/supplementary pipeline."""
     articles = []
-    api_key = ""  # Should come from settings.NEWS_API_KEY or env
+    from services.ingestion.config import settings
+    api_key = settings.NEWS_API_KEY
 
     if not api_key:
         logger.warning("NewsAPI key not configured; skipping NewsAPI pipeline.")

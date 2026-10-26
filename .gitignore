@@ -2,4 +2,6 @@
 node_modules/
 apps/web/node_modules/
 .next/
-apps/web/.next/
+apps/web/.next/__pycache__/
+*.pyc
+*.tsbuildinfo

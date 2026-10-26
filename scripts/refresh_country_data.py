@@ -61,8 +61,6 @@ RANKED = ["gdp", "gdp_per_capita", "population"]
 
 # Natural Earth features without an ISO code: map to the page they belong to, or skip (None).
 NE_OVERRIDES = {"Kosovo": "XKX", "N. Cyprus": "CYP", "Somaliland": "SOM", "Siachen Glacier": None}
-# Natural Earth adm0 codes used by the globe (110m) -> page code.
-GLOBE_ALIASES = {"SDS": "SSD", "PSX": "PSE", "SAH": "ESH", "KOS": "XKX", "CYN": "CYP", "SOL": "SOM"}
 # mledoze uses UNK for Kosovo; the World Bank uses XKX.
 META_ALIASES = {"XKX": "UNK"}
 
@@ -160,7 +158,8 @@ def main():
             print(f"World Bank API unavailable, keeping indicators on disk: {exc}", file=sys.stderr)
 
     page_codes = {meta: page for page, meta in META_ALIASES.items()}
-    isos = sorted(set(shapes) | {page_codes.get(i, i) for i in countries} | set(wb_meta))
+    on_disk = {p.parent.name for p in OUT.glob("*/profile.json")}
+    isos = sorted(set(shapes) | {page_codes.get(i, i) for i in countries} | set(wb_meta) | on_disk)
     today = dt.date.today().isoformat()
     profiles = {}
 
@@ -170,8 +169,8 @@ def main():
         if (folder / "profile.json").exists():
             old = json.loads((folder / "profile.json").read_text())
         c = countries.get(META_ALIASES.get(iso, iso))
-        if not c and iso not in wb_meta and not old:
-            continue
+        if not c and not old.get("iso2"):
+            continue  # World Bank-only groupings such as the Channel Islands (CHI)
 
         if wb_ok:
             indicators = {key: wb_series[key][iso] for key in INDICATORS if wb_series[key].get(iso)}
@@ -244,7 +243,6 @@ def main():
             "indicators": "World Bank, World Development Indicators (CC BY 4.0)",
         },
         "indicators": {key: {"code": code, "label": label, "unit": unit, "group": group} for key, (code, label, unit, group) in INDICATORS.items()},
-        "globeAliases": GLOBE_ALIASES,
     }
     (OUT / "index.json").write_text(json.dumps({"meta": meta, "countries": index}, ensure_ascii=False, indent=1) + "\n")
     print(f"Wrote {len(profiles)} countries to {OUT.relative_to(ROOT)} (World Bank {'refreshed' if wb_ok else 'kept'})")

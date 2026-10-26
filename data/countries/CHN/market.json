@@ -1,0 +1,66 @@
+{
+  "summary": "The world's second-largest economy, with mainland exchanges in Shanghai and Shenzhen and a managed currency.",
+  "exchanges": [
+    {
+      "name": "Shanghai Stock Exchange",
+      "city": "Shanghai",
+      "website": "https://english.sse.com.cn"
+    },
+    {
+      "name": "Shenzhen Stock Exchange",
+      "city": "Shenzhen",
+      "website": "https://www.szse.cn/English/"
+    }
+  ],
+  "indices": [
+    {
+      "name": "SSE Composite",
+      "symbol": "000001.SS"
+    },
+    {
+      "name": "CSI 300",
+      "symbol": "000300.SS"
+    },
+    {
+      "name": "SZSE Component",
+      "symbol": "399001.SZ"
+    }
+  ],
+  "centralBank": {
+    "name": "People's Bank of China",
+    "website": "http://www.pbc.gov.cn/en/"
+  },
+  "regulator": {
+    "name": "China Securities Regulatory Commission",
+    "website": "http://www.csrc.gov.cn/csrc_en/"
+  },
+  "companies": [
+    {
+      "name": "Kweichow Moutai",
+      "symbol": "600519.SS"
+    },
+    {
+      "name": "ICBC",
+      "symbol": "601398.SS"
+    },
+    {
+      "name": "CATL",
+      "symbol": "300750.SZ"
+    },
+    {
+      "name": "Ping An Insurance",
+      "symbol": "601318.SS"
+    },
+    {
+      "name": "China Merchants Bank",
+      "symbol": "600036.SS"
+    }
+  ],
+  "sectors": [
+    "Financials",
+    "Consumer staples",
+    "Industrials",
+    "Batteries & EVs",
+    "Technology"
+  ]
+}

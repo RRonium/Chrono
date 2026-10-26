@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
+import Link from "next/link";
 import { Globe2 } from "lucide-react";
 import { GLOBAL_HUBS, Hub } from "@/lib/constants";
 
 // Regular session hours only; exchange holidays and lunch breaks are not modelled.
-function marketStatus(hub: Hub, now: Date): { time: string; open: boolean } {
+export function marketStatus(hub: Hub, now: Date): { time: string; open: boolean } {
   const parts = new Intl.DateTimeFormat("en-GB", {
     timeZone: hub.timezone,
     hour: "2-digit",
@@ -51,13 +52,13 @@ function MarketClocks() {
 export function Header({ connected }: { connected: boolean }) {
   return (
     <header className="bg-[#07101e] border-b border-cyber-border px-6 py-3 flex items-center justify-between gap-6">
-      <div className="flex items-center space-x-3">
+      <Link href="/" className="flex items-center space-x-3" title="Back to the globe">
         <Globe2 className="w-7 h-7 text-gold" />
         <div className="leading-tight">
           <h1 className="font-display text-xl tracking-[0.25em] text-ink">CHRONO</h1>
           <p className="font-mono text-[10px] tracking-[0.2em] text-gold-dim">GLOBAL MARKETS COMMAND CENTER</p>
         </div>
-      </div>
+      </Link>
       <MarketClocks />
       <div className="flex items-center space-x-2 font-mono text-[11px] px-3 py-1.5 rounded border border-white/10 bg-black/30">
         <span className={`w-2 h-2 rounded-full ${connected ? "bg-cyber-green animate-pulse" : "bg-cyber-red"}`} />

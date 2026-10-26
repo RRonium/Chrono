@@ -1,0 +1,66 @@
+{
+  "summary": "The world's largest and most liquid equity market, home to the reserve currency and the deepest government bond market.",
+  "exchanges": [
+    {
+      "name": "New York Stock Exchange",
+      "city": "New York",
+      "website": "https://www.nyse.com"
+    },
+    {
+      "name": "Nasdaq",
+      "city": "New York",
+      "website": "https://www.nasdaq.com"
+    }
+  ],
+  "indices": [
+    {
+      "name": "S&P 500",
+      "symbol": "^GSPC"
+    },
+    {
+      "name": "Dow Jones Industrial Average",
+      "symbol": "^DJI"
+    },
+    {
+      "name": "Nasdaq Composite",
+      "symbol": "^IXIC"
+    }
+  ],
+  "centralBank": {
+    "name": "Federal Reserve",
+    "website": "https://www.federalreserve.gov"
+  },
+  "regulator": {
+    "name": "Securities and Exchange Commission",
+    "website": "https://www.sec.gov"
+  },
+  "companies": [
+    {
+      "name": "Apple",
+      "symbol": "AAPL"
+    },
+    {
+      "name": "Microsoft",
+      "symbol": "MSFT"
+    },
+    {
+      "name": "Alphabet",
+      "symbol": "GOOGL"
+    },
+    {
+      "name": "Tesla",
+      "symbol": "TSLA"
+    },
+    {
+      "name": "Amazon",
+      "symbol": "AMZN"
+    }
+  ],
+  "sectors": [
+    "Technology",
+    "Financials",
+    "Healthcare",
+    "Consumer discretionary",
+    "Communication services"
+  ]
+}

@@ -146,14 +146,6 @@
     "unit": "pct_gdp",
     "group": "structure"
    }
-  },
-  "globeAliases": {
-   "SDS": "SSD",
-   "PSX": "PSE",
-   "SAH": "ESH",
-   "KOS": "XKX",
-   "CYN": "CYP",
-   "SOL": "SOM"
   }
  },
  "countries": [
@@ -482,15 +474,6 @@
    "hasMarket": false
   },
   {
-   "iso3": "CHI",
-   "name": "CHI",
-   "flag": null,
-   "region": null,
-   "subregion": null,
-   "gdp": 12507320838.3932,
-   "hasMarket": false
-  },
-  {
    "iso3": "KHM",
    "name": "Cambodia",
    "flag": "🇰🇭",
@@ -578,7 +561,7 @@
    "region": "Asia",
    "subregion": "Eastern Asia",
    "gdp": 19498039388042.6,
-   "hasMarket": false
+   "hasMarket": true
   },
   {
    "iso3": "CXR",
@@ -911,7 +894,7 @@
    "region": "Europe",
    "subregion": "Western Europe",
    "gdp": 5050922925047.05,
-   "hasMarket": false
+   "hasMarket": true
   },
   {
    "iso3": "GHA",
@@ -1082,7 +1065,7 @@
    "region": "Asia",
    "subregion": "Southern Asia",
    "gdp": 3956067115771.63,
-   "hasMarket": false
+   "hasMarket": true
   },
   {
    "iso3": "IDN",
@@ -1172,7 +1155,7 @@
    "region": "Asia",
    "subregion": "Eastern Asia",
    "gdp": 4435162999976.94,
-   "hasMarket": false
+   "hasMarket": true
   },
   {
    "iso3": "JEY",
@@ -2279,7 +2262,7 @@
    "region": "Europe",
    "subregion": "Northern Europe",
    "gdp": 4002587541846.01,
-   "hasMarket": false
+   "hasMarket": true
   },
   {
    "iso3": "USA",
@@ -2288,7 +2271,7 @@
    "region": "Americas",
    "subregion": "North America",
    "gdp": 30769700000000.0,
-   "hasMarket": false
+   "hasMarket": true
   },
   {
    "iso3": "UMI",

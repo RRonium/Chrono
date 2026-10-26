@@ -1,0 +1,62 @@
+{
+  "summary": "One of the fastest-growing large economies, with a deep retail investor base and two national exchanges.",
+  "exchanges": [
+    {
+      "name": "National Stock Exchange of India",
+      "city": "Mumbai",
+      "website": "https://www.nseindia.com"
+    },
+    {
+      "name": "BSE",
+      "city": "Mumbai",
+      "website": "https://www.bseindia.com"
+    }
+  ],
+  "indices": [
+    {
+      "name": "NIFTY 50",
+      "symbol": "^NSEI"
+    },
+    {
+      "name": "BSE Sensex",
+      "symbol": "^BSESN"
+    }
+  ],
+  "centralBank": {
+    "name": "Reserve Bank of India",
+    "website": "https://www.rbi.org.in"
+  },
+  "regulator": {
+    "name": "Securities and Exchange Board of India",
+    "website": "https://www.sebi.gov.in"
+  },
+  "companies": [
+    {
+      "name": "Reliance Industries",
+      "symbol": "RELIANCE.NS"
+    },
+    {
+      "name": "Tata Consultancy Services",
+      "symbol": "TCS.NS"
+    },
+    {
+      "name": "HDFC Bank",
+      "symbol": "HDFCBANK.NS"
+    },
+    {
+      "name": "Infosys",
+      "symbol": "INFY.NS"
+    },
+    {
+      "name": "State Bank of India",
+      "symbol": "SBIN.NS"
+    }
+  ],
+  "sectors": [
+    "Financials",
+    "Information technology",
+    "Energy",
+    "Consumer staples",
+    "Automobiles"
+  ]
+}

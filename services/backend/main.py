@@ -5,7 +5,7 @@ from services.backend.config import settings
 from services.backend.database.postgres import connect_postgres, disconnect_postgres
 from services.backend.database.mongodb import connect_mongo, disconnect_mongo
 from services.backend.database.redis_client import connect_redis, disconnect_redis
-from services.backend.routers import market, macro, news, websockets
+from services.backend.routers import countries, market, macro, news, websockets
 from services.backend.services.pubsub import redis_listener
 
 app = FastAPI(title="Chrono Backend API", version="1.0.0")
@@ -22,6 +22,7 @@ app.include_router(market.router)
 app.include_router(macro.router)
 app.include_router(news.router)
 app.include_router(websockets.router)
+app.include_router(countries.router)
 
 @app.on_event("startup")
 async def startup_event():

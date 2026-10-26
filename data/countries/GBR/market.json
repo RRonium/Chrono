@@ -1,0 +1,57 @@
+{
+  "summary": "A global financial centre; London lists many multinational energy, mining, pharma and banking groups.",
+  "exchanges": [
+    {
+      "name": "London Stock Exchange",
+      "city": "London",
+      "website": "https://www.londonstockexchange.com"
+    }
+  ],
+  "indices": [
+    {
+      "name": "FTSE 100",
+      "symbol": "^FTSE"
+    },
+    {
+      "name": "FTSE 250",
+      "symbol": "^FTMC"
+    }
+  ],
+  "centralBank": {
+    "name": "Bank of England",
+    "website": "https://www.bankofengland.co.uk"
+  },
+  "regulator": {
+    "name": "Financial Conduct Authority",
+    "website": "https://www.fca.org.uk"
+  },
+  "companies": [
+    {
+      "name": "Shell",
+      "symbol": "SHEL.L"
+    },
+    {
+      "name": "AstraZeneca",
+      "symbol": "AZN.L"
+    },
+    {
+      "name": "HSBC",
+      "symbol": "HSBA.L"
+    },
+    {
+      "name": "Unilever",
+      "symbol": "ULVR.L"
+    },
+    {
+      "name": "BP",
+      "symbol": "BP.L"
+    }
+  ],
+  "sectors": [
+    "Financials",
+    "Energy",
+    "Healthcare",
+    "Consumer staples",
+    "Mining"
+  ]
+}

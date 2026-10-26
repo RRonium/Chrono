@@ -321,6 +321,8 @@ FRED: `{series_id, value, date, country_code: "USA", type}`. World Bank: `{indic
 | GET | `/api/v1/macro/indicators/{iso_code}` | Mongo `economic_indicators` | always `[]` today |
 | GET | `/api/v1/countries` | `data/countries/index.json` | every country + indicator definitions |
 | GET | `/api/v1/countries/{iso}?boundary=` | `data/countries/<ISO>/` | `{profile, market}` (+ `boundary` GeoJSON if asked); 404 for unknown codes |
+| GET | `/api/v1/agent/status` | env | `{configured, models}`; `configured` is false without `GEMINI_API_KEY` |
+| POST | `/api/v1/agent/{iso}/chat` | Gemini + tools | body `{message, history:[{role,text}], artifact_offset}` → `{reply, artifacts, steps, model}`. 429 when the free quota is used up, 503 when every model is busy |
 | WS | `/ws/live` | Redis channels | every message on the three subscribed channels |
 
 CORS is `*`. No auth on anything. Note: the frontend never calls `/api/v1/news`; the feed only shows
@@ -388,6 +390,15 @@ red `#ff0055`). Several components use classes like `bg-cyber-bg`, `bg-cyber-car
 - **Folder layout and refresh.** See [`data/countries/README.md`](data/countries/README.md). Generated
   files come from `scripts/refresh_country_data.py` (stdlib only) via the **Refresh country data**
   workflow. Hand-written `market.json` exists for the six hubs (USA, IND, DEU, GBR, JPN, CHN).
+- **Ask Chrono (chat).** `components/country/CountryAgent.tsx` renders the chat pane and the
+  Charts & Tables pane between the markets block and Key indicators; both heights are draggable and
+  the conversation is saved per country in `localStorage`. The backend loop lives in
+  `services/backend/agent/` (`chat.py` prompt + loop, `tools.py` tools, `gemini.py` REST client,
+  stdlib only). Tools read `data/countries/`, Timescale prices and Mongo news. `show_chart` /
+  `show_table` return specs built from real data (the model never supplies the numbers), drawn by
+  `Charts.tsx`; `draw_custom_chart` asks Gemini's code-execution sandbox for a matplotlib PNG.
+  Artifact numbers continue across turns via `artifact_offset` so "see chart 3" in a reply matches
+  the tab. Calls are non-streaming; a custom chart can take a minute or two.
 - **Globe codes.** `public/data/countries.geojson` (110m, used by the globe) carries the same ISO
   codes as the page folders; Natural Earth's own codes for South Sudan, Palestine, Western Sahara
   and Kosovo were mapped, and N. Cyprus / Somaliland open Cyprus / Somalia.
@@ -439,6 +450,8 @@ Docker, compose passes variables explicitly (container host names `chrono-postgr
 | `REDIS_URL` | everything | |
 | `FINNHUB_API_KEY` | ingestion | optional; without it Yahoo polls the US symbols too |
 | `FRED_API_KEY`, `NEWS_API_KEY` | defined, unused | |
+| `GEMINI_API_KEY` | backend agent | secret; only in the gitignored `.env`. Read by `services/backend/agent/gemini.py`. In Docker it reaches the backend because the image copies the repo, `.env` included (no `.dockerignore`), so rebuild the backend after setting it and never push that image. |
+| `GEMINI_MODELS` | backend agent | optional comma list tried in order on 503/404; default `gemini-3.5-flash,gemini-flash-latest,gemini-3.8-flash,gemini-3.5-flash-lite` |
 | `JWT_SECRET`, `NODE_ENV`, `NEXT_PUBLIC_API_URL`, `TIMESCALE_USER/PASSWORD/DB`, `MONGODB_URI` | mostly unused | `NODE_ENV` is echoed by `GET /` |
 
 Defaults (passwords, `JWT_SECRET`) are development values committed in code; never reuse them anywhere real.

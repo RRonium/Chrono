@@ -6,6 +6,7 @@ import { SentimentFeed } from "@/components/dashboard/SentimentFeed";
 import { countryHref, formatChange, formatValue, latestPoint } from "@/lib/countries/format";
 import type { CountryPageData, IndicatorDef, SeriesPoint } from "@/lib/countries/types";
 import { LineChart, ShareBar, Sparkline } from "./Charts";
+import { CountryAgent } from "./CountryAgent";
 import { CountryBrief } from "./CountryBrief";
 import { MarketSection } from "./MarketSection";
 
@@ -139,6 +140,8 @@ export function CountryPanel({ data, ticks, articles }: { data: CountryPageData;
           </p>
         </Section>
       )}
+
+      <CountryAgent profile={profile} market={market} />
 
       {tiles.length > 0 ? (
         <Section title="KEY INDICATORS" aside={<span className="font-mono text-[10px] text-ink-faint">annual · World Bank</span>}>

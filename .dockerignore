@@ -1,0 +1,16 @@
+# The backend image does `COPY . .` and needs only services/ and data/countries/.
+# Keeping the rest out of the build context makes builds much faster.
+.git
+.github
+.env
+.env.*
+apps
+docs
+Ideation
+database
+scripts
+**/node_modules
+**/.next
+**/__pycache__
+**/*.pyc
+*.md

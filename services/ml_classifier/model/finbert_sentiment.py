@@ -1,6 +1,7 @@
 """FinBERT sentiment classification with CPU inference, batch optimization, and graceful fallback."""
 
 import logging
+import time
 from typing import Optional
 
 logger = logging.getLogger(__name__)
@@ -10,7 +11,10 @@ _finit_model = None
 _finit_tokenizer = None
 _finit_device = None
 _finit_initialized = False
+_finit_last_attempt = 0.0
 _has_torch_transformers = False
+# If the model download failed (e.g. started offline), try again after this long instead of never.
+FINBERT_RETRY_SECONDS = 600
 
 try:
     import torch
@@ -23,10 +27,14 @@ except ImportError:
 
 def _init_finit():
     """Initialize FinBERT model and tokenizer once (CPU-optimized)."""
-    global _finit_model, _finit_tokenizer, _finit_device, _finit_initialized
+    global _finit_model, _finit_tokenizer, _finit_device, _finit_initialized, _finit_last_attempt
 
     if _finit_initialized:
-        return
+        if _finit_model is not None or not _has_torch_transformers:
+            return
+        if time.monotonic() - _finit_last_attempt < FINBERT_RETRY_SECONDS:
+            return
+    _finit_last_attempt = time.monotonic()
 
     if not _has_torch_transformers:
         logger.warning("torch or transformers not available. Finbert sentiment will use heuristic fallback.")

@@ -31,6 +31,8 @@ DEFAULT_TICKERS = [
 CORE_YAHOO_SYMBOLS = ["RELIANCE.NS", "TATAMOTORS.NS", "^NSEI", "^GSPC"]
 # Every symbol on the country pages; slower than the core ticker to stay under Yahoo's rate limits.
 COUNTRY_MARKET_INTERVAL_SECONDS = int(os.getenv("COUNTRY_MARKET_INTERVAL_SECONDS", "120"))
+# A scraper stuck on a dead connection must not hold the news job forever, or every later run is skipped.
+SCRAPER_TIMEOUT_SECONDS = int(os.getenv("SCRAPER_TIMEOUT_SECONDS", "45"))
 
 if FINNHUB_API_KEY:
     _streamer_instance = start_finnhub_stream(api_key=FINNHUB_API_KEY, symbols=DEFAULT_TICKERS)
@@ -80,13 +82,16 @@ async def _safe_scrape(scraper_coro_or_func, name: str):
     """Safely run a scraper (sync or async) and return results."""
     try:
         if asyncio.iscoroutinefunction(scraper_coro_or_func) or asyncio.iscoroutine(scraper_coro_or_func):
-            res = await scraper_coro_or_func()
+            res = await asyncio.wait_for(scraper_coro_or_func(), SCRAPER_TIMEOUT_SECONDS)
         else:
             # Run blocking scraper in executor
             loop = asyncio.get_running_loop()
-            res = await loop.run_in_executor(None, scraper_coro_or_func)
+            res = await asyncio.wait_for(loop.run_in_executor(None, scraper_coro_or_func), SCRAPER_TIMEOUT_SECONDS)
         logger.info(f"Pipeline: {name} produced {len(res) if isinstance(res, list) else 0} articles")
         return res if isinstance(res, list) else []
+    except asyncio.TimeoutError:
+        logger.warning(f"{name} scrape timed out after {SCRAPER_TIMEOUT_SECONDS}s; skipping this round")
+        return []
     except Exception as e:
         logger.error(f"{name} scrape error: {e}", exc_info=True)
         return []
@@ -145,7 +150,9 @@ async def run_news_pipeline():
 
 
 def setup_scheduler():
-    scheduler = AsyncIOScheduler()
+    # coalesce + misfire grace: after a stall (e.g. a network outage) run each job once and carry on,
+    # instead of dropping runs as "missed".
+    scheduler = AsyncIOScheduler(job_defaults={"coalesce": True, "max_instances": 1, "misfire_grace_time": 30})
 
     scheduler.add_job(
         run_market_pipeline,
@@ -172,7 +179,22 @@ def setup_scheduler():
     )
     logger.info("News pipeline scheduled every 60s.")
 
+    scheduler.add_job(
+        check_finnhub_stream,
+        IntervalTrigger(seconds=60),
+        id="finnhub_watchdog",
+        replace_existing=True,
+    )
+
     return scheduler
+
+
+def check_finnhub_stream():
+    """Restart the Finnhub reconnect thread if it has died."""
+    global _streamer_instance
+    if FINNHUB_API_KEY and not (_streamer_instance and _streamer_instance.is_alive):
+        logger.warning("Finnhub stream thread is not running; restarting it")
+        _streamer_instance = start_finnhub_stream(api_key=FINNHUB_API_KEY, symbols=DEFAULT_TICKERS)
 
 
 async def run_scheduled_jobs():

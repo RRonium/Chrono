@@ -22,6 +22,9 @@ DEFAULT_SYMBOLS = [
     "BINANCE:ETHUSDT",
 ]
 
+RECONNECT_MIN_SECONDS = 2
+RECONNECT_MAX_SECONDS = 60
+
 # Track baseline previous close and session open prices
 _previous_prices: dict[str, float] = {}
 _session_open_prices: dict[str, float] = {}
@@ -59,7 +62,10 @@ class FinnhubStreamer:
         self.symbols = [s.replace('$', '').strip() for s in raw_symbols if s and s.replace('$', '').strip()]
         self.ws = None
         self.thread = None
+        # is_running means "connected right now"; _stop_event ends the reconnect loop.
+        # Keeping them apart stops a dropped connection from ending the loop for good.
         self.is_running = False
+        self._stop_event = threading.Event()
         # Initialize baselines on startup
         _initialize_baselines()
 
@@ -129,6 +135,7 @@ class FinnhubStreamer:
         self.is_running = False
 
     def _on_open(self, ws):
+        self.is_running = True
         logger.info("Finnhub WebSocket connected successfully")
         for sym in self.symbols:
             sub_msg = json.dumps({"type": "subscribe", "symbol": sym})
@@ -142,7 +149,9 @@ class FinnhubStreamer:
 
         def run():
             url = f"wss://ws.finnhub.io?token={self.api_key}"
-            while self.is_running:
+            delay = RECONNECT_MIN_SECONDS
+            while not self._stop_event.is_set():
+                started = time.monotonic()
                 try:
                     self.ws = websocket.WebSocketApp(
                         url,
@@ -154,13 +163,26 @@ class FinnhubStreamer:
                     self.ws.run_forever(ping_interval=30, ping_timeout=10)
                 except Exception as e:
                     logger.error(f"Finnhub WebSocket run_forever failure: {e}")
-                time.sleep(3)
+                self.is_running = False
+                if self._stop_event.is_set():
+                    break
+                # A connection that stayed up for a while was healthy: start backing off from scratch.
+                if time.monotonic() - started > RECONNECT_MAX_SECONDS:
+                    delay = RECONNECT_MIN_SECONDS
+                logger.warning(f"Finnhub WebSocket disconnected; reconnecting in {delay}s")
+                self._stop_event.wait(delay)
+                delay = min(delay * 2, RECONNECT_MAX_SECONDS)
 
-        self.is_running = True
+        self._stop_event.clear()
         self.thread = threading.Thread(target=run, daemon=True)
         self.thread.start()
 
+    @property
+    def is_alive(self) -> bool:
+        return self.thread is not None and self.thread.is_alive()
+
     def stop(self):
+        self._stop_event.set()
         self.is_running = False
         if self.ws:
             self.ws.close()
@@ -169,7 +191,7 @@ _streamer_instance: FinnhubStreamer | None = None
 
 def start_finnhub_stream(api_key: str = None, symbols: list[str] = None):
     global _streamer_instance
-    if _streamer_instance is None or not _streamer_instance.is_running:
+    if _streamer_instance is None or not _streamer_instance.is_alive:
         _streamer_instance = FinnhubStreamer(api_key=api_key, symbols=symbols)
         _streamer_instance.start()
     return _streamer_instance

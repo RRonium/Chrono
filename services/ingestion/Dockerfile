@@ -11,6 +11,8 @@ COPY services/ingestion/requirements.txt ./services/ingestion/requirements.txt
 RUN pip install --no-cache-dir -r services/ingestion/requirements.txt
 
 COPY services /app/services
+# Symbols for every country page (data/countries/<ISO>/market.json)
+COPY data/countries /app/data/countries
 
 ENV PYTHONPATH=/app
 

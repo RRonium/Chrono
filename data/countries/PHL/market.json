@@ -1,0 +1,47 @@
+{
+  "summary": "A market of family-run conglomerates, property developers and banks.",
+  "exchanges": [
+    {
+      "name": "Philippine Stock Exchange",
+      "city": "Taguig",
+      "website": "https://www.pse.com.ph"
+    }
+  ],
+  "indices": [
+    {
+      "name": "PSEi",
+      "symbol": "PSEI.PS"
+    }
+  ],
+  "centralBank": {
+    "name": "Bangko Sentral ng Pilipinas",
+    "website": "https://www.bsp.gov.ph"
+  },
+  "regulator": {
+    "name": "Securities and Exchange Commission",
+    "website": "https://www.sec.gov.ph"
+  },
+  "companies": [
+    {
+      "name": "SM Investments",
+      "symbol": "SM.PS"
+    },
+    {
+      "name": "BDO Unibank",
+      "symbol": "BDO.PS"
+    },
+    {
+      "name": "Ayala Land",
+      "symbol": "ALI.PS"
+    },
+    {
+      "name": "ICTSI",
+      "symbol": "ICT.PS"
+    }
+  ],
+  "sectors": [
+    "Industrials",
+    "Financials",
+    "Real estate"
+  ]
+}

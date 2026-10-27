@@ -1,0 +1,48 @@
+{
+  "summary": "A copper- and lithium-linked market with large retail, banking and utility groups.",
+  "exchanges": [
+    {
+      "name": "Santiago Stock Exchange",
+      "city": "Santiago",
+      "website": "https://www.bolsadesantiago.com"
+    }
+  ],
+  "indices": [
+    {
+      "name": "S&P IPSA",
+      "symbol": "^IPSA"
+    }
+  ],
+  "centralBank": {
+    "name": "Banco Central de Chile",
+    "website": "https://www.bcentral.cl"
+  },
+  "regulator": {
+    "name": "Comisión para el Mercado Financiero",
+    "website": "https://www.cmfchile.cl"
+  },
+  "companies": [
+    {
+      "name": "SQM",
+      "symbol": "SQM-B.SN"
+    },
+    {
+      "name": "Banco de Chile",
+      "symbol": "CHILE.SN"
+    },
+    {
+      "name": "Falabella",
+      "symbol": "FALABELLA.SN"
+    },
+    {
+      "name": "Empresas Copec",
+      "symbol": "COPEC.SN"
+    }
+  ],
+  "sectors": [
+    "Materials",
+    "Financials",
+    "Consumer discretionary",
+    "Energy"
+  ]
+}

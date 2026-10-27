@@ -52,6 +52,16 @@ async function loadHistory() {
   } catch {
     historyLoaded = false;
   }
+  // Latest quote per symbol, so country pages are filled before the next poll arrives.
+  try {
+    const res = await fetch(`${API_URL}/api/v1/market/latest`);
+    if (!res.ok) return;
+    const quotes = await res.json();
+    if (!Array.isArray(quotes)) return;
+    const latest = new Map(quotes.filter((tick) => tick?.symbol).map((tick) => [tick.symbol, tick]));
+    state.ticks.forEach((tick) => latest.set(tick.symbol, tick));
+    setState({ ticks: Array.from(latest.values()) });
+  } catch {}
 }
 
 function connect() {

@@ -1,0 +1,51 @@
+{
+  "summary": "A defensive market dominated by food, pharma and wealth-management giants.",
+  "exchanges": [
+    {
+      "name": "SIX Swiss Exchange",
+      "city": "Zurich",
+      "website": "https://www.six-group.com"
+    }
+  ],
+  "indices": [
+    {
+      "name": "Swiss Market Index",
+      "symbol": "^SSMI"
+    }
+  ],
+  "centralBank": {
+    "name": "Swiss National Bank",
+    "website": "https://www.snb.ch"
+  },
+  "regulator": {
+    "name": "FINMA",
+    "website": "https://www.finma.ch"
+  },
+  "companies": [
+    {
+      "name": "Nestlé",
+      "symbol": "NESN.SW"
+    },
+    {
+      "name": "Novartis",
+      "symbol": "NOVN.SW"
+    },
+    {
+      "name": "Roche",
+      "symbol": "ROG.SW"
+    },
+    {
+      "name": "UBS",
+      "symbol": "UBSG.SW"
+    },
+    {
+      "name": "Zurich Insurance",
+      "symbol": "ZURN.SW"
+    }
+  ],
+  "sectors": [
+    "Health care",
+    "Consumer staples",
+    "Financials"
+  ]
+}

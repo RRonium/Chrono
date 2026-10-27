@@ -1,0 +1,47 @@
+{
+  "summary": "A recovering market led by its four systemic banks, gaming and utilities.",
+  "exchanges": [
+    {
+      "name": "Athens Stock Exchange",
+      "city": "Athens",
+      "website": "https://www.athexgroup.gr"
+    }
+  ],
+  "indices": [
+    {
+      "name": "Athens General Composite",
+      "symbol": "^ATG"
+    }
+  ],
+  "centralBank": {
+    "name": "Bank of Greece (Eurosystem, ECB)",
+    "website": "https://www.bankofgreece.gr"
+  },
+  "regulator": {
+    "name": "Hellenic Capital Market Commission",
+    "website": "https://www.hcmc.gr"
+  },
+  "companies": [
+    {
+      "name": "National Bank of Greece",
+      "symbol": "ETE.AT"
+    },
+    {
+      "name": "Eurobank",
+      "symbol": "EUROB.AT"
+    },
+    {
+      "name": "Alpha Bank",
+      "symbol": "ALPHA.AT"
+    },
+    {
+      "name": "OPAP",
+      "symbol": "OPAP.AT"
+    }
+  ],
+  "sectors": [
+    "Financials",
+    "Consumer discretionary",
+    "Utilities"
+  ]
+}

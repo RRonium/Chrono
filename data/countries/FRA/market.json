@@ -1,0 +1,52 @@
+{
+  "summary": "Home to Europe's luxury giants and large energy, aerospace and pharma groups on Euronext Paris.",
+  "exchanges": [
+    {
+      "name": "Euronext Paris",
+      "city": "Paris",
+      "website": "https://www.euronext.com"
+    }
+  ],
+  "indices": [
+    {
+      "name": "CAC 40",
+      "symbol": "^FCHI"
+    }
+  ],
+  "centralBank": {
+    "name": "Banque de France (Eurosystem, ECB)",
+    "website": "https://www.banque-france.fr"
+  },
+  "regulator": {
+    "name": "Autorité des marchés financiers",
+    "website": "https://www.amf-france.org"
+  },
+  "companies": [
+    {
+      "name": "LVMH",
+      "symbol": "MC.PA"
+    },
+    {
+      "name": "L'Oréal",
+      "symbol": "OR.PA"
+    },
+    {
+      "name": "TotalEnergies",
+      "symbol": "TTE.PA"
+    },
+    {
+      "name": "Sanofi",
+      "symbol": "SAN.PA"
+    },
+    {
+      "name": "Airbus",
+      "symbol": "AIR.PA"
+    }
+  ],
+  "sectors": [
+    "Consumer discretionary",
+    "Energy",
+    "Health care",
+    "Industrials"
+  ]
+}

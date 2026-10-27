@@ -1,0 +1,48 @@
+{
+  "summary": "A small market led by energy, utilities, grocery retail and banking on Euronext Lisbon.",
+  "exchanges": [
+    {
+      "name": "Euronext Lisbon",
+      "city": "Lisbon",
+      "website": "https://www.euronext.com"
+    }
+  ],
+  "indices": [
+    {
+      "name": "PSI",
+      "symbol": "PSI20.LS"
+    }
+  ],
+  "centralBank": {
+    "name": "Banco de Portugal (Eurosystem, ECB)",
+    "website": "https://www.bportugal.pt"
+  },
+  "regulator": {
+    "name": "Comissão do Mercado de Valores Mobiliários",
+    "website": "https://www.cmvm.pt"
+  },
+  "companies": [
+    {
+      "name": "EDP",
+      "symbol": "EDP.LS"
+    },
+    {
+      "name": "Galp Energia",
+      "symbol": "GALP.LS"
+    },
+    {
+      "name": "Jerónimo Martins",
+      "symbol": "JMT.LS"
+    },
+    {
+      "name": "Millennium bcp",
+      "symbol": "BCP.LS"
+    }
+  ],
+  "sectors": [
+    "Utilities",
+    "Energy",
+    "Consumer staples",
+    "Financials"
+  ]
+}

@@ -1,7 +1,18 @@
+import json
 from fastapi import APIRouter, HTTPException
 from services.backend.database.postgres import get_db_pool
+from services.backend.database.redis_client import get_redis
 
 router = APIRouter(prefix="/api/v1/market", tags=["market"])
+
+@router.get("/latest")
+async def get_latest_quotes():
+    """Most recent tick for every symbol the ingestion worker has published."""
+    r = get_redis()
+    if not r:
+        raise HTTPException(status_code=503, detail="Redis not connected")
+    quotes = await r.hgetall("market:latest")
+    return [json.loads(payload) for payload in quotes.values()]
 
 @router.get("/ticks/{symbol}")
 async def get_latest_tick(symbol: str):

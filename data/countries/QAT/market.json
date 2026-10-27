@@ -1,0 +1,42 @@
+{
+  "summary": "A gas-rich Gulf market led by banks and industrial groups.",
+  "exchanges": [
+    {
+      "name": "Qatar Stock Exchange",
+      "city": "Doha",
+      "website": "https://www.qe.com.qa"
+    }
+  ],
+  "indices": [],
+  "centralBank": {
+    "name": "Qatar Central Bank",
+    "website": "https://www.qcb.gov.qa"
+  },
+  "regulator": {
+    "name": "Qatar Financial Markets Authority",
+    "website": "https://www.qfma.org.qa"
+  },
+  "companies": [
+    {
+      "name": "QNB",
+      "symbol": "QNBK.QA"
+    },
+    {
+      "name": "Industries Qatar",
+      "symbol": "IQCD.QA"
+    },
+    {
+      "name": "Qatar Islamic Bank",
+      "symbol": "QIBK.QA"
+    },
+    {
+      "name": "Ooredoo",
+      "symbol": "ORDS.QA"
+    }
+  ],
+  "sectors": [
+    "Financials",
+    "Materials",
+    "Telecoms"
+  ]
+}

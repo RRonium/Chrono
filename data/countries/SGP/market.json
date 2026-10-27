@@ -1,0 +1,48 @@
+{
+  "summary": "A regional financial centre whose index is led by three large banks.",
+  "exchanges": [
+    {
+      "name": "Singapore Exchange",
+      "city": "Singapore",
+      "website": "https://www.sgx.com"
+    }
+  ],
+  "indices": [
+    {
+      "name": "Straits Times Index",
+      "symbol": "^STI"
+    }
+  ],
+  "centralBank": {
+    "name": "Monetary Authority of Singapore",
+    "website": "https://www.mas.gov.sg"
+  },
+  "companies": [
+    {
+      "name": "DBS Group",
+      "symbol": "D05.SI"
+    },
+    {
+      "name": "OCBC",
+      "symbol": "O39.SI"
+    },
+    {
+      "name": "UOB",
+      "symbol": "U11.SI"
+    },
+    {
+      "name": "Singtel",
+      "symbol": "Z74.SI"
+    },
+    {
+      "name": "Singapore Airlines",
+      "symbol": "C6L.SI"
+    }
+  ],
+  "sectors": [
+    "Financials",
+    "Telecoms",
+    "Industrials",
+    "Real estate"
+  ]
+}

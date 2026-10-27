@@ -1,0 +1,51 @@
+{
+  "summary": "A semiconductor powerhouse; TSMC alone is a large share of the index.",
+  "exchanges": [
+    {
+      "name": "Taiwan Stock Exchange",
+      "city": "Taipei",
+      "website": "https://www.twse.com.tw"
+    }
+  ],
+  "indices": [
+    {
+      "name": "TAIEX",
+      "symbol": "^TWII"
+    }
+  ],
+  "centralBank": {
+    "name": "Central Bank of the Republic of China (Taiwan)",
+    "website": "https://www.cbc.gov.tw"
+  },
+  "regulator": {
+    "name": "Financial Supervisory Commission",
+    "website": "https://www.fsc.gov.tw"
+  },
+  "companies": [
+    {
+      "name": "TSMC",
+      "symbol": "2330.TW"
+    },
+    {
+      "name": "Hon Hai (Foxconn)",
+      "symbol": "2317.TW"
+    },
+    {
+      "name": "MediaTek",
+      "symbol": "2454.TW"
+    },
+    {
+      "name": "Chunghwa Telecom",
+      "symbol": "2412.TW"
+    },
+    {
+      "name": "Cathay Financial",
+      "symbol": "2882.TW"
+    }
+  ],
+  "sectors": [
+    "Technology",
+    "Financials",
+    "Telecoms"
+  ]
+}

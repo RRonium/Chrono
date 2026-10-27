@@ -1,0 +1,33 @@
+{
+  "summary": "A small market dominated by the state utility ČEZ and two large banks.",
+  "exchanges": [
+    {
+      "name": "Prague Stock Exchange",
+      "city": "Prague",
+      "website": "https://www.pse.cz"
+    }
+  ],
+  "indices": [],
+  "centralBank": {
+    "name": "Česká národní banka",
+    "website": "https://www.cnb.cz"
+  },
+  "companies": [
+    {
+      "name": "ČEZ",
+      "symbol": "CEZ.PR"
+    },
+    {
+      "name": "Komerční banka",
+      "symbol": "KOMB.PR"
+    },
+    {
+      "name": "Moneta Money Bank",
+      "symbol": "MONET.PR"
+    }
+  ],
+  "sectors": [
+    "Utilities",
+    "Financials"
+  ]
+}

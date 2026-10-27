@@ -1,0 +1,52 @@
+{
+  "summary": "An energy and seafood market, backed by the world's largest sovereign wealth fund.",
+  "exchanges": [
+    {
+      "name": "Euronext Oslo Børs",
+      "city": "Oslo",
+      "website": "https://www.euronext.com"
+    }
+  ],
+  "indices": [
+    {
+      "name": "OBX",
+      "symbol": "OBX.OL"
+    }
+  ],
+  "centralBank": {
+    "name": "Norges Bank",
+    "website": "https://www.norges-bank.no"
+  },
+  "regulator": {
+    "name": "Finanstilsynet",
+    "website": "https://www.finanstilsynet.no"
+  },
+  "companies": [
+    {
+      "name": "Equinor",
+      "symbol": "EQNR.OL"
+    },
+    {
+      "name": "DNB Bank",
+      "symbol": "DNB.OL"
+    },
+    {
+      "name": "Telenor",
+      "symbol": "TEL.OL"
+    },
+    {
+      "name": "Norsk Hydro",
+      "symbol": "NHY.OL"
+    },
+    {
+      "name": "Mowi",
+      "symbol": "MOWI.OL"
+    }
+  ],
+  "sectors": [
+    "Energy",
+    "Financials",
+    "Materials",
+    "Consumer staples"
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "summary": "A large, high-inflation emerging market led by conglomerates, banks and the national airline.",
+  "exchanges": [
+    {
+      "name": "Borsa Istanbul",
+      "city": "Istanbul",
+      "website": "https://www.borsaistanbul.com"
+    }
+  ],
+  "indices": [
+    {
+      "name": "BIST 100",
+      "symbol": "XU100.IS"
+    }
+  ],
+  "centralBank": {
+    "name": "Central Bank of the Republic of Türkiye",
+    "website": "https://www.tcmb.gov.tr"
+  },
+  "regulator": {
+    "name": "Capital Markets Board",
+    "website": "https://spk.gov.tr"
+  },
+  "companies": [
+    {
+      "name": "Turkish Airlines",
+      "symbol": "THYAO.IS"
+    },
+    {
+      "name": "Koç Holding",
+      "symbol": "KCHOL.IS"
+    },
+    {
+      "name": "BİM",
+      "symbol": "BIMAS.IS"
+    },
+    {
+      "name": "Akbank",
+      "symbol": "AKBNK.IS"
+    },
+    {
+      "name": "Aselsan",
+      "symbol": "ASELS.IS"
+    }
+  ],
+  "sectors": [
+    "Financials",
+    "Industrials",
+    "Consumer staples"
+  ]
+}

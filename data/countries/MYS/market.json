@@ -1,0 +1,47 @@
+{
+  "summary": "A market led by banks, utilities and commodity groups on Bursa Malaysia.",
+  "exchanges": [
+    {
+      "name": "Bursa Malaysia",
+      "city": "Kuala Lumpur",
+      "website": "https://www.bursamalaysia.com"
+    }
+  ],
+  "indices": [
+    {
+      "name": "FTSE Bursa Malaysia KLCI",
+      "symbol": "^KLSE"
+    }
+  ],
+  "centralBank": {
+    "name": "Bank Negara Malaysia",
+    "website": "https://www.bnm.gov.my"
+  },
+  "regulator": {
+    "name": "Securities Commission Malaysia",
+    "website": "https://www.sc.com.my"
+  },
+  "companies": [
+    {
+      "name": "Maybank",
+      "symbol": "1155.KL"
+    },
+    {
+      "name": "Public Bank",
+      "symbol": "1295.KL"
+    },
+    {
+      "name": "CIMB Group",
+      "symbol": "1023.KL"
+    },
+    {
+      "name": "Tenaga Nasional",
+      "symbol": "5347.KL"
+    }
+  ],
+  "sectors": [
+    "Financials",
+    "Utilities",
+    "Energy"
+  ]
+}

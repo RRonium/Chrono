@@ -1,0 +1,52 @@
+{
+  "summary": "The Middle East's largest exchange, dominated by Saudi Aramco, banks and petrochemicals.",
+  "exchanges": [
+    {
+      "name": "Saudi Exchange (Tadawul)",
+      "city": "Riyadh",
+      "website": "https://www.saudiexchange.sa"
+    }
+  ],
+  "indices": [
+    {
+      "name": "Tadawul All Share",
+      "symbol": "^TASI.SR"
+    }
+  ],
+  "centralBank": {
+    "name": "Saudi Central Bank",
+    "website": "https://www.sama.gov.sa"
+  },
+  "regulator": {
+    "name": "Capital Market Authority",
+    "website": "https://cma.org.sa"
+  },
+  "companies": [
+    {
+      "name": "Saudi Aramco",
+      "symbol": "2222.SR"
+    },
+    {
+      "name": "Al Rajhi Bank",
+      "symbol": "1120.SR"
+    },
+    {
+      "name": "Saudi National Bank",
+      "symbol": "1180.SR"
+    },
+    {
+      "name": "SABIC",
+      "symbol": "2010.SR"
+    },
+    {
+      "name": "stc",
+      "symbol": "7010.SR"
+    }
+  ],
+  "sectors": [
+    "Energy",
+    "Financials",
+    "Materials",
+    "Telecoms"
+  ]
+}

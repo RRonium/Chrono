@@ -1,0 +1,53 @@
+{
+  "summary": "A resource-rich market dominated by banks, energy and railways, with Toronto as its main listing venue.",
+  "exchanges": [
+    {
+      "name": "Toronto Stock Exchange",
+      "city": "Toronto",
+      "website": "https://www.tsx.com"
+    }
+  ],
+  "indices": [
+    {
+      "name": "S&P/TSX Composite",
+      "symbol": "^GSPTSE"
+    }
+  ],
+  "centralBank": {
+    "name": "Bank of Canada",
+    "website": "https://www.bankofcanada.ca"
+  },
+  "regulator": {
+    "name": "Canadian Securities Administrators",
+    "website": "https://www.securities-administrators.ca"
+  },
+  "companies": [
+    {
+      "name": "Royal Bank of Canada",
+      "symbol": "RY.TO"
+    },
+    {
+      "name": "Toronto-Dominion Bank",
+      "symbol": "TD.TO"
+    },
+    {
+      "name": "Shopify",
+      "symbol": "SHOP.TO"
+    },
+    {
+      "name": "Enbridge",
+      "symbol": "ENB.TO"
+    },
+    {
+      "name": "Canadian National Railway",
+      "symbol": "CNR.TO"
+    }
+  ],
+  "sectors": [
+    "Financials",
+    "Energy",
+    "Materials",
+    "Industrials",
+    "Technology"
+  ]
+}

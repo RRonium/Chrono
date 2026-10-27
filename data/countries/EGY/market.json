@@ -1,0 +1,42 @@
+{
+  "summary": "North Africa's largest exchange, led by banks, real estate and investment banking.",
+  "exchanges": [
+    {
+      "name": "Egyptian Exchange",
+      "city": "Cairo",
+      "website": "https://www.egx.com.eg"
+    }
+  ],
+  "indices": [
+    {
+      "name": "EGX 30",
+      "symbol": "^CASE30"
+    }
+  ],
+  "centralBank": {
+    "name": "Central Bank of Egypt",
+    "website": "https://www.cbe.org.eg"
+  },
+  "regulator": {
+    "name": "Financial Regulatory Authority",
+    "website": "https://fra.gov.eg"
+  },
+  "companies": [
+    {
+      "name": "Commercial International Bank",
+      "symbol": "COMI.CA"
+    },
+    {
+      "name": "EFG Holding",
+      "symbol": "HRHO.CA"
+    },
+    {
+      "name": "Talaat Moustafa Group",
+      "symbol": "TMGH.CA"
+    }
+  ],
+  "sectors": [
+    "Financials",
+    "Real estate"
+  ]
+}

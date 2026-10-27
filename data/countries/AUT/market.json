@@ -1,0 +1,47 @@
+{
+  "summary": "A banking and energy market with strong ties to Central and Eastern Europe.",
+  "exchanges": [
+    {
+      "name": "Wiener Börse",
+      "city": "Vienna",
+      "website": "https://www.wienerborse.at"
+    }
+  ],
+  "indices": [
+    {
+      "name": "ATX",
+      "symbol": "^ATX"
+    }
+  ],
+  "centralBank": {
+    "name": "Oesterreichische Nationalbank (Eurosystem, ECB)",
+    "website": "https://www.oenb.at"
+  },
+  "regulator": {
+    "name": "Finanzmarktaufsicht",
+    "website": "https://www.fma.gv.at"
+  },
+  "companies": [
+    {
+      "name": "Erste Group",
+      "symbol": "EBS.VI"
+    },
+    {
+      "name": "OMV",
+      "symbol": "OMV.VI"
+    },
+    {
+      "name": "Verbund",
+      "symbol": "VER.VI"
+    },
+    {
+      "name": "Raiffeisen Bank International",
+      "symbol": "RBI.VI"
+    }
+  ],
+  "sectors": [
+    "Financials",
+    "Energy",
+    "Utilities"
+  ]
+}

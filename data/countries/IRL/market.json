@@ -1,0 +1,47 @@
+{
+  "summary": "A small exchange with global names in airlines, building materials and food.",
+  "exchanges": [
+    {
+      "name": "Euronext Dublin",
+      "city": "Dublin",
+      "website": "https://www.euronext.com"
+    }
+  ],
+  "indices": [
+    {
+      "name": "ISEQ All-Share",
+      "symbol": "^ISEQ"
+    }
+  ],
+  "centralBank": {
+    "name": "Central Bank of Ireland (Eurosystem, ECB)",
+    "website": "https://www.centralbank.ie"
+  },
+  "companies": [
+    {
+      "name": "Ryanair",
+      "symbol": "RYA.IR"
+    },
+    {
+      "name": "Kingspan",
+      "symbol": "KRX.IR"
+    },
+    {
+      "name": "Kerry Group",
+      "symbol": "KRZ.IR"
+    },
+    {
+      "name": "AIB Group",
+      "symbol": "A5G.IR"
+    },
+    {
+      "name": "Bank of Ireland",
+      "symbol": "BIRG.IR"
+    }
+  ],
+  "sectors": [
+    "Industrials",
+    "Consumer staples",
+    "Financials"
+  ]
+}

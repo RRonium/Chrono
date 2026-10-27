@@ -31,7 +31,7 @@ jobs:
       - name: Build static site
         working-directory: apps/web
         env:
-          # Set these under Settings > Secrets and variables > Actions > Variables
+          # Repo-level: Settings > Secrets and variables > Actions > Variables (not the github-pages environment, this job does not use it)
           NEXT_PUBLIC_API_URL: ${{ vars.NEXT_PUBLIC_API_URL }}
           NEXT_PUBLIC_WS_URL: ${{ vars.NEXT_PUBLIC_WS_URL }}
           NEXT_PUBLIC_ANALYTICS_URL: ${{ vars.NEXT_PUBLIC_ANALYTICS_URL }}

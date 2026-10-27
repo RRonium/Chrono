@@ -259,7 +259,8 @@ Then set two repository **Actions variables** and re-run the workflow:
 > `NEXT_PUBLIC_*` values are baked into public JavaScript. Put only these public URLs there. API keys,
 > database passwords and `JWT_SECRET` stay in the backend `.env`.
 
-Full steps, custom domains and always-on hosting: [`docs/HOSTING.md`](docs/HOSTING.md).
+Stable URL on your own domain (named tunnel), troubleshooting, custom domains and always-on hosting:
+[`docs/HOSTING.md`](docs/HOSTING.md#cloudflare-tunnel-setup).
 
 ## Repository map
 

@@ -7,12 +7,7 @@
       "website": "https://www.bolsadesantiago.com"
     }
   ],
-  "indices": [
-    {
-      "name": "S&P IPSA",
-      "symbol": "^IPSA"
-    }
-  ],
+  "indices": [],
   "centralBank": {
     "name": "Banco Central de Chile",
     "website": "https://www.bcentral.cl"

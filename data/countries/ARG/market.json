@@ -7,12 +7,7 @@
       "website": "https://www.byma.com.ar"
     }
   ],
-  "indices": [
-    {
-      "name": "S&P Merval",
-      "symbol": "^MERV"
-    }
-  ],
+  "indices": [],
   "centralBank": {
     "name": "Banco Central de la República Argentina",
     "website": "https://www.bcra.gob.ar"

@@ -21,24 +21,7 @@
     "name": "Securities and Exchange Commission",
     "website": "https://www.sec.gov.ph"
   },
-  "companies": [
-    {
-      "name": "SM Investments",
-      "symbol": "SM.PS"
-    },
-    {
-      "name": "BDO Unibank",
-      "symbol": "BDO.PS"
-    },
-    {
-      "name": "Ayala Land",
-      "symbol": "ALI.PS"
-    },
-    {
-      "name": "ICTSI",
-      "symbol": "ICT.PS"
-    }
-  ],
+  "companies": [],
   "sectors": [
     "Industrials",
     "Financials",

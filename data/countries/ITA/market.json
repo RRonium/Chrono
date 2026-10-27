@@ -1,0 +1,52 @@
+{
+  "summary": "A market weighted to banks, energy and utilities, plus luxury carmaker Ferrari.",
+  "exchanges": [
+    {
+      "name": "Borsa Italiana (Euronext Milan)",
+      "city": "Milan",
+      "website": "https://www.borsaitaliana.it"
+    }
+  ],
+  "indices": [
+    {
+      "name": "FTSE MIB",
+      "symbol": "FTSEMIB.MI"
+    }
+  ],
+  "centralBank": {
+    "name": "Banca d'Italia (Eurosystem, ECB)",
+    "website": "https://www.bancaditalia.it"
+  },
+  "regulator": {
+    "name": "CONSOB",
+    "website": "https://www.consob.it"
+  },
+  "companies": [
+    {
+      "name": "UniCredit",
+      "symbol": "UCG.MI"
+    },
+    {
+      "name": "Intesa Sanpaolo",
+      "symbol": "ISP.MI"
+    },
+    {
+      "name": "Enel",
+      "symbol": "ENEL.MI"
+    },
+    {
+      "name": "Eni",
+      "symbol": "ENI.MI"
+    },
+    {
+      "name": "Ferrari",
+      "symbol": "RACE.MI"
+    }
+  ],
+  "sectors": [
+    "Financials",
+    "Utilities",
+    "Energy",
+    "Consumer discretionary"
+  ]
+}

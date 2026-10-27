@@ -1,0 +1,52 @@
+{
+  "summary": "A bank- and utility-heavy market with a global fashion retailer at the top of the IBEX 35.",
+  "exchanges": [
+    {
+      "name": "Bolsa de Madrid (BME)",
+      "city": "Madrid",
+      "website": "https://www.bolsasymercados.es"
+    }
+  ],
+  "indices": [
+    {
+      "name": "IBEX 35",
+      "symbol": "^IBEX"
+    }
+  ],
+  "centralBank": {
+    "name": "Banco de España (Eurosystem, ECB)",
+    "website": "https://www.bde.es"
+  },
+  "regulator": {
+    "name": "Comisión Nacional del Mercado de Valores",
+    "website": "https://www.cnmv.es"
+  },
+  "companies": [
+    {
+      "name": "Inditex",
+      "symbol": "ITX.MC"
+    },
+    {
+      "name": "Banco Santander",
+      "symbol": "SAN.MC"
+    },
+    {
+      "name": "Iberdrola",
+      "symbol": "IBE.MC"
+    },
+    {
+      "name": "BBVA",
+      "symbol": "BBVA.MC"
+    },
+    {
+      "name": "Telefónica",
+      "symbol": "TEF.MC"
+    }
+  ],
+  "sectors": [
+    "Financials",
+    "Utilities",
+    "Consumer discretionary",
+    "Telecoms"
+  ]
+}

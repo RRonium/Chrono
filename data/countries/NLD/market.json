@@ -1,0 +1,51 @@
+{
+  "summary": "A global tech and finance hub led by chip-equipment maker ASML on Euronext Amsterdam.",
+  "exchanges": [
+    {
+      "name": "Euronext Amsterdam",
+      "city": "Amsterdam",
+      "website": "https://www.euronext.com"
+    }
+  ],
+  "indices": [
+    {
+      "name": "AEX",
+      "symbol": "^AEX"
+    }
+  ],
+  "centralBank": {
+    "name": "De Nederlandsche Bank (Eurosystem, ECB)",
+    "website": "https://www.dnb.nl"
+  },
+  "regulator": {
+    "name": "Autoriteit Financiële Markten",
+    "website": "https://www.afm.nl"
+  },
+  "companies": [
+    {
+      "name": "ASML",
+      "symbol": "ASML.AS"
+    },
+    {
+      "name": "ING Groep",
+      "symbol": "INGA.AS"
+    },
+    {
+      "name": "Adyen",
+      "symbol": "ADYEN.AS"
+    },
+    {
+      "name": "Prosus",
+      "symbol": "PRX.AS"
+    },
+    {
+      "name": "Ahold Delhaize",
+      "symbol": "AD.AS"
+    }
+  ],
+  "sectors": [
+    "Technology",
+    "Financials",
+    "Consumer staples"
+  ]
+}

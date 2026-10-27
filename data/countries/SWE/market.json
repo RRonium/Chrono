@@ -1,0 +1,51 @@
+{
+  "summary": "The largest Nordic market, rich in industrial engineering and investment companies.",
+  "exchanges": [
+    {
+      "name": "Nasdaq Stockholm",
+      "city": "Stockholm",
+      "website": "https://www.nasdaqomxnordic.com"
+    }
+  ],
+  "indices": [
+    {
+      "name": "OMX Stockholm 30",
+      "symbol": "^OMX"
+    }
+  ],
+  "centralBank": {
+    "name": "Sveriges Riksbank",
+    "website": "https://www.riksbank.se"
+  },
+  "regulator": {
+    "name": "Finansinspektionen",
+    "website": "https://www.fi.se"
+  },
+  "companies": [
+    {
+      "name": "Atlas Copco",
+      "symbol": "ATCO-A.ST"
+    },
+    {
+      "name": "Investor",
+      "symbol": "INVE-B.ST"
+    },
+    {
+      "name": "Volvo",
+      "symbol": "VOLV-B.ST"
+    },
+    {
+      "name": "Ericsson",
+      "symbol": "ERIC-B.ST"
+    },
+    {
+      "name": "Assa Abloy",
+      "symbol": "ASSA-B.ST"
+    }
+  ],
+  "sectors": [
+    "Industrials",
+    "Financials",
+    "Technology"
+  ]
+}

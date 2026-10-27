@@ -13,6 +13,7 @@ from services.ingestion.scrapers.economic_times import scrape_economic_times
 from services.ingestion.scrapers.newsapi_fallback import scrape_newsapi_topheadlines
 from services.ingestion.scrapers.rss_feeds import scrape_rss_feeds
 from services.ingestion.connectors.finnhub_news import fetch_finnhub_news
+from services.ingestion.connectors.country_markets import fetch_country_quotes
 from services.ingestion.etl.transform import transform_record
 from services.ingestion.etl.iso_tagger import tag_country
 from services.ingestion.etl.persistence_router import route_record
@@ -27,6 +28,9 @@ FINNHUB_API_KEY = settings.FINNHUB_API_KEY or os.getenv("FINNHUB_API_KEY", "")
 DEFAULT_TICKERS = [
     "AAPL", "MSFT", "GOOGL", "TSLA", "BINANCE:BTCUSDT", "BINANCE:ETHUSDT"
 ]
+CORE_YAHOO_SYMBOLS = ["RELIANCE.NS", "TATAMOTORS.NS", "^NSEI", "^GSPC"]
+# Every symbol on the country pages; slower than the core ticker to stay under Yahoo's rate limits.
+COUNTRY_MARKET_INTERVAL_SECONDS = int(os.getenv("COUNTRY_MARKET_INTERVAL_SECONDS", "120"))
 
 if FINNHUB_API_KEY:
     _streamer_instance = start_finnhub_stream(api_key=FINNHUB_API_KEY, symbols=DEFAULT_TICKERS)
@@ -45,7 +49,7 @@ def run_market_pipeline():
     """
     from services.ingestion.connectors.yahoo_finance import fetch_yahoo_ticks
 
-    yahoo_symbols = ["RELIANCE.NS", "TATAMOTORS.NS", "^NSEI", "^GSPC"]
+    yahoo_symbols = list(CORE_YAHOO_SYMBOLS)
     if not (_streamer_instance and _streamer_instance.is_running):
         yahoo_symbols.extend(["AAPL", "MSFT", "GOOGL", "TSLA"])
 
@@ -58,6 +62,18 @@ def run_market_pipeline():
         logger.info(f"Yahoo fallback pipeline: {len(ticks)} market ticks processed")
     except Exception as e:
         logger.error(f"Yahoo fallback pipeline error: {e}", exc_info=True)
+
+
+def run_country_market_pipeline():
+    """Poll every index and company listed in data/countries/*/market.json."""
+    exclude = set(CORE_YAHOO_SYMBOLS) | set(DEFAULT_TICKERS)
+    try:
+        quotes = fetch_country_quotes(exclude=exclude)
+        for quote in quotes:
+            route_record(transform_record(quote))
+        logger.info(f"Country market pipeline: {len(quotes)} quotes processed")
+    except Exception as e:
+        logger.error(f"Country market pipeline error: {e}", exc_info=True)
 
 
 async def _safe_scrape(scraper_coro_or_func, name: str):
@@ -140,6 +156,15 @@ def setup_scheduler():
     logger.info("Regional market pipeline scheduled every 5s via Yahoo Finance.")
 
     scheduler.add_job(
+        run_country_market_pipeline,
+        IntervalTrigger(seconds=COUNTRY_MARKET_INTERVAL_SECONDS),
+        id="country_market_pipeline",
+        replace_existing=True,
+        max_instances=1,
+    )
+    logger.info(f"Country market pipeline scheduled every {COUNTRY_MARKET_INTERVAL_SECONDS}s via Yahoo Finance.")
+
+    scheduler.add_job(
         run_news_pipeline,
         IntervalTrigger(seconds=60),
         id="news_pipeline",
@@ -156,6 +181,7 @@ async def run_scheduled_jobs():
     
     # Start both feeds immediately; recurring jobs continue on their intervals.
     asyncio.create_task(asyncio.to_thread(run_market_pipeline))
+    asyncio.create_task(asyncio.to_thread(run_country_market_pipeline))
     try:
         await run_news_pipeline()
         logger.info("Initial startup news pipeline executed successfully.")

@@ -1,0 +1,52 @@
+{
+  "summary": "A market led by pharma, shipping and green energy names on Nasdaq Copenhagen.",
+  "exchanges": [
+    {
+      "name": "Nasdaq Copenhagen",
+      "city": "Copenhagen",
+      "website": "https://www.nasdaqomxnordic.com"
+    }
+  ],
+  "indices": [
+    {
+      "name": "OMX Copenhagen 25",
+      "symbol": "^OMXC25"
+    }
+  ],
+  "centralBank": {
+    "name": "Danmarks Nationalbank",
+    "website": "https://www.nationalbanken.dk"
+  },
+  "regulator": {
+    "name": "Finanstilsynet",
+    "website": "https://www.dfsa.dk"
+  },
+  "companies": [
+    {
+      "name": "Novo Nordisk",
+      "symbol": "NOVO-B.CO"
+    },
+    {
+      "name": "DSV",
+      "symbol": "DSV.CO"
+    },
+    {
+      "name": "A.P. Møller-Mærsk",
+      "symbol": "MAERSK-B.CO"
+    },
+    {
+      "name": "Ørsted",
+      "symbol": "ORSTED.CO"
+    },
+    {
+      "name": "Danske Bank",
+      "symbol": "DANSKE.CO"
+    }
+  ],
+  "sectors": [
+    "Health care",
+    "Industrials",
+    "Utilities",
+    "Financials"
+  ]
+}

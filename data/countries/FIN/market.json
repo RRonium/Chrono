@@ -1,0 +1,52 @@
+{
+  "summary": "A market built on telecoms equipment, elevators, insurance and refining.",
+  "exchanges": [
+    {
+      "name": "Nasdaq Helsinki",
+      "city": "Helsinki",
+      "website": "https://www.nasdaqomxnordic.com"
+    }
+  ],
+  "indices": [
+    {
+      "name": "OMX Helsinki 25",
+      "symbol": "^OMXH25"
+    }
+  ],
+  "centralBank": {
+    "name": "Bank of Finland (Eurosystem, ECB)",
+    "website": "https://www.suomenpankki.fi"
+  },
+  "regulator": {
+    "name": "Finanssivalvonta",
+    "website": "https://www.finanssivalvonta.fi"
+  },
+  "companies": [
+    {
+      "name": "Nokia",
+      "symbol": "NOKIA.HE"
+    },
+    {
+      "name": "Nordea",
+      "symbol": "NDA-FI.HE"
+    },
+    {
+      "name": "Kone",
+      "symbol": "KNEBV.HE"
+    },
+    {
+      "name": "Sampo",
+      "symbol": "SAMPO.HE"
+    },
+    {
+      "name": "Neste",
+      "symbol": "NESTE.HE"
+    }
+  ],
+  "sectors": [
+    "Technology",
+    "Financials",
+    "Industrials",
+    "Energy"
+  ]
+}

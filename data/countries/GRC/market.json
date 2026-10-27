@@ -1,0 +1,38 @@
+{
+  "summary": "A recovering market led by its systemic banks, with energy and utilities close behind.",
+  "exchanges": [
+    {
+      "name": "Athens Stock Exchange",
+      "city": "Athens",
+      "website": "https://www.athexgroup.gr"
+    }
+  ],
+  "indices": [],
+  "centralBank": {
+    "name": "Bank of Greece (Eurosystem, ECB)",
+    "website": "https://www.bankofgreece.gr"
+  },
+  "regulator": {
+    "name": "Hellenic Capital Market Commission",
+    "website": "https://www.hcmc.gr"
+  },
+  "companies": [
+    {
+      "name": "National Bank of Greece",
+      "symbol": "ETE.AT"
+    },
+    {
+      "name": "Eurobank",
+      "symbol": "EUROB.AT"
+    },
+    {
+      "name": "Alpha Bank",
+      "symbol": "ALPHA.AT"
+    }
+  ],
+  "sectors": [
+    "Financials",
+    "Energy",
+    "Utilities"
+  ]
+}

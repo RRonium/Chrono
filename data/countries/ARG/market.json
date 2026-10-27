@@ -1,0 +1,42 @@
+{
+  "summary": "A small, volatile market dominated by banks and energy, closely tied to inflation and currency policy.",
+  "exchanges": [
+    {
+      "name": "Bolsas y Mercados Argentinos",
+      "city": "Buenos Aires",
+      "website": "https://www.byma.com.ar"
+    }
+  ],
+  "indices": [],
+  "centralBank": {
+    "name": "Banco Central de la República Argentina",
+    "website": "https://www.bcra.gob.ar"
+  },
+  "regulator": {
+    "name": "Comisión Nacional de Valores",
+    "website": "https://www.argentina.gob.ar/cnv"
+  },
+  "companies": [
+    {
+      "name": "Grupo Financiero Galicia",
+      "symbol": "GGAL.BA"
+    },
+    {
+      "name": "YPF",
+      "symbol": "YPFD.BA"
+    },
+    {
+      "name": "Pampa Energía",
+      "symbol": "PAMP.BA"
+    },
+    {
+      "name": "Banco Macro",
+      "symbol": "BMA.BA"
+    }
+  ],
+  "sectors": [
+    "Financials",
+    "Energy",
+    "Utilities"
+  ]
+}

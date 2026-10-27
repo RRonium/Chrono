@@ -1,0 +1,34 @@
+{
+  "summary": "A concentrated market led by OTP Bank, energy group MOL and drugmaker Richter.",
+  "exchanges": [
+    {
+      "name": "Budapest Stock Exchange",
+      "city": "Budapest",
+      "website": "https://www.bse.hu"
+    }
+  ],
+  "indices": [],
+  "centralBank": {
+    "name": "Magyar Nemzeti Bank",
+    "website": "https://www.mnb.hu"
+  },
+  "companies": [
+    {
+      "name": "OTP Bank",
+      "symbol": "OTP.BD"
+    },
+    {
+      "name": "MOL Group",
+      "symbol": "MOL.BD"
+    },
+    {
+      "name": "Richter Gedeon",
+      "symbol": "RICHT.BD"
+    }
+  ],
+  "sectors": [
+    "Financials",
+    "Energy",
+    "Health care"
+  ]
+}

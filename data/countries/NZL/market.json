@@ -1,0 +1,52 @@
+{
+  "summary": "A small market weighted to health care, utilities and infrastructure.",
+  "exchanges": [
+    {
+      "name": "NZX",
+      "city": "Wellington",
+      "website": "https://www.nzx.com"
+    }
+  ],
+  "indices": [
+    {
+      "name": "S&P/NZX 50",
+      "symbol": "^NZ50"
+    }
+  ],
+  "centralBank": {
+    "name": "Reserve Bank of New Zealand",
+    "website": "https://www.rbnz.govt.nz"
+  },
+  "regulator": {
+    "name": "Financial Markets Authority",
+    "website": "https://www.fma.govt.nz"
+  },
+  "companies": [
+    {
+      "name": "Fisher & Paykel Healthcare",
+      "symbol": "FPH.NZ"
+    },
+    {
+      "name": "Infratil",
+      "symbol": "IFT.NZ"
+    },
+    {
+      "name": "Auckland Airport",
+      "symbol": "AIA.NZ"
+    },
+    {
+      "name": "Meridian Energy",
+      "symbol": "MEL.NZ"
+    },
+    {
+      "name": "Spark New Zealand",
+      "symbol": "SPK.NZ"
+    }
+  ],
+  "sectors": [
+    "Health care",
+    "Utilities",
+    "Industrials",
+    "Telecoms"
+  ]
+}

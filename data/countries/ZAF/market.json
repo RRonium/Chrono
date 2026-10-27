@@ -1,0 +1,47 @@
+{
+  "summary": "Africa's largest and most developed exchange, with heavyweights in tech, mining and banking.",
+  "exchanges": [
+    {
+      "name": "Johannesburg Stock Exchange",
+      "city": "Johannesburg",
+      "website": "https://www.jse.co.za"
+    }
+  ],
+  "indices": [],
+  "centralBank": {
+    "name": "South African Reserve Bank",
+    "website": "https://www.resbank.co.za"
+  },
+  "regulator": {
+    "name": "Financial Sector Conduct Authority",
+    "website": "https://www.fsca.co.za"
+  },
+  "companies": [
+    {
+      "name": "Naspers",
+      "symbol": "NPN.JO"
+    },
+    {
+      "name": "FirstRand",
+      "symbol": "FSR.JO"
+    },
+    {
+      "name": "Standard Bank",
+      "symbol": "SBK.JO"
+    },
+    {
+      "name": "MTN Group",
+      "symbol": "MTN.JO"
+    },
+    {
+      "name": "Sasol",
+      "symbol": "SOL.JO"
+    }
+  ],
+  "sectors": [
+    "Technology",
+    "Financials",
+    "Materials",
+    "Telecoms"
+  ]
+}

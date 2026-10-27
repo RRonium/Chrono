@@ -1,0 +1,52 @@
+{
+  "summary": "Latin America's largest stock market, heavy in commodities, banks and consumer names.",
+  "exchanges": [
+    {
+      "name": "B3",
+      "city": "São Paulo",
+      "website": "https://www.b3.com.br"
+    }
+  ],
+  "indices": [
+    {
+      "name": "Ibovespa",
+      "symbol": "^BVSP"
+    }
+  ],
+  "centralBank": {
+    "name": "Banco Central do Brasil",
+    "website": "https://www.bcb.gov.br"
+  },
+  "regulator": {
+    "name": "Comissão de Valores Mobiliários",
+    "website": "https://www.gov.br/cvm"
+  },
+  "companies": [
+    {
+      "name": "Petrobras",
+      "symbol": "PETR4.SA"
+    },
+    {
+      "name": "Vale",
+      "symbol": "VALE3.SA"
+    },
+    {
+      "name": "Itaú Unibanco",
+      "symbol": "ITUB4.SA"
+    },
+    {
+      "name": "Banco Bradesco",
+      "symbol": "BBDC4.SA"
+    },
+    {
+      "name": "Ambev",
+      "symbol": "ABEV3.SA"
+    }
+  ],
+  "sectors": [
+    "Energy",
+    "Materials",
+    "Financials",
+    "Consumer staples"
+  ]
+}

@@ -11,13 +11,14 @@ export function changePercent(tick: any): number {
 export function formatPrice(tick: any): string {
   const price = Number(tick.price) || 0;
   const symbol: string = tick.symbol ?? "";
-  if (symbol.startsWith("^")) return price.toLocaleString("en-US", { maximumFractionDigits: 2, minimumFractionDigits: 2 });
+  if (tick.kind === "index" || symbol.startsWith("^")) return price.toLocaleString("en-US", { maximumFractionDigits: 2, minimumFractionDigits: 2 });
   const isINR = tick.currency === "INR" || symbol.endsWith(".NS") || symbol.endsWith(".BO");
-  return new Intl.NumberFormat(isINR ? "en-IN" : "en-US", {
-    style: "currency",
-    currency: isINR ? "INR" : "USD",
-    maximumFractionDigits: 2,
-  }).format(price);
+  const currency = isINR ? "INR" : tick.currency || "USD";
+  try {
+    return new Intl.NumberFormat(isINR ? "en-IN" : "en-US", { style: "currency", currency, maximumFractionDigits: 2 }).format(price);
+  } catch {
+    return `${price.toLocaleString("en-US", { maximumFractionDigits: 2 })} ${currency}`;
+  }
 }
 
 function TickerItem({ tick }: { tick: any }) {
@@ -36,7 +37,8 @@ function TickerItem({ tick }: { tick: any }) {
 
 export function MarketTicker({ ticks }: { ticks: any[] }) {
   const items = React.useMemo(
-    () => [...ticks].filter((t) => t?.symbol).sort((a, b) => symbolLabel(a.symbol).localeCompare(symbolLabel(b.symbol))),
+    // Country-page quotes (source "country") stay off the scrolling ticker.
+    () => [...ticks].filter((t) => t?.symbol && t.source !== "country").sort((a, b) => symbolLabel(a.symbol).localeCompare(symbolLabel(b.symbol))),
     [ticks],
   );
 

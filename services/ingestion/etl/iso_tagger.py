@@ -1,5 +1,7 @@
 import re
 
+from services.ingestion.connectors.country_markets import load_country_symbols
+
 SYMBOL_ISO_MAP = {
     "AAPL": "USA",
     "MSFT": "USA",
@@ -19,7 +21,11 @@ SYMBOL_ISO_MAP = {
 }
 
 def map_symbol_to_iso(symbol: str) -> str:
-    return SYMBOL_ISO_MAP.get(symbol.upper(), "USA")
+    symbol = symbol.upper()
+    if symbol in SYMBOL_ISO_MAP:
+        return SYMBOL_ISO_MAP[symbol]
+    country = load_country_symbols().get(symbol)
+    return country["iso_code"] if country else "USA"
 
 TEXT_ISO_KEYWORDS = [
     ("IND", ["india", "sensex", "nifty", "rupee", "mumbai", "rbi", "modi", "reliance", "sebi", "bse", "nse"]),

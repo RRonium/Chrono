@@ -1,0 +1,52 @@
+{
+  "summary": "A tech- and bank-heavy market, with many Israeli firms also listed in New York.",
+  "exchanges": [
+    {
+      "name": "Tel Aviv Stock Exchange",
+      "city": "Tel Aviv",
+      "website": "https://www.tase.co.il"
+    }
+  ],
+  "indices": [
+    {
+      "name": "TA-35",
+      "symbol": "TA35.TA"
+    }
+  ],
+  "centralBank": {
+    "name": "Bank of Israel",
+    "website": "https://www.boi.org.il"
+  },
+  "regulator": {
+    "name": "Israel Securities Authority",
+    "website": "https://www.isa.gov.il"
+  },
+  "companies": [
+    {
+      "name": "Teva",
+      "symbol": "TEVA.TA"
+    },
+    {
+      "name": "Bank Leumi",
+      "symbol": "LUMI.TA"
+    },
+    {
+      "name": "Bank Hapoalim",
+      "symbol": "POLI.TA"
+    },
+    {
+      "name": "NICE",
+      "symbol": "NICE.TA"
+    },
+    {
+      "name": "Elbit Systems",
+      "symbol": "ESLT.TA"
+    }
+  ],
+  "sectors": [
+    "Financials",
+    "Technology",
+    "Health care",
+    "Defense"
+  ]
+}

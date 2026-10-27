@@ -1,0 +1,52 @@
+{
+  "summary": "A gateway for Chinese tech and financial giants alongside local banks and insurers.",
+  "exchanges": [
+    {
+      "name": "Hong Kong Exchanges and Clearing",
+      "city": "Hong Kong",
+      "website": "https://www.hkex.com.hk"
+    }
+  ],
+  "indices": [
+    {
+      "name": "Hang Seng",
+      "symbol": "^HSI"
+    }
+  ],
+  "centralBank": {
+    "name": "Hong Kong Monetary Authority",
+    "website": "https://www.hkma.gov.hk"
+  },
+  "regulator": {
+    "name": "Securities and Futures Commission",
+    "website": "https://www.sfc.hk"
+  },
+  "companies": [
+    {
+      "name": "Tencent",
+      "symbol": "0700.HK"
+    },
+    {
+      "name": "Alibaba",
+      "symbol": "9988.HK"
+    },
+    {
+      "name": "HSBC",
+      "symbol": "0005.HK"
+    },
+    {
+      "name": "AIA Group",
+      "symbol": "1299.HK"
+    },
+    {
+      "name": "China Mobile",
+      "symbol": "0941.HK"
+    }
+  ],
+  "sectors": [
+    "Technology",
+    "Financials",
+    "Telecoms",
+    "Real estate"
+  ]
+}

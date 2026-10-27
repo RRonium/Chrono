@@ -1,0 +1,47 @@
+{
+  "summary": "A compact market anchored by brewing, biotech and banking on Euronext Brussels.",
+  "exchanges": [
+    {
+      "name": "Euronext Brussels",
+      "city": "Brussels",
+      "website": "https://www.euronext.com"
+    }
+  ],
+  "indices": [
+    {
+      "name": "BEL 20",
+      "symbol": "^BFX"
+    }
+  ],
+  "centralBank": {
+    "name": "National Bank of Belgium (Eurosystem, ECB)",
+    "website": "https://www.nbb.be"
+  },
+  "regulator": {
+    "name": "Financial Services and Markets Authority",
+    "website": "https://www.fsma.be"
+  },
+  "companies": [
+    {
+      "name": "Anheuser-Busch InBev",
+      "symbol": "ABI.BR"
+    },
+    {
+      "name": "UCB",
+      "symbol": "UCB.BR"
+    },
+    {
+      "name": "KBC Group",
+      "symbol": "KBC.BR"
+    },
+    {
+      "name": "argenx",
+      "symbol": "ARGX.BR"
+    }
+  ],
+  "sectors": [
+    "Consumer staples",
+    "Health care",
+    "Financials"
+  ]
+}

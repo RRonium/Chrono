@@ -1,0 +1,51 @@
+{
+  "summary": "Central Europe's largest exchange, led by state-linked banks, insurers and energy groups.",
+  "exchanges": [
+    {
+      "name": "Warsaw Stock Exchange",
+      "city": "Warsaw",
+      "website": "https://www.gpw.pl"
+    }
+  ],
+  "indices": [
+    {
+      "name": "WIG20",
+      "symbol": "WIG20.WA"
+    }
+  ],
+  "centralBank": {
+    "name": "Narodowy Bank Polski",
+    "website": "https://nbp.pl"
+  },
+  "regulator": {
+    "name": "Komisja Nadzoru Finansowego",
+    "website": "https://www.knf.gov.pl"
+  },
+  "companies": [
+    {
+      "name": "PKO Bank Polski",
+      "symbol": "PKO.WA"
+    },
+    {
+      "name": "Orlen",
+      "symbol": "PKN.WA"
+    },
+    {
+      "name": "PZU",
+      "symbol": "PZU.WA"
+    },
+    {
+      "name": "Bank Pekao",
+      "symbol": "PEO.WA"
+    },
+    {
+      "name": "KGHM",
+      "symbol": "KGH.WA"
+    }
+  ],
+  "sectors": [
+    "Financials",
+    "Energy",
+    "Materials"
+  ]
+}

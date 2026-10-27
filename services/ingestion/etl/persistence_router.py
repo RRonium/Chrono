@@ -47,6 +47,8 @@ def route_record(record: dict) -> bool:
             channel = f"market:ticks:{record['symbol']}"
             r.publish(channel, payload)
             r.publish("market:ticks:all", payload)
+            # Latest quote per symbol, so a page opened between polls is filled straight away.
+            r.hset("market:latest", record["symbol"], payload)
         except Exception as e:
             logger.error(f"Failed to publish market tick to Redis: {e}", exc_info=False)
 

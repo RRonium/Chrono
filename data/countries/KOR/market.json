@@ -1,0 +1,51 @@
+{
+  "summary": "An export-driven market led by memory chips, batteries and autos.",
+  "exchanges": [
+    {
+      "name": "Korea Exchange",
+      "city": "Busan",
+      "website": "https://global.krx.co.kr"
+    }
+  ],
+  "indices": [
+    {
+      "name": "KOSPI",
+      "symbol": "^KS11"
+    }
+  ],
+  "centralBank": {
+    "name": "Bank of Korea",
+    "website": "https://www.bok.or.kr"
+  },
+  "regulator": {
+    "name": "Financial Services Commission",
+    "website": "https://www.fsc.go.kr"
+  },
+  "companies": [
+    {
+      "name": "Samsung Electronics",
+      "symbol": "005930.KS"
+    },
+    {
+      "name": "SK hynix",
+      "symbol": "000660.KS"
+    },
+    {
+      "name": "LG Energy Solution",
+      "symbol": "373220.KS"
+    },
+    {
+      "name": "Hyundai Motor",
+      "symbol": "005380.KS"
+    },
+    {
+      "name": "NAVER",
+      "symbol": "035420.KS"
+    }
+  ],
+  "sectors": [
+    "Technology",
+    "Consumer discretionary",
+    "Industrials"
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "summary": "Southeast Asia's largest economy, with a market dominated by big banks and telecoms.",
+  "exchanges": [
+    {
+      "name": "Indonesia Stock Exchange",
+      "city": "Jakarta",
+      "website": "https://www.idx.co.id"
+    }
+  ],
+  "indices": [
+    {
+      "name": "Jakarta Composite",
+      "symbol": "^JKSE"
+    }
+  ],
+  "centralBank": {
+    "name": "Bank Indonesia",
+    "website": "https://www.bi.go.id"
+  },
+  "regulator": {
+    "name": "Otoritas Jasa Keuangan",
+    "website": "https://www.ojk.go.id"
+  },
+  "companies": [
+    {
+      "name": "Bank Central Asia",
+      "symbol": "BBCA.JK"
+    },
+    {
+      "name": "Bank Rakyat Indonesia",
+      "symbol": "BBRI.JK"
+    },
+    {
+      "name": "Bank Mandiri",
+      "symbol": "BMRI.JK"
+    },
+    {
+      "name": "Telkom Indonesia",
+      "symbol": "TLKM.JK"
+    },
+    {
+      "name": "Astra International",
+      "symbol": "ASII.JK"
+    }
+  ],
+  "sectors": [
+    "Financials",
+    "Telecoms",
+    "Consumer discretionary"
+  ]
+}

@@ -1,0 +1,52 @@
+{
+  "summary": "Latin America's second-largest equity market, concentrated in telecoms, retail, banking and mining.",
+  "exchanges": [
+    {
+      "name": "Bolsa Mexicana de Valores",
+      "city": "Mexico City",
+      "website": "https://www.bmv.com.mx"
+    }
+  ],
+  "indices": [
+    {
+      "name": "S&P/BMV IPC",
+      "symbol": "^MXX"
+    }
+  ],
+  "centralBank": {
+    "name": "Banco de México",
+    "website": "https://www.banxico.org.mx"
+  },
+  "regulator": {
+    "name": "Comisión Nacional Bancaria y de Valores",
+    "website": "https://www.gob.mx/cnbv"
+  },
+  "companies": [
+    {
+      "name": "Walmart de México",
+      "symbol": "WALMEX.MX"
+    },
+    {
+      "name": "América Móvil",
+      "symbol": "AMXB.MX"
+    },
+    {
+      "name": "Banorte",
+      "symbol": "GFNORTEO.MX"
+    },
+    {
+      "name": "FEMSA",
+      "symbol": "FEMSAUBD.MX"
+    },
+    {
+      "name": "Grupo México",
+      "symbol": "GMEXICOB.MX"
+    }
+  ],
+  "sectors": [
+    "Consumer staples",
+    "Telecoms",
+    "Financials",
+    "Materials"
+  ]
+}

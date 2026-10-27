@@ -237,7 +237,7 @@
    "region": "Americas",
    "subregion": "South America",
    "gdp": 683097891618.597,
-   "hasMarket": false
+   "hasMarket": true
   },
   {
    "iso3": "ARM",
@@ -264,7 +264,7 @@
    "region": "Oceania",
    "subregion": "Australia and New Zealand",
    "gdp": 1798518933689.21,
-   "hasMarket": false
+   "hasMarket": true
   },
   {
    "iso3": "AUT",
@@ -273,7 +273,7 @@
    "region": "Europe",
    "subregion": "Central Europe",
    "gdp": 579470021095.418,
-   "hasMarket": false
+   "hasMarket": true
   },
   {
    "iso3": "AZE",
@@ -336,7 +336,7 @@
    "region": "Europe",
    "subregion": "Western Europe",
    "gdp": 725466462859.646,
-   "hasMarket": false
+   "hasMarket": true
   },
   {
    "iso3": "BLZ",
@@ -417,7 +417,7 @@
    "region": "Americas",
    "subregion": "South America",
    "gdp": 2279920092492.13,
-   "hasMarket": false
+   "hasMarket": true
   },
   {
    "iso3": "IOT",
@@ -498,7 +498,7 @@
    "region": "Americas",
    "subregion": "North America",
    "gdp": 2319899772425.92,
-   "hasMarket": false
+   "hasMarket": true
   },
   {
    "iso3": "CPV",
@@ -552,7 +552,7 @@
    "region": "Americas",
    "subregion": "South America",
    "gdp": 357371159574.862,
-   "hasMarket": false
+   "hasMarket": true
   },
   {
    "iso3": "CHN",
@@ -669,7 +669,7 @@
    "region": "Europe",
    "subregion": "Central Europe",
    "gdp": 391026962800.475,
-   "hasMarket": false
+   "hasMarket": true
   },
   {
    "iso3": "COD",
@@ -687,7 +687,7 @@
    "region": "Europe",
    "subregion": "Northern Europe",
    "gdp": 462526660468.393,
-   "hasMarket": false
+   "hasMarket": true
   },
   {
    "iso3": "DJI",
@@ -732,7 +732,7 @@
    "region": "Africa",
    "subregion": "Northern Africa",
    "gdp": 365254630179.737,
-   "hasMarket": false
+   "hasMarket": true
   },
   {
    "iso3": "SLV",
@@ -822,7 +822,7 @@
    "region": "Europe",
    "subregion": "Northern Europe",
    "gdp": 317039368819.607,
-   "hasMarket": false
+   "hasMarket": true
   },
   {
    "iso3": "FRA",
@@ -831,7 +831,7 @@
    "region": "Europe",
    "subregion": "Western Europe",
    "gdp": 3366315927447.33,
-   "hasMarket": false
+   "hasMarket": true
   },
   {
    "iso3": "GUF",
@@ -921,7 +921,7 @@
    "region": "Europe",
    "subregion": "Southern Europe",
    "gdp": 280635521324.441,
-   "hasMarket": false
+   "hasMarket": true
   },
   {
    "iso3": "GRL",
@@ -1038,7 +1038,7 @@
    "region": "Asia",
    "subregion": "Eastern Asia",
    "gdp": 427310315921.993,
-   "hasMarket": false
+   "hasMarket": true
   },
   {
    "iso3": "HUN",
@@ -1047,7 +1047,7 @@
    "region": "Europe",
    "subregion": "Central Europe",
    "gdp": 246490213513.054,
-   "hasMarket": false
+   "hasMarket": true
   },
   {
    "iso3": "ISL",
@@ -1074,7 +1074,7 @@
    "region": "Asia",
    "subregion": "South-Eastern Asia",
    "gdp": 1445642584163.81,
-   "hasMarket": false
+   "hasMarket": true
   },
   {
    "iso3": "IRN",
@@ -1101,7 +1101,7 @@
    "region": "Europe",
    "subregion": "Northern Europe",
    "gdp": 721701359046.313,
-   "hasMarket": false
+   "hasMarket": true
   },
   {
    "iso3": "IMN",
@@ -1119,7 +1119,7 @@
    "region": "Asia",
    "subregion": "Western Asia",
    "gdp": 610777842873.595,
-   "hasMarket": false
+   "hasMarket": true
   },
   {
    "iso3": "ITA",
@@ -1128,7 +1128,7 @@
    "region": "Europe",
    "subregion": "Southern Europe",
    "gdp": 2551556954100.35,
-   "hasMarket": false
+   "hasMarket": true
   },
   {
    "iso3": "CIV",
@@ -1344,7 +1344,7 @@
    "region": "Asia",
    "subregion": "South-Eastern Asia",
    "gdp": 472193128644.597,
-   "hasMarket": false
+   "hasMarket": true
   },
   {
    "iso3": "MDV",
@@ -1425,7 +1425,7 @@
    "region": "Americas",
    "subregion": "North America",
    "gdp": 1832641364775.52,
-   "hasMarket": false
+   "hasMarket": true
   },
   {
    "iso3": "FSM",
@@ -1542,7 +1542,7 @@
    "region": "Europe",
    "subregion": "Western Europe",
    "gdp": 1332767651100.39,
-   "hasMarket": false
+   "hasMarket": true
   },
   {
    "iso3": "NCL",
@@ -1560,7 +1560,7 @@
    "region": "Oceania",
    "subregion": "Australia and New Zealand",
    "gdp": 264057413739.965,
-   "hasMarket": false
+   "hasMarket": true
   },
   {
    "iso3": "NIC",
@@ -1641,7 +1641,7 @@
    "region": "Europe",
    "subregion": "Northern Europe",
    "gdp": 530755719438.879,
-   "hasMarket": false
+   "hasMarket": true
   },
   {
    "iso3": "OMN",
@@ -1722,7 +1722,7 @@
    "region": "Asia",
    "subregion": "South-Eastern Asia",
    "gdp": 487086123720.417,
-   "hasMarket": false
+   "hasMarket": true
   },
   {
    "iso3": "PCN",
@@ -1740,7 +1740,7 @@
    "region": "Europe",
    "subregion": "Central Europe",
    "gdp": 1035491784197.44,
-   "hasMarket": false
+   "hasMarket": true
   },
   {
    "iso3": "PRT",
@@ -1749,7 +1749,7 @@
    "region": "Europe",
    "subregion": "Southern Europe",
    "gdp": 346639825141.821,
-   "hasMarket": false
+   "hasMarket": true
   },
   {
    "iso3": "PRI",
@@ -1767,7 +1767,7 @@
    "region": "Asia",
    "subregion": "Western Asia",
    "gdp": 215559615384.615,
-   "hasMarket": false
+   "hasMarket": true
   },
   {
    "iso3": "ROU",
@@ -1893,7 +1893,7 @@
    "region": "Asia",
    "subregion": "Western Asia",
    "gdp": 1276942933333.33,
-   "hasMarket": false
+   "hasMarket": true
   },
   {
    "iso3": "SEN",
@@ -1938,7 +1938,7 @@
    "region": "Asia",
    "subregion": "South-Eastern Asia",
    "gdp": 603869516998.738,
-   "hasMarket": false
+   "hasMarket": true
   },
   {
    "iso3": "SXM",
@@ -1992,7 +1992,7 @@
    "region": "Africa",
    "subregion": "Southern Africa",
    "gdp": 427184325997.307,
-   "hasMarket": false
+   "hasMarket": true
   },
   {
    "iso3": "SGS",
@@ -2010,7 +2010,7 @@
    "region": "Asia",
    "subregion": "Eastern Asia",
    "gdp": 1872374961553.15,
-   "hasMarket": false
+   "hasMarket": true
   },
   {
    "iso3": "SSD",
@@ -2028,7 +2028,7 @@
    "region": "Europe",
    "subregion": "Southern Europe",
    "gdp": 1906453309985.88,
-   "hasMarket": false
+   "hasMarket": true
   },
   {
    "iso3": "LKA",
@@ -2073,7 +2073,7 @@
    "region": "Europe",
    "subregion": "Northern Europe",
    "gdp": 668998664082.081,
-   "hasMarket": false
+   "hasMarket": true
   },
   {
    "iso3": "CHE",
@@ -2082,7 +2082,7 @@
    "region": "Europe",
    "subregion": "Western Europe",
    "gdp": 1043529899250.92,
-   "hasMarket": false
+   "hasMarket": true
   },
   {
    "iso3": "SYR",
@@ -2109,7 +2109,7 @@
    "region": "Asia",
    "subregion": "Eastern Asia",
    "gdp": null,
-   "hasMarket": false
+   "hasMarket": true
   },
   {
    "iso3": "TJK",
@@ -2136,7 +2136,7 @@
    "region": "Asia",
    "subregion": "South-Eastern Asia",
    "gdp": 577009981112.015,
-   "hasMarket": false
+   "hasMarket": true
   },
   {
    "iso3": "TLS",
@@ -2226,7 +2226,7 @@
    "region": "Asia",
    "subregion": "Western Asia",
    "gdp": 1597293229287.0,
-   "hasMarket": false
+   "hasMarket": true
   },
   {
    "iso3": "UGA",

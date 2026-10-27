@@ -60,18 +60,22 @@ export function MarketSection({ iso, market, ticks }: { iso: string; market: Cou
         </div>
         <p className="text-[13px] leading-relaxed text-ink-muted mb-3">{market.summary}</p>
         <div className="grid gap-4 sm:grid-cols-2">
-          <div>
-            <div className="font-mono text-[10px] tracking-wider text-ink-faint mb-1">INDICES</div>
-            {market.indices.map((q) => (
-              <Quote key={q.symbol} {...q} tick={bySymbol.get(q.symbol.toUpperCase())} />
-            ))}
-          </div>
-          <div>
-            <div className="font-mono text-[10px] tracking-wider text-ink-faint mb-1">LARGEST LISTED COMPANIES</div>
-            {market.companies.map((q) => (
-              <Quote key={q.symbol} {...q} tick={bySymbol.get(q.symbol.toUpperCase())} />
-            ))}
-          </div>
+          {market.indices.length > 0 && (
+            <div>
+              <div className="font-mono text-[10px] tracking-wider text-ink-faint mb-1">INDICES</div>
+              {market.indices.map((q) => (
+                <Quote key={q.symbol} {...q} tick={bySymbol.get(q.symbol.toUpperCase())} />
+              ))}
+            </div>
+          )}
+          {market.companies.length > 0 && (
+            <div>
+              <div className="font-mono text-[10px] tracking-wider text-ink-faint mb-1">LARGEST LISTED COMPANIES</div>
+              {market.companies.map((q) => (
+                <Quote key={q.symbol} {...q} tick={bySymbol.get(q.symbol.toUpperCase())} />
+              ))}
+            </div>
+          )}
         </div>
         <div className="mt-4 grid gap-2 sm:grid-cols-2 font-mono text-[11px]">
           {market.exchanges.map((ex) => (

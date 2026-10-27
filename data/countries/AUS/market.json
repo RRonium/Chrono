@@ -1,0 +1,51 @@
+{
+  "summary": "A market dominated by big four banks and global miners, backed by large pension savings.",
+  "exchanges": [
+    {
+      "name": "Australian Securities Exchange",
+      "city": "Sydney",
+      "website": "https://www.asx.com.au"
+    }
+  ],
+  "indices": [
+    {
+      "name": "S&P/ASX 200",
+      "symbol": "^AXJO"
+    }
+  ],
+  "centralBank": {
+    "name": "Reserve Bank of Australia",
+    "website": "https://www.rba.gov.au"
+  },
+  "regulator": {
+    "name": "ASIC",
+    "website": "https://asic.gov.au"
+  },
+  "companies": [
+    {
+      "name": "BHP",
+      "symbol": "BHP.AX"
+    },
+    {
+      "name": "Commonwealth Bank",
+      "symbol": "CBA.AX"
+    },
+    {
+      "name": "CSL",
+      "symbol": "CSL.AX"
+    },
+    {
+      "name": "National Australia Bank",
+      "symbol": "NAB.AX"
+    },
+    {
+      "name": "Westpac",
+      "symbol": "WBC.AX"
+    }
+  ],
+  "sectors": [
+    "Financials",
+    "Materials",
+    "Health care"
+  ]
+}

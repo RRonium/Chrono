@@ -1,0 +1,52 @@
+{
+  "summary": "A market led by energy, airports, retail and banks on the Stock Exchange of Thailand.",
+  "exchanges": [
+    {
+      "name": "Stock Exchange of Thailand",
+      "city": "Bangkok",
+      "website": "https://www.set.or.th"
+    }
+  ],
+  "indices": [
+    {
+      "name": "SET Index",
+      "symbol": "^SET.BK"
+    }
+  ],
+  "centralBank": {
+    "name": "Bank of Thailand",
+    "website": "https://www.bot.or.th"
+  },
+  "regulator": {
+    "name": "Securities and Exchange Commission",
+    "website": "https://www.sec.or.th"
+  },
+  "companies": [
+    {
+      "name": "PTT",
+      "symbol": "PTT.BK"
+    },
+    {
+      "name": "Airports of Thailand",
+      "symbol": "AOT.BK"
+    },
+    {
+      "name": "CP All",
+      "symbol": "CPALL.BK"
+    },
+    {
+      "name": "Advanced Info Service",
+      "symbol": "ADVANC.BK"
+    },
+    {
+      "name": "Kasikornbank",
+      "symbol": "KBANK.BK"
+    }
+  ],
+  "sectors": [
+    "Energy",
+    "Industrials",
+    "Consumer staples",
+    "Financials"
+  ]
+}

@@ -45,8 +45,15 @@ SEVERITY_KEYWORDS: Dict[str, float] = {
     "commentary": 0.05,
 }
 
-# ISO code matching in text boosts urgency
-ISO_BOOST_WEIGHT = 0.15  # +0.15 if ISO country mentioned in article text
+# Raw keyword weight at which severity is treated as maximal
+KEYWORD_SATURATION = 0.6
+
+# Component weights; they sum to 1.0 so a fresh, severe, bearish story can reach red.
+WEIGHT_KEYWORDS = 0.45
+WEIGHT_SENTIMENT = 0.20
+WEIGHT_ISO = 0.10
+WEIGHT_SOURCE = 0.10
+WEIGHT_RECENCY = 0.15
 
 # Source credibility weights (normalized to 0-1, higher = more trusted / more impact)
 SOURCE_CREDIBILITY: Dict[str, float] = {
@@ -95,18 +102,19 @@ def _extract_iso_codes(text: str) -> set[str]:
 
 
 def _compute_keyword_severity(text: str) -> float:
-    """Compute severity score based on keyword matches in article text."""
+    """Compute severity [0.0, 1.0] from keyword matches in article text.
+
+    Simple inflections count, so "crash" also catches "crashes" and "crashed",
+    and "surge" catches "surging".
+    """
     lower = text.lower()
     total = 0.0
-    matched: list[str] = []
     for kw, weight in SEVERITY_KEYWORDS.items():
-        # match whole word or phrase; word-boundary for single words
-        pattern = r"\b" + re.escape(kw) + r"\b" if len(kw) > 2 else kw
-        if re.search(pattern, lower):
+        stem = re.escape(kw[:-1] if kw.endswith("e") else kw)
+        if re.search(r"\b" + stem + r"(?:e|es|ed|s|d|ing)?\b", lower):
             total += weight
-            matched.append(kw)
-    # Cap at 0.6 to avoid over-weighting single articles
-    return round(min(total, 0.6), 4)
+    # Two crisis-level hits saturate the score.
+    return round(min(total / KEYWORD_SATURATION, 1.0), 4)
 
 
 def _compute_source_credibility(source: str) -> float:
@@ -122,9 +130,8 @@ def _compute_recency_factor(published_at: Optional[str]) -> float:
     """
     Compute recency decay factor [0.0, 1.0] based on published_at timestamp.
 
-    - If published_at is within the last RECENCY_HALF_LIFE_HOURS, factor near 1.0
-    - After half-life, factor decays toward 0.5 (not to 0, since old news still has relevance)
-    - Uses exponential decay: factor = 1 - (0.5 ** (elapsed_hours / half_life))
+    - A just-published article scores 1.0
+    - The factor halves every RECENCY_HALF_LIFE_HOURS, floored at 0.5 so old news keeps some weight
     """
     if not published_at:
         return 0.7  # neutral: unknown age, assume moderate recency
@@ -133,16 +140,15 @@ def _compute_recency_factor(published_at: Optional[str]) -> float:
         from datetime import datetime, timezone
 
         published_dt = datetime.fromisoformat(
-            published_at.replace("Z", "+00:00")
-        ).astimezone(timezone.utc)
+            str(published_at).replace("Z", "+00:00")
+        )
+        if published_dt.tzinfo is None:
+            published_dt = published_dt.replace(tzinfo=timezone.utc)
         now = datetime.now(timezone.utc)
         elapsed_hours = max((now - published_dt).total_seconds() / 3600.0, 0.0)
 
-        # Exponential decay based on half-life
-        # After N half-lives, factor approaches 0.5
-        decay = 0.5 ** (elapsed_hours / RECENCY_HALF_LIFE_HOURS)
-        factor = 1.0 - decay  # ranges from 1.0 (fresh) to 0.5 (stale)
-        return round(max(factor, 0.5), 4)  # floor at 0.5
+        factor = 0.5 ** (elapsed_hours / RECENCY_HALF_LIFE_HOURS)
+        return round(max(factor, 0.5), 4)
     except Exception as e:
         logger.warning(f"Error computing recency factor: {e}")
         return 0.7
@@ -157,12 +163,12 @@ def score_urgency(
     """
     Compute an urgency score [0.0, 1.0] for a news article.
 
-    Formula components:
-      1. Keyword severity:    up to 0.35 weight
-      2. Sentiment polarity:  up to 0.25 weight
-      3. ISO mention:         up to 0.15 weight
-      4. Source credibility:  up to 0.20 weight
-      5. Recency:             up to 0.15 weight
+    Formula components (weights sum to 1.0):
+      1. Keyword severity:    up to 0.45
+      2. Sentiment polarity:  up to 0.20 (bearish counts more than bullish)
+      3. ISO mention:         up to 0.10
+      4. Source credibility:  up to 0.10
+      5. Recency:             up to 0.15
 
     Weighted sum clamped to [0.0, 1.0].
 
@@ -173,32 +179,32 @@ def score_urgency(
     """
 
     try:
-        # 1. Keyword severity (max weight 0.35)
+        # 1. Keyword severity
         kw_score = _compute_keyword_severity(text)
-        kw_weighted = round(kw_score * 0.35, 4)
+        kw_weighted = round(kw_score * WEIGHT_KEYWORDS, 4)
 
-        # 2. Sentiment polarity (max weight 0.25)
+        # 2. Sentiment polarity, scaled by the classifier's confidence
         from services.ml_classifier.model.finbert_sentiment import classify_sentiment
 
         sent_result = classify_sentiment(text)
-        label = sent_result.get("label", "NEUTRAL") if isinstance(sent_result, dict) else sent_result[0].get(
-            "label", "NEUTRAL"
-        ) if isinstance(sent_result, list) else "NEUTRAL"
-        sent_score_map = {"BULLISH": 0.15, "BEARISH": 0.20, "NEUTRAL": 0.05}
-        sentiment_weight = sent_score_map.get(label, 0.05)
-        sent_weighted = round(sentiment_weight * 0.25, 4)
+        if isinstance(sent_result, list):
+            sent_result = sent_result[0] if sent_result else {}
+        label = sent_result.get("label", "NEUTRAL")
+        confidence = float(sent_result.get("score", 0.0) or 0.0)
+        polarity_map = {"BEARISH": 1.0, "BULLISH": 0.6, "NEUTRAL": 0.1}
+        sentiment_weight = polarity_map.get(label, 0.1) * (confidence if label != "NEUTRAL" else 1.0)
+        sent_weighted = round(sentiment_weight * WEIGHT_SENTIMENT, 4)
 
-        # 3. ISO mention boost (max weight 0.15)
-        iso_boost = ISO_BOOST_WEIGHT if iso_mentioned else 0.0
-        iso_weighted = round(iso_boost * 1.0, 4)  # full weight if mentioned
+        # 3. ISO mention boost
+        iso_weighted = WEIGHT_ISO if iso_mentioned else 0.0
 
-        # 4. Source credibility (max weight 0.20)
+        # 4. Source credibility
         src_cred = _compute_source_credibility(source)
-        src_weighted = round(src_cred * 0.20, 4)
+        src_weighted = round(src_cred * WEIGHT_SOURCE, 4)
 
-        # 5. Recency factor (max weight 0.15)
+        # 5. Recency factor
         recency = _compute_recency_factor(published_at)
-        recency_weighted = round(recency * 0.15, 4)
+        recency_weighted = round(recency * WEIGHT_RECENCY, 4)
 
         # Weighted sum
         total_urgency = round(
@@ -234,11 +240,7 @@ def score_urgency(
             "urgency_color": urgency_color,
             "severity_breakdown": severity_breakdown,
             "sentiment_label": label,
-            "sentiment_score": sent_result.get("score", 0.0) if isinstance(sent_result, dict) else sent_result[0].get(
-                "score", 0.0
-            )
-            if isinstance(sent_result, (dict, list))
-            else 0.0,
+            "sentiment_score": sent_result.get("score", 0.0),
         }
 
     except Exception as e:

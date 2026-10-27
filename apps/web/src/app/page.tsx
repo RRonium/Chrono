@@ -4,6 +4,7 @@ import React from "react";
 import { useRouter } from "next/navigation";
 import { Header } from "@/components/dashboard/Header";
 import { MarketTicker } from "@/components/dashboard/MarketTicker";
+import { HeadlineTicker } from "@/components/dashboard/HeadlineTicker";
 import { Globe3D } from "@/components/globe/Globe3D";
 import { TechnicalsPanel } from "@/components/dashboard/TechnicalsPanel";
 import { SentimentFeed } from "@/components/dashboard/SentimentFeed";
@@ -18,6 +19,7 @@ export default function DashboardPage() {
     <div className="min-h-screen bg-cyber-bg flex flex-col">
       <Header connected={connected} />
       <MarketTicker ticks={ticks} />
+      <HeadlineTicker articles={articles} />
       <div className="flex-1 grid grid-cols-1 lg:grid-cols-12 gap-4 p-4">
         <div className="lg:col-span-8 hud-panel rounded-lg relative overflow-hidden h-[600px] lg:h-auto lg:min-h-[640px]">
           <Globe3D onSelectHub={(iso) => router.push(countryHref(iso))} />

@@ -10,7 +10,7 @@ logger = logging.getLogger(__name__)
 _redis_pool = None
 
 def get_postgres_connection():
-    return psycopg2.connect(settings.TIMESCALE_URL)
+    return psycopg2.connect(settings.TIMESCALE_URL, connect_timeout=5)
 
 def get_mongo_client():
     return MongoClient(settings.MONGO_URI)

@@ -163,7 +163,9 @@ def scrape_reuters_rss():
 
     try:
         import feedparser
-        feed = feedparser.parse(url)
+        # feedparser has no timeout of its own; fetch with requests so a dead connection can't hang.
+        response = requests.get(url, headers=HEADERS, timeout=15)
+        feed = feedparser.parse(response.content)
 
         for entry in feed.entries[:20]:
             title = entry.get("title", "")
